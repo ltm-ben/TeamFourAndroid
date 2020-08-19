@@ -1,59 +1,51 @@
 package iss.workshop.jsonparsingexample;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-import iss.workshop.jsonparsingexample.Models.Stock;
+    // Defining buttons
+    Button mStockListBtn;
+    Button mRequisitionListBtn;
 
-
-public class MainActivity extends AppCompatActivity implements GetJsonData.OnDataAvailable {
-
-    public static final String TAG = "MainActivity";
-    private StockRecyclerViewAdapter mStockRecyclerViewAdapter;
-    
-    public String mURL = "http://192.168.68.110/store/storeclerkstocklistapi";
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: starts");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mStockListBtn = findViewById(R.id.stockListBtn);
+        mStockListBtn.setOnClickListener(this);
 
-        mStockRecyclerViewAdapter = new StockRecyclerViewAdapter(this, new ArrayList<Stock>());
-        recyclerView.setAdapter(mStockRecyclerViewAdapter);
-
-        Log.d(TAG, "onCreate: ends");
+        mRequisitionListBtn = findViewById(R.id.requisitionListBtn);
+        mRequisitionListBtn.setOnClickListener(this);
     }
 
     @Override
-    protected void onResume() {
-        Log.d(TAG, "onResume starts");
-        super.onResume();
-        GetJsonData getJsonData = new GetJsonData(this);
-        getJsonData.execute(mURL);
-        Log.d(TAG, "onResume ends");
-    }
+    public void onClick(View v) {
+        switch(v.getId()) {
 
-    @Override
-    public void onDataAvailable(List<Stock> data, DownloadStatus status) {
-        Log.d(TAG, "onDataAvailable: starts");
-        if(status == DownloadStatus.OK) {
-            mStockRecyclerViewAdapter.loadNewData(data);
-        } else {
-            // download or processing failed
-            Log.e(TAG, "onDataAvailable failed with status " + status);
+            case R.id.stockListBtn:
+                launchStockListActivity();
+                break;
+
+            case R.id.requisitionListBtn:
+                launchRequisitionListActivity();
+                break;
         }
+    }
 
-        Log.d(TAG, "onDataAvailable: ends");
+    void launchStockListActivity() {
+        Intent intent = new Intent(this, StockListActivity.class);
+        startActivity(intent);
+    }
+
+    void launchRequisitionListActivity() {
+        Intent intent = new Intent(this, DeptHeadRequisitionListActivity.class);
+        startActivity(intent);
     }
 }
