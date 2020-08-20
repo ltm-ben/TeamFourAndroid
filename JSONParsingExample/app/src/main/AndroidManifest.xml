@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StockDetailActivity"></activity>
+        <activity android:name=".CreatStoreDeptActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DeptHeadRequisitionListActivity" />
+        <activity android:name=".StockDetailActivity" />
+        <activity android:name=".StockListActivity" />
     </application>
 
 </manifest>
