@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DeptHeadRequisitionListActivity" />
+        <activity android:name=".StoreClerkRequisitionListActivity" />
         <activity android:name=".StockDetailActivity" />
         <activity android:name=".StockListActivity" />
     </application>

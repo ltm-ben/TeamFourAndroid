@@ -2,10 +2,9 @@ package iss.workshop.jsonparsingexample.Models;
 
 public class RequisitionDetail {
     private int id;
-    private Stationery stationery;
-    private int qty;
-    private int collectedQty;
-    private DeptRequisition deptRequisition;
+    private int StationeryId;
+    private String StationeryName;
+    private int Qty;
 
     public RequisitionDetail() {
     }
@@ -18,44 +17,37 @@ public class RequisitionDetail {
         this.id = id;
     }
 
-    public Stationery getStationery() {
-        return stationery;
+    public int getStationeryId() {
+        return StationeryId;
     }
 
-    public void setStationery(Stationery stationery) {
-        this.stationery = stationery;
+    public void setStationeryId(int stationeryId) {
+        StationeryId = stationeryId;
+    }
+
+    public String getStationeryName() {
+        return StationeryName;
+    }
+
+    public void setStationeryName(String stationeryName) {
+        StationeryName = stationeryName;
     }
 
     public int getQty() {
-        return qty;
+        return Qty;
     }
 
     public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public int getCollectedQty() {
-        return collectedQty;
-    }
-
-    public void setCollectedQty(int collectedQty) {
-        this.collectedQty = collectedQty;
-    }
-
-    public DeptRequisition getDeptRequisition() {
-        return deptRequisition;
-    }
-
-    public void setDeptRequisition(DeptRequisition deptRequisition) {
-        this.deptRequisition = deptRequisition;
+        Qty = qty;
     }
 
     @Override
     public String toString() {
         return "RequisitionDetail{" +
                 "id=" + id +
-                ", qty=" + qty +
-                ", collectedQty=" + collectedQty +
+                ", StationeryId=" + StationeryId +
+                ", StationeryName='" + StationeryName + '\'' +
+                ", Qty=" + Qty +
                 '}';
     }
 }

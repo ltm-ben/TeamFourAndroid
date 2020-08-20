@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     void launchRequisitionListActivity() {
-        Intent intent = new Intent(this, DeptHeadRequisitionListActivity.class);
+        Intent intent = new Intent(this, StoreClerkRequisitionListActivity.class);
         startActivity(intent);
     }
     void launchStoreDeptActivity(){

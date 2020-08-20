@@ -14,7 +14,7 @@ import java.util.List;
 import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 
 
-public class DeptHeadRequisitionListActivity extends AppCompatActivity implements GetRequisitionData.OnDataAvailable {
+public class StoreClerkRequisitionListActivity extends AppCompatActivity implements GetRequisitionData.OnDataAvailable {
 
     private RequisitionRecyclerViewAdapter mRequisitionRecyclerViewAdapter;
     private RequisitionRecyclerViewAdapter.RecyclerViewClickListener mListener;
@@ -25,7 +25,7 @@ public class DeptHeadRequisitionListActivity extends AppCompatActivity implement
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dept_head_requisition_list);
+        setContentView(R.layout.activity_store_clerk_requisition_list);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.requisitionListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

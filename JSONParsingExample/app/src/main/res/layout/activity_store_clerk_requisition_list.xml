@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeptHeadRequisitionListActivity">
+    tools:context=".StoreClerkRequisitionListActivity">
 
     <TextView
         android:id="@+id/requisitionListHeader"
@@ -14,7 +14,7 @@
         android:layout_marginTop="62dp"
         android:layout_marginEnd="112dp"
         android:layout_marginBottom="43dp"
-        android:text="Dept Head Requisition List"
+        android:text="Store Clerk Requisition List"
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"

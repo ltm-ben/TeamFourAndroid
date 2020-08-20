@@ -8,9 +8,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import iss.workshop.jsonparsingexample.Models.DeptRequisition;
+import iss.workshop.jsonparsingexample.Models.RequisitionApprovalStatus;
+import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
+
 public class StoreClerkRequisitionDetailActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
 
     public String mURL;
+    private DeptRequisition mRequisition = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         if (extras != null) {
 
             // change to dept controller instead of store controller in future
+            requisitionId = String.valueOf(extras.getInt("requisitionId"));
             mURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
         }
     }
@@ -41,18 +49,23 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 
             try {
                 JSONObject jsonData = new JSONObject(data);
+
                 int requisitionId = jsonData.getInt("requisitionId");
+                mRequisition.setId(requisitionId);
+
                 JSONArray itemsArray = jsonData.getJSONArray("requisitionDetails");
 
                 for(int i=0; i<itemsArray.length(); i++) {
-                    JSONObject jsonRequisition = itemsArray.getJSONObject(i);
+                    JSONObject jsonRequisitionDetail = itemsArray.getJSONObject(i);
 
 //                    int requisitionId = jsonRequisition.getInt("Id");
 //                    RequisitionApprovalStatus requisitionApprovalStatus = RequisitionApprovalStatus.valueOf(jsonRequisition.getInt("RequisitionApprovalStatus"));
-//
-//                    DeptRequisition deptRequisition = new DeptRequisition();
-//                    deptRequisition.setId(requisitionId);
-//                    deptRequisition.setRequisitionApprovalStatus(requisitionApprovalStatus);
+
+                    RequisitionDetail requisitionDetail = new RequisitionDetail();
+                    requisitionDetail.setId(jsonRequisitionDetail.getInt("Id"));
+                    requisitionDetail.setStationeryId(jsonRequisitionDetail.getInt("StationeryId"));
+                    requisitionDetail.setStationeryName(jsonRequisitionDetail.getString("StationeryName"));
+                    requisitionDetail.setQty(jsonRequisitionDetail.getInt("Qty"));
                 }
             } catch(JSONException jsone) {
                 jsone.printStackTrace();

@@ -42,7 +42,7 @@ public class RequisitionRecyclerViewAdapter extends RecyclerView.Adapter<Requisi
 
         DeptRequisition requisitionItem = mRequisitionList.get(position);
         holder.requisitionId.setText(String.valueOf(requisitionItem.getId()));
-        holder.requisitionApprovalStatus.setText(String.valueOf(requisitionItem.getRequisitionApprovalStatus()));
+        holder.requisitionFulfillmentStatus.setText(String.valueOf(requisitionItem.getRequisitionFulfillmentStatus()));
     }
 
     @Override
@@ -62,12 +62,12 @@ public class RequisitionRecyclerViewAdapter extends RecyclerView.Adapter<Requisi
     public class RequisitionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView requisitionId = null;
-        TextView requisitionApprovalStatus = null;
+        TextView requisitionFulfillmentStatus = null;
 
         public RequisitionViewHolder(@NonNull View itemView) {
             super(itemView);
             this.requisitionId = (TextView) itemView.findViewById(R.id.requisitionId);
-            this.requisitionApprovalStatus = (TextView) itemView.findViewById(R.id.requisitionApprovalStatus);
+            this.requisitionFulfillmentStatus = (TextView) itemView.findViewById(R.id.requisitionFulfillmentStatus);
             itemView.setOnClickListener(this);
         }
 

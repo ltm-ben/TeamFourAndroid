@@ -1,5 +1,6 @@
 package iss.workshop.jsonparsingexample.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeptRequisition {
@@ -7,7 +8,7 @@ public class DeptRequisition {
     private Employee employee;
     private RequisitionApprovalStatus requisitionApprovalStatus;
     private RequisitionFulfillmentStatus requisitionFulfillmentStatus;
-    private List<RequisitionDetail> requisitionDetails;
+    private List<RequisitionDetail> requisitionDetails = new ArrayList<>();
 
     public DeptRequisition() {
     }

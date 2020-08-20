@@ -18,7 +18,7 @@
         android:id="@+id/requisitionListBtn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="Dept Head Requisition List"
+        android:text="Store Clerk Requisition List"
         android:textSize="30sp"
         android:background="#a4c639"
         android:layout_weight="0.5"/>
