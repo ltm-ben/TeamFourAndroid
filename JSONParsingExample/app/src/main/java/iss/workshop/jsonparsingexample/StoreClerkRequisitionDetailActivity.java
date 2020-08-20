@@ -1,6 +1,8 @@
 package iss.workshop.jsonparsingexample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -8,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import iss.workshop.jsonparsingexample.Models.DeptRequisition;
@@ -18,6 +21,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 
     public String mURL;
     private DeptRequisition mRequisition = null;
+    private StoreClerkRequisitionDetailRecyclerViewAdapter mStoreClerkRequisitionDetailRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,12 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
             mURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
         }
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.requisitionDetailRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mStoreClerkRequisitionDetailRecyclerViewAdapter = new StoreClerkRequisitionDetailRecyclerViewAdapter(this, new DeptRequisition());
+        recyclerView.setAdapter(mStoreClerkRequisitionDetailRecyclerViewAdapter);
     }
 
     @Override
@@ -47,6 +57,8 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 
         if(status == DownloadStatus.OK) {
 
+            mRequisition = new DeptRequisition();
+
             try {
                 JSONObject jsonData = new JSONObject(data);
 
@@ -58,15 +70,15 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
                 for(int i=0; i<itemsArray.length(); i++) {
                     JSONObject jsonRequisitionDetail = itemsArray.getJSONObject(i);
 
-//                    int requisitionId = jsonRequisition.getInt("Id");
-//                    RequisitionApprovalStatus requisitionApprovalStatus = RequisitionApprovalStatus.valueOf(jsonRequisition.getInt("RequisitionApprovalStatus"));
-
                     RequisitionDetail requisitionDetail = new RequisitionDetail();
                     requisitionDetail.setId(jsonRequisitionDetail.getInt("Id"));
                     requisitionDetail.setStationeryId(jsonRequisitionDetail.getInt("StationeryId"));
                     requisitionDetail.setStationeryName(jsonRequisitionDetail.getString("StationeryName"));
                     requisitionDetail.setQty(jsonRequisitionDetail.getInt("Qty"));
+                    mRequisition.getRequisitionDetails().add(requisitionDetail);
                 }
+
+                mStoreClerkRequisitionDetailRecyclerViewAdapter.loadNewData(mRequisition);
             } catch(JSONException jsone) {
                 jsone.printStackTrace();
                 status = DownloadStatus.FAILED_OR_EMPTY;
