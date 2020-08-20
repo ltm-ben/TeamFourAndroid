@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+
+<TextView
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:textSize="15dp"
+    android:gravity="left"
+    android:fontFamily="casual"
+    android:textStyle="bold"
+    android:paddingBottom="20dp" android:text="Department Name"/>
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="#DCDCDC"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:paddingBottom="20dp">
+
+    <requestFocus />
+</EditText>
+
+<TextView
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:textSize="15dp"
+    android:gravity="left"
+    android:fontFamily="casual"
+    android:textStyle="bold"
+    android:paddingBottom="20dp" android:text="Address"/>
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="#DCDCDC"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:paddingBottom="20dp">
+
+    <requestFocus />
+</EditText>
+<TextView
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:textSize="15dp"
+    android:gravity="left"
+    android:fontFamily="casual"
+    android:textStyle="bold"
+    android:paddingBottom="20dp" android:text="Telephone Number"/>
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="#DCDCDC"
+    android:ems="10"
+    android:inputType="textPhonetic"
+    android:paddingBottom="20dp">
+
+    <requestFocus />
+</EditText>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:gravity="left"
+        android:fontFamily="casual"
+        android:textStyle="bold"
+        android:paddingBottom="20dp" android:text="Collection Point"/>
+
+    <Spinner
+        android:id="@+id/spnCollectionP"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#DCDCDC"
+        android:ems="10"
+        android:paddingBottom="20dp"
+        >
+    </Spinner>
+
+    <requestFocus />
+
+
+
+
+
+    <Button
+    android:id="@+id/btnNext"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Save"
+    android:background="#0f0"
+    android:paddingVertical="20dp"
+    />
+
+</LinearLayout>

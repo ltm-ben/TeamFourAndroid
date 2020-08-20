@@ -23,4 +23,13 @@
         android:background="#a4c639"
         android:layout_weight="0.5"/>
 
+    <Button
+        android:id="@+id/StoreDeptBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Store-Department"
+        android:textSize="30sp"
+        android:background="#03d3fc"
+        android:layout_weight="0.5"/>
+
 </LinearLayout>

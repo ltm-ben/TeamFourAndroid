@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Defining buttons
     Button mStockListBtn;
     Button mRequisitionListBtn;
+    Button mStoreDeptBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mRequisitionListBtn = findViewById(R.id.requisitionListBtn);
         mRequisitionListBtn.setOnClickListener(this);
+
+        mStoreDeptBtn = findViewById(R.id.StoreDeptBtn);
+        mStoreDeptBtn.setOnClickListener(this);
+
     }
 
     @Override
@@ -36,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.requisitionListBtn:
                 launchRequisitionListActivity();
                 break;
+            case R.id.StoreDeptBtn:
+                launchStoreDeptActivity();
+                break;
         }
     }
 
@@ -46,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void launchRequisitionListActivity() {
         Intent intent = new Intent(this, DeptHeadRequisitionListActivity.class);
+        startActivity(intent);
+    }
+    void launchStoreDeptActivity(){
+        Intent intent = new Intent(this,CreatStoreDeptActivity.class);
         startActivity(intent);
     }
 }
