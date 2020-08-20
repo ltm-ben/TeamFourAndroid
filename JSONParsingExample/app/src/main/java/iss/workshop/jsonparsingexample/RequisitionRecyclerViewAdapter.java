@@ -19,10 +19,13 @@ public class RequisitionRecyclerViewAdapter extends RecyclerView.Adapter<Requisi
 
     private List<DeptRequisition> mRequisitionList;
     private Context mContext;
+    private RecyclerViewClickListener listener;
 
-    public RequisitionRecyclerViewAdapter(Context context, List<DeptRequisition> requisitionList) {
+
+    public RequisitionRecyclerViewAdapter(Context context, List<DeptRequisition> requisitionList, RecyclerViewClickListener listener) {
         mContext = context;
         mRequisitionList = requisitionList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -56,7 +59,7 @@ public class RequisitionRecyclerViewAdapter extends RecyclerView.Adapter<Requisi
         return ((mRequisitionList != null) && (mRequisitionList.size() != 0) ? mRequisitionList.get(position) : null);
     }
 
-    static class RequisitionViewHolder extends RecyclerView.ViewHolder {
+    public class RequisitionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView requisitionId = null;
         TextView requisitionApprovalStatus = null;
@@ -65,6 +68,16 @@ public class RequisitionRecyclerViewAdapter extends RecyclerView.Adapter<Requisi
             super(itemView);
             this.requisitionId = (TextView) itemView.findViewById(R.id.requisitionId);
             this.requisitionApprovalStatus = (TextView) itemView.findViewById(R.id.requisitionApprovalStatus);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewClickListener {
+        void onClick(View v, int position);
     }
 }

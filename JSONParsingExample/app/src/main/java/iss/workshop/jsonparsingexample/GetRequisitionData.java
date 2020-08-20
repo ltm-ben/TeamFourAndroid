@@ -1,7 +1,6 @@
 package iss.workshop.jsonparsingexample;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,12 +9,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import iss.workshop.jsonparsingexample.Models.Category;
 import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 import iss.workshop.jsonparsingexample.Models.RequisitionApprovalStatus;
-import iss.workshop.jsonparsingexample.Models.Stationery;
-import iss.workshop.jsonparsingexample.Models.Stock;
-import iss.workshop.jsonparsingexample.Models.UOM;
+import iss.workshop.jsonparsingexample.Models.RequisitionFulfillmentStatus;
 
 public class GetRequisitionData extends AsyncTask<String, Void, List<DeptRequisition>> implements GetRawData.OnDownloadComplete {
 
@@ -72,11 +68,11 @@ public class GetRequisitionData extends AsyncTask<String, Void, List<DeptRequisi
                     JSONObject jsonRequisition = itemsArray.getJSONObject(i);
 
                     int requisitionId = jsonRequisition.getInt("Id");
-                    RequisitionApprovalStatus requisitionApprovalStatus = RequisitionApprovalStatus.valueOf(jsonRequisition.getInt("RequisitionApprovalStatus"));
+                    RequisitionFulfillmentStatus requisitionFulfillmentStatus = RequisitionFulfillmentStatus.valueOf(jsonRequisition.getInt("RequisitionFulfillmentStatus"));
 
                     DeptRequisition deptRequisition = new DeptRequisition();
                     deptRequisition.setId(requisitionId);
-                    deptRequisition.setRequisitionApprovalStatus(requisitionApprovalStatus);
+                    deptRequisition.setRequisitionFulfillmentStatus(requisitionFulfillmentStatus);
 
                     mRequisitionList.add(deptRequisition);
                 }

@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +17,10 @@ import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 public class DeptHeadRequisitionListActivity extends AppCompatActivity implements GetRequisitionData.OnDataAvailable {
 
     private RequisitionRecyclerViewAdapter mRequisitionRecyclerViewAdapter;
+    private RequisitionRecyclerViewAdapter.RecyclerViewClickListener mListener;
+    private List<DeptRequisition> mData;
 
-    public String mURL = "http://192.168.68.110/dept/deptheadrequisitionlistapi";
+    public String mURL = "http://192.168.68.110/store/storeclerkrequisitionlistapi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +30,20 @@ public class DeptHeadRequisitionListActivity extends AppCompatActivity implement
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.requisitionListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRequisitionRecyclerViewAdapter = new RequisitionRecyclerViewAdapter(this, new ArrayList<DeptRequisition>());
+        setOnClickListener();
+        mRequisitionRecyclerViewAdapter = new RequisitionRecyclerViewAdapter(this, new ArrayList<DeptRequisition>(), mListener);
         recyclerView.setAdapter(mRequisitionRecyclerViewAdapter);
+    }
+
+    private void setOnClickListener() {
+        mListener = new RequisitionRecyclerViewAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getApplicationContext(), StoreClerkRequisitionDetailActivity.class);
+                intent.putExtra("requisitionId", mData.get(position).getId());
+                startActivity(intent);
+            }
+        };
     }
 
     @Override
@@ -41,6 +57,7 @@ public class DeptHeadRequisitionListActivity extends AppCompatActivity implement
     public void onDataAvailable(List<DeptRequisition> data, DownloadStatus status) {
         if(status == DownloadStatus.OK) {
             mRequisitionRecyclerViewAdapter.loadNewData(data);
+            mData = data;
         } else {
             // download or processing failed
         }
