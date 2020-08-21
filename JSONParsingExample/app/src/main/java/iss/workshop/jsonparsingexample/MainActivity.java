@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mRequisitionListBtn;
     Button mStoreDeptBtn;
     Button mPOBtn;
+    Button mSupplierCreateWithItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mPOBtn = findViewById((R.id.POBtn));
         mPOBtn.setOnClickListener(this);
+
+        mSupplierCreateWithItem = findViewById(R.id.SupplierCreateItemBtn);
+        mSupplierCreateWithItem.setOnClickListener(this);
 
     }
 
@@ -52,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.POBtn:
                 launchPurchaseOrderActivity();
+                break;
+            case R.id.SupplierCreateItemBtn:
+                launchSupplierCreateWithItemActivity();
                 break;
 
         }
@@ -73,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void launchPurchaseOrderActivity(){
         Intent intent = new Intent(this,PurchaseOrder.class);
+        startActivity(intent);
+    }
+
+    void launchSupplierCreateWithItemActivity(){
+        Intent intent = new Intent(this,SupplierCreateWithItem.class);
         startActivity(intent);
     }
     //  Option Menu
