@@ -24,7 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".StoreClerkRequisitionDetailActivity" />
-        <activity android:name=".StoreClerkRequisitionFulfillmentActivity" />
         <activity android:name=".SupplierCreateWithItem" />
         <activity android:name=".CreatStoreDeptActivity" />
         <activity android:name=".MainActivity">

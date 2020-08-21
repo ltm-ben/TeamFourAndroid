@@ -43,8 +43,8 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
         Log.d(TAG, "onBindViewHolder: " + item.getPrediction() + " --> " + position);
         Log.d(TAG, "onBindViewHolder: " + item.getUnitPrice() + " --> " + position);
         holder.itemName.setText(item.getName());
-        holder.unitPrice.setText(item.getUnitPrice());
-        holder.prediction.setText(item.getPrediction());
+        holder.unitPrice.setText(String.valueOf(item.getUnitPrice()));
+        holder.prediction.setText(String.valueOf(item.getPrediction()));
     }
 
     @Override
