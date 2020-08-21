@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mStockListBtn;
     Button mRequisitionListBtn;
     Button mStoreDeptBtn;
+    Button mPOBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mStoreDeptBtn = findViewById(R.id.StoreDeptBtn);
         mStoreDeptBtn.setOnClickListener(this);
+
+        mPOBtn = findViewById((R.id.POBtn));
+        mPOBtn.setOnClickListener(this);
 
     }
 
@@ -44,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.StoreDeptBtn:
                 launchStoreDeptActivity();
                 break;
+            case R.id.POBtn:
+                launchPurchaseOrderActivity();
+                break;
+
         }
     }
 
@@ -59,5 +69,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void launchStoreDeptActivity(){
         Intent intent = new Intent(this,CreatStoreDeptActivity.class);
         startActivity(intent);
+    }
+
+    void launchPurchaseOrderActivity(){
+        Intent intent = new Intent(this,PurchaseOrder.class);
+        startActivity(intent);
+    }
+    //  Option Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.PO_item:
+                launchPurchaseOrderActivity();
+                return true;
+            case R.id.StoreDept_item:
+                launchStoreDeptActivity();
+                return true;
+            case R.id.StockList_item:
+                launchStockListActivity();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
