@@ -20,7 +20,7 @@ public class StoreClerkRequisitionListActivity extends AppCompatActivity impleme
     private RequisitionRecyclerViewAdapter.RecyclerViewClickListener mListener;
     private List<DeptRequisition> mData;
 
-    public String mURL = "http://192.168.68.110/store/storeclerkrequisitionlistapi";
+    public String mURL = "http://192.119.86.65:8080/store/storeclerkrequisitionlistapi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -31,7 +31,7 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
         setContentView(R.layout.activity_bar_chart);
 
         barChart = (BarChart) findViewById(R.id.barchart);
-        mURL = "http://192.168.1.8:8080/store/storeclerkdisbursementdetailslistapi" ;
+        mURL = "http://192.119.86.65:8080/store/storeclerkdisbursementdetailslistapi" ;
 
         entries = new ArrayList<>();
         /*entries.add(new BarEntry(8f, 0));

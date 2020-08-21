@@ -33,7 +33,7 @@ public class TestPostJsonActivity extends AppCompatActivity implements PostJsonD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_post_json);
 
-        mURL = "http://192.168.68.110/store/PostTestObject";
+        mURL = "http://192.119.86.65:8080/store/PostTestObject";
 
         Button button = findViewById(R.id.postJsonBtn);
         button.setOnClickListener(new View.OnClickListener() {
