@@ -1,10 +1,13 @@
 package iss.workshop.jsonparsingexample;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,9 +23,13 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
    List<Item> itemList;
     Context context;
 
-    public SupplierCreateWithItemAdapter(Context ct,List<Item> il){
+    private List<Item> mDataSet;
+    private OnEditTextChanged onEditTextChanged;
+
+    public SupplierCreateWithItemAdapter(Context ct,List<Item> il,OnEditTextChanged onEditTextChanged){
         context = ct;
         itemList = il;
+        this.onEditTextChanged = onEditTextChanged;
     }
 
 
@@ -36,7 +43,7 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SupplierCreateWithItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final SupplierCreateWithItemHolder holder, final int position) {
 
         Item item = itemList.get(position);
         Log.d(TAG, "onBindViewHolder: " + item.getName() + " --> " + position);
@@ -45,6 +52,24 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
         holder.itemName.setText(item.getName());
         holder.unitPrice.setText(String.valueOf(item.getUnitPrice()));
         holder.prediction.setText(String.valueOf(item.getPrediction()));
+        holder.qty.setText(String.valueOf(item.getQty()));
+
+        holder.qty.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                onEditTextChanged.onTextChanged(R.id.suppliedQty,position, holder.qty.getText().toString());
+            }
+        });
     }
 
     @Override
@@ -56,6 +81,7 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
         TextView itemName = null;
         TextView unitPrice = null;
         TextView prediction = null;
+        EditText qty = null;
 
         public SupplierCreateWithItemHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +89,11 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
             this.itemName = itemView.findViewById(R.id.itemName);
             this.unitPrice = itemView.findViewById(R.id.unitPrice);
             this.prediction = itemView.findViewById(R.id.prediction);
+            this.qty = itemView.findViewById(R.id.suppliedQty);
         }
+    }
+
+    public interface OnEditTextChanged {
+        void onTextChanged(int suppliedQty, int position, String charSeq);
     }
 }
