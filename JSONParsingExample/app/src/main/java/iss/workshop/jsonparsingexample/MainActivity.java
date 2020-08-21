@@ -17,8 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mStoreDeptBtn;
     Button mPOBtn;
     Button mSupplierCreateWithItem;
-    Button mDisbursementDetail;
-    Button mBarChart;
+    Button mPOList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSupplierCreateWithItem = findViewById(R.id.SupplierCreateItemBtn);
         mSupplierCreateWithItem.setOnClickListener(this);
 
-        mDisbursementDetail = findViewById(R.id.DisbursementDetailsBtn);
-        mDisbursementDetail .setOnClickListener(this);
+        mPOList = findViewById(R.id.poListBtn);
+        mPOList.setOnClickListener(this);
 
-        mBarChart = findViewById(R.id.DisbursementDetailsBtn);
-        mBarChart.setOnClickListener(this);
-
-        mBarChart= findViewById(R.id.BarChartBtn);
-        mBarChart.setOnClickListener(this);
     }
 
     @Override
@@ -70,13 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.SupplierCreateItemBtn:
                 launchSupplierCreateWithItemActivity();
                 break;
-
-            case R.id.DisbursementDetailsBtn:
-                launchDisbursementDetailActivity();
-                break;
-
-            case R.id.BarChartBtn:
-                launchBarChartActivity();
+            case R.id.poListBtn:
+                launchPoListActivity();
                 break;
 
         }
@@ -105,20 +94,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this,SupplierCreateWithItem.class);
         startActivity(intent);
     }
-
-    void launchDisbursementDetailActivity() {
-        Intent intent = new Intent(this, StoreClerkDisbursementDetailActivity.class);
+    void launchPoListActivity(){
+        Intent intent = new Intent(this,POList.class);
         startActivity(intent);
     }
-    void launchBarChartActivity(){
-            Intent intent = new Intent(this, BarChartActivity.class);
-            startActivity(intent);
-    }
-    void launchTestPostJsonActivity(){
-        Intent intent = new Intent(this, TestPostJsonActivity.class);
-        startActivity(intent);
-    }
-
     //  Option Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -138,8 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.StockList_item:
                 launchStockListActivity();
                 return true;
-            case R.id.Test_Post_Json:
-                launchTestPostJsonActivity();
+
             default:
                 return super.onOptionsItemSelected(item);
         }

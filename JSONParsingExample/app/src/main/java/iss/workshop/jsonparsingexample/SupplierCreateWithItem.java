@@ -13,8 +13,6 @@ import java.util.List;
 import iss.workshop.jsonparsingexample.Models.Item;
 
 public class SupplierCreateWithItem extends AppCompatActivity {
-    private static final String TAG = "SupplierCreateAdapter";
-
     RecyclerView rView;
 
     @Override

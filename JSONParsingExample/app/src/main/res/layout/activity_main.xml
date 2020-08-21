@@ -50,19 +50,10 @@
         android:layout_weight="0.5"/>
 
     <Button
-        android:id="@+id/DisbursementDetailsBtn"
+        android:id="@+id/poListBtn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="Trend Table List"
-        android:textSize="30sp"
-        android:background="#a4c639"
-        android:layout_weight="0.5"/>
-
-    <Button
-        android:id="@+id/BarChartBtn"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="Trend Chart"
+        android:text="POList"
         android:textSize="30sp"
         android:background="#03d3fc"
         android:layout_weight="0.5"/>

@@ -1,0 +1,46 @@
+package iss.workshop.jsonparsingexample.Models;
+
+import java.util.Date;
+
+public class PO {
+
+    private int id;
+
+    private String orderDate;
+
+    private String supplierName;
+
+    private String status;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+}
