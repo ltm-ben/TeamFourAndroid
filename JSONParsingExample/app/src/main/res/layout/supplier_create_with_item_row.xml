@@ -6,11 +6,10 @@
     android:weightSum="3">
 
     <TextView
-        android:id="@+id/itemId"
+        android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:visibility="gone"
         android:text="TextView" />
 
     <TextView
