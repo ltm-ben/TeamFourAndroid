@@ -114,6 +114,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, BarChartActivity.class);
             startActivity(intent);
     }
+    void launchTestPostJsonActivity(){
+        Intent intent = new Intent(this, TestPostJsonActivity.class);
+        startActivity(intent);
+    }
+
     //  Option Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,7 +138,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.StockList_item:
                 launchStockListActivity();
                 return true;
-
+            case R.id.Test_Post_Json:
+                launchTestPostJsonActivity();
             default:
                 return super.onOptionsItemSelected(item);
         }
