@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="iss.workshop.jsonparsingexample">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PurchaseOrder"></activity>
+        <activity android:name=".BarChartActivity"></activity>
+        <activity android:name=".StoreClerkDisbursementDetailActivity" />
+        <activity android:name=".PurchaseOrder" />
         <activity
             android:name=".Splash"
             android:label="@string/title_activity_splash"
@@ -37,5 +37,7 @@
         <activity android:name=".StockDetailActivity" />
         <activity android:name=".StockListActivity" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mStoreDeptBtn;
     Button mPOBtn;
     Button mSupplierCreateWithItem;
+    Button mDisbursementDetail;
+    Button mBarChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSupplierCreateWithItem = findViewById(R.id.SupplierCreateItemBtn);
         mSupplierCreateWithItem.setOnClickListener(this);
 
+        mDisbursementDetail = findViewById(R.id.DisbursementDetailsBtn);
+        mDisbursementDetail .setOnClickListener(this);
+
+        mBarChart = findViewById(R.id.DisbursementDetailsBtn);
+        mBarChart.setOnClickListener(this);
+
+        mBarChart= findViewById(R.id.BarChartBtn);
+        mBarChart.setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +69,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.SupplierCreateItemBtn:
                 launchSupplierCreateWithItemActivity();
+                break;
+
+            case R.id.DisbursementDetailsBtn:
+                launchDisbursementDetailActivity();
+                break;
+
+            case R.id.BarChartBtn:
+                launchBarChartActivity();
                 break;
 
         }
@@ -86,6 +104,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void launchSupplierCreateWithItemActivity(){
         Intent intent = new Intent(this,SupplierCreateWithItem.class);
         startActivity(intent);
+    }
+
+    void launchDisbursementDetailActivity() {
+        Intent intent = new Intent(this, StoreClerkDisbursementDetailActivity.class);
+        startActivity(intent);
+    }
+    void launchBarChartActivity(){
+            Intent intent = new Intent(this, BarChartActivity.class);
+            startActivity(intent);
     }
     //  Option Menu
     @Override
