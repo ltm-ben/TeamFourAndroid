@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mStockListBtn;
     Button mRequisitionListBtn;
     Button mStoreDeptBtn;
+    Button mSupplierCreateItemBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mStoreDeptBtn = findViewById(R.id.StoreDeptBtn);
         mStoreDeptBtn.setOnClickListener(this);
+
+        mSupplierCreateItemBtn = findViewById(R.id.SupplierCreateItemBtn);
+        mSupplierCreateItemBtn.setOnClickListener(this);
 
     }
 
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.StoreDeptBtn:
                 launchStoreDeptActivity();
                 break;
+
+            case R.id.SupplierCreateItemBtn:
+                SupplierCreateWithItemActivity();
+                break;
         }
     }
 
@@ -58,6 +66,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     void launchStoreDeptActivity(){
         Intent intent = new Intent(this,CreatStoreDeptActivity.class);
+        startActivity(intent);
+    }
+
+    void SupplierCreateWithItemActivity(){
+        Intent intent = new Intent(this,SupplierCreateWithItem.class);
         startActivity(intent);
     }
 }
