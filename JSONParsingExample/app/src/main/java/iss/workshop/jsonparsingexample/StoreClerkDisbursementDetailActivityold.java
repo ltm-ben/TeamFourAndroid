@@ -34,7 +34,7 @@ public class StoreClerkDisbursementDetailActivityold extends AppCompatActivity i
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_disbursement_detail);
 
-        mURL = "http://192.168.1.8:8080/store/storeclerkdisbursementdetailslistapi" ;
+        mURL = "http://192.119.86.65:8080/store/storeclerkdisbursementdetailslistapi" ;
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.disbursementDetailRecyclerView);

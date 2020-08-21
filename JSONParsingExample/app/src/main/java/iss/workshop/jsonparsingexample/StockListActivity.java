@@ -18,7 +18,7 @@ public class StockListActivity extends AppCompatActivity implements GetJsonData.
     public static final String TAG = "MainActivity";
     private StockRecyclerViewAdapter mStockRecyclerViewAdapter;
     
-    public String mURL = "http://192.168.1.8:8080/store/storeclerkstocklistapi";
+    public String mURL = "http://192.119.86.65:8080/store/storeclerkstocklistapi";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
