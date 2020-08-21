@@ -35,7 +35,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 
             // change to dept controller instead of store controller in future
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
-            mURL = "http://192.119.86.65:8080/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
+            mURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
         }
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.requisitionDetailRecyclerView);
