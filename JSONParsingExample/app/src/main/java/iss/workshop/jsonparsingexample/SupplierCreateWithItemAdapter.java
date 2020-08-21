@@ -23,13 +23,9 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
    List<Item> itemList;
     Context context;
 
-    private List<Item> mDataSet;
-    private OnEditTextChanged onEditTextChanged;
-
-    public SupplierCreateWithItemAdapter(Context ct,List<Item> il,OnEditTextChanged onEditTextChanged){
+    public SupplierCreateWithItemAdapter(Context ct,List<Item> il){
         context = ct;
         itemList = il;
-        this.onEditTextChanged = onEditTextChanged;
     }
 
 
@@ -53,23 +49,6 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
         holder.unitPrice.setText(String.valueOf(item.getUnitPrice()));
         holder.prediction.setText(String.valueOf(item.getPrediction()));
         holder.qty.setText(String.valueOf(item.getQty()));
-
-        holder.qty.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                onEditTextChanged.onTextChanged(R.id.suppliedQty,position, holder.qty.getText().toString());
-            }
-        });
     }
 
     @Override
@@ -93,7 +72,4 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
         }
     }
 
-    public interface OnEditTextChanged {
-        void onTextChanged(int suppliedQty, int position, String charSeq);
-    }
 }

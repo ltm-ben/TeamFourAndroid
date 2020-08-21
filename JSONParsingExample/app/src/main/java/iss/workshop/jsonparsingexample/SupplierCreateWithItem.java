@@ -38,20 +38,11 @@ public class SupplierCreateWithItem extends AppCompatActivity {
 
         itemList.add(i1);
         itemList.add(i2);
-        final Integer[] enteredNumber = new Integer[10];
         
-        SupplierCreateWithItemAdapter adapter = new SupplierCreateWithItemAdapter(this, itemList, new SupplierCreateWithItemAdapter.OnEditTextChanged() {
-            @Override
-            public void onTextChanged(int suppliedQty, int position, String charSeq) {
-                enteredNumber[position] = Integer.valueOf(charSeq);
-            }
-        });
+        SupplierCreateWithItemAdapter adapter = new SupplierCreateWithItemAdapter(this, itemList);
 
         rView.setAdapter(adapter);
         rView.setLayoutManager(new LinearLayoutManager(this));
 
-        for(int i = 0 ; i < enteredNumber.length; i++){
-            Log.d(TAG, "Exit Text Value : " + enteredNumber[i] + " Position : " + i);
-        }
     }
 }
