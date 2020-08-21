@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mPOBtn;
     Button mSupplierCreateWithItem;
     Button mPOList;
+    Button mDisbursementDetail;
+    Button mBarChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPOList = findViewById(R.id.poListBtn);
         mPOList.setOnClickListener(this);
 
+        mDisbursementDetail = findViewById(R.id.DisbursementDetailsBtn);
+        mDisbursementDetail .setOnClickListener(this);
+
+
+        mBarChart= findViewById(R.id.BarChartBtn);
+        mBarChart.setOnClickListener(this);
     }
 
     @Override
@@ -66,7 +74,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.poListBtn:
                 launchPoListActivity();
                 break;
-            default:
+
+            case R.id.DisbursementDetailsBtn:
+                launchDisbursementDetailActivity();
+                break;
+
+            case R.id.BarChartBtn:
+                launchBarChartActivity();
                 break;
         }
     }
@@ -101,6 +115,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void launchTestPostJsonActivity(){
         Intent intent = new Intent(this, TestPostJsonActivity.class);
+        startActivity(intent);
+    }
+
+    void launchDisbursementDetailActivity() {
+        Intent intent = new Intent(this, StoreClerkDisbursementDetailActivity.class);
+        startActivity(intent);
+    }
+    void launchBarChartActivity(){
+        Intent intent = new Intent(this, BarChartActivity.class);
         startActivity(intent);
     }
 

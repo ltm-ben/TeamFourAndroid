@@ -105,7 +105,7 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
                 BarDataSet bardataset = new BarDataSet(entries, "Cells");
                 BarData bardata = new BarData(labels, bardataset);
                 barChart.setData(bardata);
-                barChart.animateY(1200);
+                barChart.animateY(1250);
 
             } catch(JSONException jsone) {
                 jsone.printStackTrace();
