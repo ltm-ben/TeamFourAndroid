@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PurchaseOrder"></activity>
+        <activity android:name=".TestPostJsonActivity"></activity>
+        <activity android:name=".PurchaseOrder" />
         <activity
             android:name=".Splash"
             android:label="@string/title_activity_splash"
