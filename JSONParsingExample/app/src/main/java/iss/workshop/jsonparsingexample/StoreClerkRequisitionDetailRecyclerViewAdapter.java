@@ -1,6 +1,8 @@
 package iss.workshop.jsonparsingexample;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
 
     private DeptRequisition mRequisition;
     private Context mContext;
+    private RecyclerViewTextChangedListener listener;
 
     public StoreClerkRequisitionDetailRecyclerViewAdapter(Context context, DeptRequisition requisition) {
         mContext = context;
@@ -59,7 +62,7 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
         return ((mRequisition.getRequisitionDetails() != null) && (mRequisition.getRequisitionDetails().size() != 0) ? mRequisition.getRequisitionDetails().get(position) : null);
     }
 
-    public class RequisitionDetailViewHolder extends RecyclerView.ViewHolder {
+    public class RequisitionDetailViewHolder extends RecyclerView.ViewHolder  {
 
         TextView requisitionDetailItemId = null;
         TextView requisitionDetailItemName = null;
@@ -72,6 +75,26 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
             this.requisitionDetailItemName = (TextView) itemView.findViewById(R.id.requisitionDetailItemName);
             this.requisitionDetailRequestedQty = (TextView) itemView.findViewById(R.id.requisitionDetailRequestedQty);
             this.disburseQtyInput = (EditText) itemView.findViewById(R.id.disburseQtyInput);
+            disburseQtyInput.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
+    }
+
+    public interface RecyclerViewTextChangedListener {
+        void onTextChanged(View v, int position);
     }
 }
