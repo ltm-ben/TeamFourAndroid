@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 import iss.workshop.jsonparsingexample.Models.Item;
 
 public class SupplierCreateWithItem extends AppCompatActivity {
-
+    private static final String TAG = "SupplierCreateAdapter";
 
     RecyclerView rView;
 
@@ -36,9 +37,12 @@ public class SupplierCreateWithItem extends AppCompatActivity {
         List<Item> itemList = new ArrayList<>();
 
         itemList.add(i1);
+        itemList.add(i2);
         
-        SupplierCreateWithItemAdapter adapter = new SupplierCreateWithItemAdapter(this,itemList);
+        SupplierCreateWithItemAdapter adapter = new SupplierCreateWithItemAdapter(this, itemList);
+
         rView.setAdapter(adapter);
         rView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 }
