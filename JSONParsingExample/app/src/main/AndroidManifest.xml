@@ -37,6 +37,7 @@
         <activity android:name=".StoreClerkRequisitionListActivity" />
         <activity android:name=".StockDetailActivity" />
         <activity android:name=".StockListActivity" />
+        <activity android:name=".TestPostJsonActivity" />
     </application>
 
 </manifest>

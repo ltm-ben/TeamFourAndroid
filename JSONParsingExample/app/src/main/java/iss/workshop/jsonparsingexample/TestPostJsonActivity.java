@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,6 +21,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
 
 public class TestPostJsonActivity extends AppCompatActivity implements PostJsonData.OnDownloadComplete {
 
@@ -67,5 +71,22 @@ public class TestPostJsonActivity extends AppCompatActivity implements PostJsonD
     @Override
     public void onDownloadComplete(String data, DownloadStatus status) {
 
+        if(status == DownloadStatus.OK) {
+
+            // work with response data from POST Request API
+            try {
+
+                JSONObject jsonData = new JSONObject(data);
+                JSONObject result = jsonData.getJSONObject("result");
+
+                String text = result.getString("Message");
+                Toast.makeText(getApplicationContext(), text,
+                        Toast.LENGTH_SHORT).show();
+
+            } catch(JSONException jsone) {
+                jsone.printStackTrace();
+                status = DownloadStatus.FAILED_OR_EMPTY;
+            }
+        }
     }
 }

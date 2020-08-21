@@ -55,8 +55,7 @@
         android:layout_height="0dp"
         android:text="POList"
         android:textSize="30sp"
-        android:background="#03d3fc"
+        android:background="#a4c639"
         android:layout_weight="0.5"/>
-
 
 </LinearLayout>

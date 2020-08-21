@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.stockListBtn:
                 launchStockListActivity();
                 break;
-
             case R.id.requisitionListBtn:
                 launchRequisitionListActivity();
                 break;
@@ -67,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.poListBtn:
                 launchPoListActivity();
                 break;
-
+            default:
+                break;
         }
     }
 
@@ -98,6 +98,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this,POList.class);
         startActivity(intent);
     }
+
+    void launchTestPostJsonActivity(){
+        Intent intent = new Intent(this, TestPostJsonActivity.class);
+        startActivity(intent);
+    }
+
     //  Option Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -116,6 +122,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             case R.id.StockList_item:
                 launchStockListActivity();
+                return true;
+            case R.id.Test_Post_Json_item:
+                launchTestPostJsonActivity();
                 return true;
 
             default:
