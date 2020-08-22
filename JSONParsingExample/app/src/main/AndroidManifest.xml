@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="iss.workshop.jsonparsingexample">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StoreClerkDisbursementDetailRecyclerViewAdapter"></activity>
+        <activity android:name=".Models.DeptEmployeeMainActivity"></activity>
+        <activity android:name=".DeptHeadMainActivity" />
+        <activity android:name=".StoreClerkMainActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".StoreClerkDisbursementDetailRecyclerViewAdapter" />
         <activity android:name=".StoreClerkDisbursementDetailRecyclerViewAdaptor" />
         <activity android:name=".StoreClerkDisbursementDetailActivity" />
         <activity android:name=".BarChartActivity" />
@@ -29,19 +41,11 @@
         <activity android:name=".StoreClerkRequisitionDetailActivity" />
         <activity android:name=".SupplierCreateWithItem" />
         <activity android:name=".CreatStoreDeptActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".StoreClerkRequisitionListActivity" />
         <activity android:name=".StockDetailActivity" />
         <activity android:name=".StockListActivity" />
         <activity android:name=".TestPostJsonActivity" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

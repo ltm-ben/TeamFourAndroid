@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/dept_head_item"
+        android:title="Dept Head" />
+    <item android:id="@+id/employee_item"
+        android:title="Employee" />
+    <item android:id="@+id/store_clerk_item"
+        android:title="Store Clerk" />
     <item android:id="@+id/PO_item"
         android:title="Purchase Order" />
     <item android:id="@+id/StoreDept_item"
@@ -8,4 +14,6 @@
         android:title="StockList" />
     <item android:id="@+id/Test_Post_Json_item"
         android:title="Test Post Json" />
+    <item android:id="@+id/Logout_item"
+        android:title="Logout" />
 </menu>
