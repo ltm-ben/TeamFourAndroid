@@ -41,8 +41,6 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
         Log.d(TAG, "onResume ends");
     }
 
-
-
     @Override
     public void onDataAvailable(POItems data, DownloadStatus status) {
             Log.d(TAG, "onDataAvailable: starts");
