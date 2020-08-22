@@ -1,7 +1,5 @@
 package iss.workshop.jsonparsingexample.Models;
 
-import java.util.Date;
-
 public class DisbursementDetail {
         private int id;
         private int StationeryId;

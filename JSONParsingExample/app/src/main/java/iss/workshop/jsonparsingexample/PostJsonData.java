@@ -85,13 +85,32 @@ public class PostJsonData extends AsyncTask<String, Void, String> {
             byte[] input = mJsonData.getBytes();
             os.write(input, 0, input.length);
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
+//            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+//            StringBuilder response = new StringBuilder();
+//            String responseLine = null;
+//            while ((responseLine = br.readLine()) != null) {
+//                response.append(responseLine.trim());
+//            }
+//            System.out.println(response.toString());
+//
+//            mDownloadStatus = DownloadStatus.OK;
+//            return response.toString();
+
+            StringBuilder result = new StringBuilder();
+
+            reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            for(String line = reader.readLine(); line != null; line = reader.readLine()) {
+                result.append(line).append("\n");
             }
-            System.out.println(response.toString());
+
+            String data = result.toString();
+            data = data.trim();
+            data = data.substring(1, data.length() - 1);
+            data = data.replace("\\", "");
+
+            mDownloadStatus = DownloadStatus.OK;
+            return data;
 
         } catch(MalformedURLException e) {
             e.printStackTrace();
