@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
     void launchTestPostJsonActivity() {
-        Intent intent = new Intent(this, TestPostJsonActivity.class);
+        Intent intent = new Intent(this, DemoActivity.class);
         startActivity(intent);
     }
     void launchDisbursementDetailActivity() {
