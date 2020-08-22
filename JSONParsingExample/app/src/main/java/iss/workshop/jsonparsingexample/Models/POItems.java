@@ -1,5 +1,6 @@
 package iss.workshop.jsonparsingexample.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class POItems {
@@ -10,7 +11,7 @@ public class POItems {
 
     public int supplierID;
 
-    public List<PODetails> poDetailsList;
+    public List<PODetails> poDetailsList = new ArrayList<>();
 
     public void setPoDetailsList(List<PODetails> poDetailsList) {
         this.poDetailsList = poDetailsList;

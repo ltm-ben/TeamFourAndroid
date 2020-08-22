@@ -60,6 +60,7 @@ public class GetItemsListAccordingToSupplierData extends AsyncTask<String, Void,
     public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
+            mPOitem = new POItems();
             try {
                 JSONObject jsonData = new JSONObject(data);
                 JSONObject jsonRequisition = jsonData.getJSONObject("items");

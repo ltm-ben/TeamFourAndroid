@@ -26,7 +26,7 @@ public class PurchaseOrderCreateWithItemAdapter extends RecyclerView.Adapter<Pur
     Context context;
     private static final String TAG = "Purchase Order Item Adapter";
     //PO poList = new ArrayList<>();
-    POItems mPoItem = new POItems();
+    POItems mPoItem;
 
     public PurchaseOrderCreateWithItemAdapter(Context ct, POItems il){
         context = ct;

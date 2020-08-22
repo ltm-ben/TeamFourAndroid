@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PurchaseOrderCreateWithItems"></activity>
+        <activity android:name=".PurchaseOrderCreateWithItems" />
         <activity android:name=".DemoActivity" />
         <activity android:name=".Models.DeptEmployeeMainActivity" />
         <activity android:name=".DeptHeadMainActivity" />
@@ -41,7 +41,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".StoreClerkRequisitionDetailActivity" />
-        <activity android:name=".PurchaseOrderCreateWithItem" />
         <activity android:name=".CreatStoreDeptActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".StoreClerkRequisitionListActivity" />
