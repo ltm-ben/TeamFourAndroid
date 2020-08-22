@@ -1,8 +1,6 @@
 package iss.workshop.jsonparsingexample;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,19 +11,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import iss.workshop.jsonparsingexample.Models.Item;
+import iss.workshop.jsonparsingexample.Models.PO;
+import iss.workshop.jsonparsingexample.Models.PODetails;
+import iss.workshop.jsonparsingexample.Models.POItems;
 
-public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<SupplierCreateWithItemAdapter.SupplierCreateWithItemHolder> {
+public class PurchaseOrderCreateWithItemAdapter extends RecyclerView.Adapter<PurchaseOrderCreateWithItemAdapter.SupplierCreateWithItemHolder> {
 
-    private static final String TAG = "SupplierCreateAdapter";
-   List<Item> itemList;
+    //private static final String TAG = "SupplierCreateAdapter";
+   //List<Item> itemList;
     Context context;
+    private static final String TAG = "Purchase Order Item Adapter";
+    //PO poList = new ArrayList<>();
+    POItems mPoItem = new POItems();
 
-    public SupplierCreateWithItemAdapter(Context ct,List<Item> il){
+    public PurchaseOrderCreateWithItemAdapter(Context ct, POItems il){
         context = ct;
-        itemList = il;
+        mPoItem = il;
     }
 
 
@@ -41,19 +46,20 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
     @Override
     public void onBindViewHolder(@NonNull final SupplierCreateWithItemHolder holder, final int position) {
 
-        Item item = itemList.get(position);
-        Log.d(TAG, "onBindViewHolder: " + item.getName() + " --> " + position);
-        Log.d(TAG, "onBindViewHolder: " + item.getPrediction() + " --> " + position);
-        Log.d(TAG, "onBindViewHolder: " + item.getUnitPrice() + " --> " + position);
-        holder.itemName.setText(item.getName());
-        holder.unitPrice.setText(String.valueOf(item.getUnitPrice()));
-        holder.prediction.setText(String.valueOf(item.getPrediction()));
-        holder.qty.setText(String.valueOf(item.getQty()));
+        PODetails pdDetail = mPoItem.getPoDetailsList().get(position);
+
+        Log.d(TAG, "onBindViewHolder: " + pdDetail.getStationaryList().getDescription() + " --> " + position);
+        Log.d(TAG, "onBindViewHolder: " + pdDetail.getUnitPrice() + " --> " + position);
+        Log.d(TAG, "onBindViewHolder: " + pdDetail.getPredictionQty() + " --> " + position);
+        holder.itemName.setText(pdDetail.getStationaryList().getDescription());
+        holder.unitPrice.setText(String.valueOf(pdDetail.getUnitPrice()));
+        holder.prediction.setText(String.valueOf(pdDetail.getPredictionQty()));
+        holder.qty.setText(String.valueOf(pdDetail.getStationaryList()));
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return mPoItem.getPoDetailsList().size();
     }
 
     public class SupplierCreateWithItemHolder extends RecyclerView.ViewHolder{
@@ -70,6 +76,12 @@ public class SupplierCreateWithItemAdapter extends RecyclerView.Adapter<Supplier
             this.prediction = itemView.findViewById(R.id.prediction);
             this.qty = itemView.findViewById(R.id.suppliedQty);
         }
+    }
+
+
+    void loadNewData(POItems newStocks) {
+        mPoItem = newStocks;
+        notifyDataSetChanged();
     }
 
 }

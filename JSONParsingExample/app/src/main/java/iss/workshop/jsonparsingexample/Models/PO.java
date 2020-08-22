@@ -1,6 +1,7 @@
 package iss.workshop.jsonparsingexample.Models;
 
 import java.util.Date;
+import java.util.List;
 
 public class PO {
 
@@ -43,4 +44,5 @@ public class PO {
     public String getSupplierName() {
         return supplierName;
     }
+
 }

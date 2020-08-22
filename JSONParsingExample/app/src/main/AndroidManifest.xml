@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".StoreClerkRequisitionDetailActivity" />
-        <activity android:name=".SupplierCreateWithItem" />
+        <activity android:name=".PurchaseOrderCreateWithItem" />
         <activity android:name=".CreatStoreDeptActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".StoreClerkRequisitionListActivity" />
