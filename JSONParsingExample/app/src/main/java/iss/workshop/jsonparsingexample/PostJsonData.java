@@ -1,7 +1,6 @@
 package iss.workshop.jsonparsingexample;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class PostJsonData extends AsyncTask<String, Void, String> {
     private String mJsonData;
 
     interface OnDownloadComplete {
-        void onDownloadComplete(String data, DownloadStatus status);
+        void postJsonDataOnDownloadComplete(String data, DownloadStatus status);
     }
 
     public PostJsonData(PostJsonData.OnDownloadComplete callback) {
@@ -29,7 +28,7 @@ public class PostJsonData extends AsyncTask<String, Void, String> {
     void runInSameThread(String s) {
 
         if(mCallback != null) {
-            mCallback.onDownloadComplete(doInBackground(s), mDownloadStatus);
+            mCallback.postJsonDataOnDownloadComplete(doInBackground(s), mDownloadStatus);
         }
 
     }
@@ -41,7 +40,7 @@ public class PostJsonData extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         if(mCallback != null) {
-            mCallback.onDownloadComplete(s, mDownloadStatus);
+            mCallback.postJsonDataOnDownloadComplete(s, mDownloadStatus);
         }
     }
 

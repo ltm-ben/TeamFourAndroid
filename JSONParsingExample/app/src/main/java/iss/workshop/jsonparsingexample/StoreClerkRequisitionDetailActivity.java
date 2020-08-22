@@ -90,7 +90,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
     }
 
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
 
