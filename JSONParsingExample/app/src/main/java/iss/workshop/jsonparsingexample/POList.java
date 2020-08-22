@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,10 +16,11 @@ import java.util.List;
 import iss.workshop.jsonparsingexample.Models.Item;
 import iss.workshop.jsonparsingexample.Models.PO;
 
-public class POList extends AppCompatActivity {
+public class POList extends AppCompatActivity implements View.OnClickListener{
 
 
     RecyclerView rView;
+    Button mbtnCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,11 @@ public class POList extends AppCompatActivity {
         po1.setSupplierName("Fair Price");
         po1.setStatus("Processing");
 
+        mbtnCreate = findViewById(R.id.btnPOCreate);
+        mbtnCreate.setOnClickListener(this);
+
+
+
             List<PO> poList = new ArrayList<>();
 
             poList.add(po1);
@@ -42,5 +51,24 @@ public class POList extends AppCompatActivity {
 
             rView.setAdapter(poAdapter);
             rView.setLayoutManager(new LinearLayoutManager(this));
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+
+            case R.id.btnPOCreate:
+                launchPOCreateActivity();
+                break;
+
+
+        }
+    }
+
+    void launchPOCreateActivity(){
+        Intent intent = new Intent(this,PurchaseOrder.class);
+        startActivity(intent);
     }
 }
