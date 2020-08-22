@@ -15,16 +15,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import iss.workshop.jsonparsingexample.Models.DeptRequisition;
-import iss.workshop.jsonparsingexample.Models.RequisitionApprovalStatus;
 import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
 
-public class StoreClerkRequisitionDetailActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
+public class StoreClerkRequisitionDetailActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete, PostJsonData.OnDownloadComplete {
 
-    public String mURL;
+    private String mGetRequisitionDetailURL;
+    private String mSaveRequisitionDetailURL;
     private DeptRequisition mRequisition = null;
     private StoreClerkRequisitionDetailRecyclerViewAdapter mStoreClerkRequisitionDetailRecyclerViewAdapter;
     private Button mStoreClerkRequisitionDetailSubmitBtn;
@@ -40,7 +37,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         if (extras != null) {
 
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
-            mURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
+            mGetRequisitionDetailURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
         }
 
         mStoreClerkRequisitionDetailSubmitBtn = findViewById(R.id.storeClerkRequisitionDetailSubmitBtn);
@@ -62,9 +59,6 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
-
-
-
             }
         });
 
@@ -79,14 +73,16 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
     protected void onResume() {
         super.onResume();
         GetRawData getRawData = new GetRawData(this);
-        getRawData.execute(mURL);
+        getRawData.execute(mGetRequisitionDetailURL);
     }
 
     public void callPostApi(String json) {
 
-//        PostJsonData postJsonData = new PostJsonData(this);
-//        postJsonData.loadJsonData(json);
-//        postJsonData.execute(mURL);
+        PostJsonData postJsonData = new PostJsonData(this);
+        postJsonData.loadJsonData(json);
+
+        // create api in visual studio to receive requisition json string
+        //postJsonData.execute(mSaveRequisitionDetailURL);
     }
 
     @Override
@@ -123,5 +119,37 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         }
     }
 
+    @Override
+    public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
 
+        if(status == DownloadStatus.OK) {
+
+//            mRequisition = new DeptRequisition();
+//
+//            try {
+//                JSONObject jsonData = new JSONObject(data);
+//
+//                int requisitionId = jsonData.getInt("requisitionId");
+//                mRequisition.setId(requisitionId);
+//
+//                JSONArray itemsArray = jsonData.getJSONArray("requisitionDetails");
+//
+//                for(int i=0; i<itemsArray.length(); i++) {
+//                    JSONObject jsonRequisitionDetail = itemsArray.getJSONObject(i);
+//
+//                    RequisitionDetail requisitionDetail = new RequisitionDetail();
+//                    requisitionDetail.setId(jsonRequisitionDetail.getInt("Id"));
+//                    requisitionDetail.setStationeryId(jsonRequisitionDetail.getInt("StationeryId"));
+//                    requisitionDetail.setStationeryName(jsonRequisitionDetail.getString("StationeryName"));
+//                    requisitionDetail.setQty(jsonRequisitionDetail.getInt("Qty"));
+//                    mRequisition.getRequisitionDetails().add(requisitionDetail);
+//                }
+//
+//                mStoreClerkRequisitionDetailRecyclerViewAdapter.loadNewData(mRequisition);
+//            } catch(JSONException jsone) {
+//                jsone.printStackTrace();
+//                status = DownloadStatus.FAILED_OR_EMPTY;
+//            }
+        }
+    }
 }
