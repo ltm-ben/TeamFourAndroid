@@ -14,7 +14,7 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
 
     public static final String TAG = "ItemList";
 
-    public String mURL = "http://192.119.86.65:90/PO/POItemApi";
+    public String mURL = "http://192.168.68.110/PO/POItemApi";
     RecyclerView rView;
     PurchaseOrderCreateWithItemAdapter adapter;
 
@@ -23,12 +23,12 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_order_create_with_items);
 
-        rView = findViewById(R.id.supplierCreateWithItemListRecyclerView);
+        rView = (RecyclerView) findViewById(R.id.supplierCreateWithItemListRecyclerView);
+        rView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new PurchaseOrderCreateWithItemAdapter(this,new POItems());
-
         rView.setAdapter(adapter);
-        rView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 
