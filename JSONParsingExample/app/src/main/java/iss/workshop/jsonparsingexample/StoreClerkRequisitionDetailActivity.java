@@ -33,7 +33,6 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
-            // change to dept controller instead of store controller in future
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
             mURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
         }
