@@ -24,7 +24,7 @@ public class POListAdpater extends RecyclerView.Adapter<POListAdpater.MyViewHold
 
     public POListAdpater(Context ct, List<PO> pList){
         context = ct;
-        poList = pList;
+        poList = new ArrayList<PO>();
     }
     @NonNull
     @Override
@@ -46,7 +46,7 @@ public class POListAdpater extends RecyclerView.Adapter<POListAdpater.MyViewHold
         holder.id.setText(String.valueOf(purchaseOrder.getId()) );
         holder.orderDate.setText(purchaseOrder.getOrderDate());
         holder.supplierName.setText(purchaseOrder.getSupplierName());
-        holder.status.setText(purchaseOrder.getStatus());
+        holder.status.setText(String.valueOf(purchaseOrder.getStatus()));
     }
 
     @Override

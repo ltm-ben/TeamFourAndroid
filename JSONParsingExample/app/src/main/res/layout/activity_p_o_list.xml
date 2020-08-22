@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SupplierCreateWithItem">
+    tools:context=".PurchaseOrderCreateWithItem">
 
     <TextView
         android:id="@+id/poList"
@@ -32,7 +32,6 @@
         android:background="#0f0"
         android:paddingVertical="20dp"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toTopOf="@+id/poList"
         app:layout_constraintBottom_toTopOf="@+id/poListRecyclerView"
         />
 

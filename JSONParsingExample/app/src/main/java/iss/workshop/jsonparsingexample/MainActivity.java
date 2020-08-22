@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 import iss.workshop.jsonparsingexample.Models.DeptEmployeeMainActivity;
-import iss.workshop.jsonparsingexample.Models.Employee;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
     void launchSupplierCreateWithItemActivity() {
-        Intent intent = new Intent(this,SupplierCreateWithItem.class);
+        Intent intent = new Intent(this, PurchaseOrderCreateWithItems.class);
         startActivity(intent);
     }
     void launchPoListActivity() {

@@ -11,6 +11,7 @@ import java.util.List;
 
 import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 import iss.workshop.jsonparsingexample.Models.PO;
+import iss.workshop.jsonparsingexample.Models.PurchaseOrderStatus;
 import iss.workshop.jsonparsingexample.Models.RequisitionFulfillmentStatus;
 
 public class GetPurchaseOrderData extends AsyncTask<String, Void, List<PO>> implements GetRawData.OnDownloadComplete {
@@ -62,18 +63,20 @@ public class GetPurchaseOrderData extends AsyncTask<String, Void, List<PO>> impl
 
             try {
                 JSONObject jsonData = new JSONObject(data);
-                JSONArray itemsArray = jsonData.getJSONArray("purchaseOrders");
+                JSONArray itemsArray = jsonData.getJSONArray("poS");
 
                 for(int i=0; i<itemsArray.length(); i++) {
                     JSONObject jsonRequisition = itemsArray.getJSONObject(i);
 
                     int requisitionId = jsonRequisition.getInt("Id");
-                    RequisitionFulfillmentStatus requisitionFulfillmentStatus = RequisitionFulfillmentStatus.valueOf(jsonRequisition.getInt("RequisitionFulfillmentStatus"));
+                    //RequisitionFulfillmentStatus requisitionFulfillmentStatus = RequisitionFulfillmentStatus.valueOf(jsonRequisition.getInt("RequisitionFulfillmentStatus"));
 
+                    PurchaseOrderStatus poStatus = PurchaseOrderStatus.valueOf(jsonRequisition.getInt("POStatus"));
                     PO po = new PO();
                     po.setId(jsonRequisition.getInt("Id"));
                     po.setOrderDate(jsonRequisition.getString("OrderDate"));
                     po.setSupplierName(jsonRequisition.getString("SupplierName"));
+                    po.setStatus(poStatus);
 
                     mPOList.add(po);
                 }
