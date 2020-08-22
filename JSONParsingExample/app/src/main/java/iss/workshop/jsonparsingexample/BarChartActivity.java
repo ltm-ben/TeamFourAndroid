@@ -67,7 +67,7 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
     }
 
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
 

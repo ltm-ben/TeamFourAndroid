@@ -69,7 +69,7 @@ public class TestPostJsonActivity extends AppCompatActivity implements PostJsonD
     }
 
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
+    public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
 

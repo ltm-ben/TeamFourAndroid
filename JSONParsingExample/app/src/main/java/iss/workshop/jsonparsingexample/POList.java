@@ -26,7 +26,7 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
     Button mbtnCreate;
     POListAdpater poAdapter;
 
-    public String mURL = "http://192.168.1.8:8080/PO/POListAPI";
+    public String mURL = "http://192.119.86.65:90/PO/POListAPI";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,16 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
             rView.setLayoutManager(new LinearLayoutManager(this));
 
     }
+
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "onResume starts");
+        super.onResume();
+        GetPurchaseOrderData getPurchaseOrderdata = new GetPurchaseOrderData(this);
+        getPurchaseOrderdata.execute(mURL);
+        Log.d(TAG, "onResume ends");
+    }
+
 
     @Override
     public void onDataAvailable(List<PO> data, DownloadStatus status) {

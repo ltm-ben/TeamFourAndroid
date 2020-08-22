@@ -5,6 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +27,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
     public String mURL;
     private DeptRequisition mRequisition = null;
     private StoreClerkRequisitionDetailRecyclerViewAdapter mStoreClerkRequisitionDetailRecyclerViewAdapter;
+    private Button mStoreClerkRequisitionDetailSubmitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +39,34 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
-            // change to dept controller instead of store controller in future
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
             mURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
         }
+
+        mStoreClerkRequisitionDetailSubmitBtn = findViewById(R.id.storeClerkRequisitionDetailSubmitBtn);
+        mStoreClerkRequisitionDetailSubmitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // get requisition Id, list of item Id and disbursement Qty from mRequisition
+                // put data into object
+                // serialise the object into json
+                ObjectMapper mapper = new ObjectMapper();
+
+                try {
+                    String json = mapper.writeValueAsString(mRequisition);
+
+                    // post the object to API endpoint
+                    callPostApi(json);
+
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        });
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.requisitionDetailRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,8 +82,15 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         getRawData.execute(mURL);
     }
 
+    public void callPostApi(String json) {
+
+//        PostJsonData postJsonData = new PostJsonData(this);
+//        postJsonData.loadJsonData(json);
+//        postJsonData.execute(mURL);
+    }
+
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
 
@@ -85,4 +122,6 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
             }
         }
     }
+
+
 }

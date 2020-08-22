@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="3">
+    android:weightSum="4">
 
     <TextView
         android:id="@+id/requisitionDetailItemId"
@@ -23,6 +23,13 @@
 
     <TextView
         android:id="@+id/requisitionDetailRequestedQty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/requisitionDetailCollectedQty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

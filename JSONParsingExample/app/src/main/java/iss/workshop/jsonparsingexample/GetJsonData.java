@@ -66,7 +66,7 @@ public class GetJsonData extends AsyncTask<String, Void, List<Stock>> implements
     }
 
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
         Log.d(TAG, "onDownloadComplete starts. Status = " + status);
 
         if(status == DownloadStatus.OK) {

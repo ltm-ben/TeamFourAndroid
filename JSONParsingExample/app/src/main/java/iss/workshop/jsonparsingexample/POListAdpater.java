@@ -69,7 +69,6 @@ public class POListAdpater extends RecyclerView.Adapter<POListAdpater.MyViewHold
         }
     }
 
-
     void loadNewData(List<PO> newStocks) {
         poList = newStocks;
         notifyDataSetChanged();

@@ -55,7 +55,7 @@ public class GetPurchaseOrderData extends AsyncTask<String, Void, List<PO>> impl
     }
 
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
             mPOList = new ArrayList<>();

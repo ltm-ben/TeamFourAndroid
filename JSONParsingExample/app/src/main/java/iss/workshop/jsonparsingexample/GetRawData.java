@@ -20,7 +20,7 @@ public class GetRawData extends AsyncTask<String, Void, String> {
     private final OnDownloadComplete mCallback;
 
     interface OnDownloadComplete {
-        void onDownloadComplete(String data, DownloadStatus status);
+        void getRawDataOnDownloadComplete(String data, DownloadStatus status);
     }
 
     public GetRawData(OnDownloadComplete callback) {
@@ -32,7 +32,7 @@ public class GetRawData extends AsyncTask<String, Void, String> {
         Log.d(TAG, "runInSameThread starts");
 
         if(mCallback != null) {
-            mCallback.onDownloadComplete(doInBackground(s), mDownloadStatus);
+            mCallback.getRawDataOnDownloadComplete(doInBackground(s), mDownloadStatus);
         }
 
         Log.d(TAG, "runInSameThread ends");
@@ -42,7 +42,7 @@ public class GetRawData extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
 //        Log.d(TAG, "onPostExecute: parameter = " + s);
         if(mCallback != null) {
-            mCallback.onDownloadComplete(s, mDownloadStatus);
+            mCallback.getRawDataOnDownloadComplete(s, mDownloadStatus);
         }
         Log.d(TAG, "onPostExecute: ends");
     }

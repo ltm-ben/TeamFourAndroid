@@ -47,7 +47,7 @@ public class DemoActivity extends AppCompatActivity implements PostJsonData.OnDo
     }
 
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
+    public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
 
