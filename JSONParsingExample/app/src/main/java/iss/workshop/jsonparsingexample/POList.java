@@ -36,11 +36,11 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
             rView = findViewById(R.id.poListRecyclerView);
         Date d = new Date();
 
-        PO po1 = new PO();
+        /*PO po1 = new PO();
         po1.setId(1);
         po1.setOrderDate("10/10/2020 12:00:00 AM");
         po1.setSupplierName("Fair Price");
-        po1.setStatus("Processing");
+        po1.setStatus("Processing");*/
 
         mbtnCreate = findViewById(R.id.btnPOCreate);
         mbtnCreate.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
 
             List<PO> poList = new ArrayList<>();
 
-            poList.add(po1);
+           // poList.add(po1);
 
              poAdapter = new POListAdpater(this,poList);
              poAdapter = new POListAdpater(this,new ArrayList<PO>());
@@ -78,6 +78,7 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
         Log.d(TAG, "onDataAvailable: starts");
         if(status == DownloadStatus.OK) {
             poAdapter.loadNewData(data);
+            Log.d(TAG, "onDataAvailable: in"+data.toString());
         } else {
             // download or processing failed
             Log.e(TAG, "onDataAvailable failed with status " + status);

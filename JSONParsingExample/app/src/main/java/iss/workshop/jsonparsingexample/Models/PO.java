@@ -10,7 +10,7 @@ public class PO {
 
     private String supplierName;
 
-    private String status;
+    private PurchaseOrderStatus status;
 
     public void setId(int id) {
         this.id = id;
@@ -28,11 +28,11 @@ public class PO {
         return orderDate;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PurchaseOrderStatus status) {
         this.status = status;
     }
 
-    public String getStatus() {
+    public PurchaseOrderStatus getStatus() {
         return status;
     }
 
