@@ -14,14 +14,26 @@
         android:layout_marginTop="62dp"
         android:layout_marginEnd="112dp"
         android:layout_marginBottom="43dp"
-        android:text="Supplier Create"
+        android:text="Purchase Order Create"
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/supplierCreateWithItemListRecyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/btnPOSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btnPOSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create"
+        android:background="#0f0"
+        android:paddingVertical="20dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintBottom_toTopOf="@+id/supplierCreateWithItemListRecyclerView"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/supplierCreateWithItemListRecyclerView"
