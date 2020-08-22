@@ -1,6 +1,8 @@
 package iss.workshop.jsonparsingexample;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +37,32 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
     public void onBindViewHolder(@NonNull StoreClerkRequisitionDetailRecyclerViewAdapter.RequisitionDetailViewHolder holder, int position) {
         // Called by the layout manager when it wants new data in an existing row
 
-        RequisitionDetail requisitionDetailItem = mRequisition.getRequisitionDetails().get(position);
+        final RequisitionDetail requisitionDetailItem = mRequisition.getRequisitionDetails().get(position);
 
         // set view widgets in store clerk requisition detail row here
         holder.requisitionDetailItemId.setText(String.valueOf(requisitionDetailItem.getId()));
         holder.requisitionDetailItemName.setText(requisitionDetailItem.getStationeryName());
         holder.requisitionDetailRequestedQty.setText(String.valueOf(requisitionDetailItem.getQty()));
+        holder.requisitionDetailCollectedQty.setText(String.valueOf(requisitionDetailItem.getCollectedQty()));
+
+        holder.disburseQtyInput.setText(String.valueOf(requisitionDetailItem.getDisbursedQty()));
+        holder.disburseQtyInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                requisitionDetailItem.setDisbursedQty(Integer.parseInt(s.toString()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -62,6 +84,7 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
         TextView requisitionDetailItemId = null;
         TextView requisitionDetailItemName = null;
         TextView requisitionDetailRequestedQty = null;
+        TextView requisitionDetailCollectedQty = null;
         EditText disburseQtyInput = null;
 
         public RequisitionDetailViewHolder(@NonNull View itemView) {
@@ -69,7 +92,9 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
             this.requisitionDetailItemId = (TextView) itemView.findViewById(R.id.requisitionDetailItemId);
             this.requisitionDetailItemName = (TextView) itemView.findViewById(R.id.requisitionDetailItemName);
             this.requisitionDetailRequestedQty = (TextView) itemView.findViewById(R.id.requisitionDetailRequestedQty);
+            this.requisitionDetailCollectedQty = (TextView) itemView.findViewById(R.id.requisitionDetailCollectedQty);
             this.disburseQtyInput = (EditText) itemView.findViewById(R.id.disburseQtyInput);
+
         }
     }
 }

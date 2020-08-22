@@ -55,7 +55,7 @@ public class GetRequisitionData extends AsyncTask<String, Void, List<DeptRequisi
     }
 
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
             mRequisitionList = new ArrayList<>();
