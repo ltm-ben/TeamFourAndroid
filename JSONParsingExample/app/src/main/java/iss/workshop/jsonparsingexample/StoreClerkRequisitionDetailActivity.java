@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,9 +51,20 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
                 // get requisition Id, list of item Id and disbursement Qty from mRequisition
                 // put data into object
                 // serialise the object into json
+                ObjectMapper mapper = new ObjectMapper();
+
+                try {
+                    String json = mapper.writeValueAsString(mRequisition);
+
+                    // post the object to API endpoint
+                    callPostApi(json);
+
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
 
 
-                // post the object to API endpoint
+
             }
         });
 
@@ -66,6 +80,13 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         super.onResume();
         GetRawData getRawData = new GetRawData(this);
         getRawData.execute(mURL);
+    }
+
+    public void callPostApi(String json) {
+
+//        PostJsonData postJsonData = new PostJsonData(this);
+//        postJsonData.loadJsonData(json);
+//        postJsonData.execute(mURL);
     }
 
     @Override
@@ -101,4 +122,6 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
             }
         }
     }
+
+
 }
