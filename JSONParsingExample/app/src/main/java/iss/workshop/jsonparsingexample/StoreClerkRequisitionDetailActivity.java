@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +24,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
     public String mURL;
     private DeptRequisition mRequisition = null;
     private StoreClerkRequisitionDetailRecyclerViewAdapter mStoreClerkRequisitionDetailRecyclerViewAdapter;
+    private Button mStoreClerkRequisitionDetailSubmitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,20 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
             mURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
         }
+
+        mStoreClerkRequisitionDetailSubmitBtn = findViewById(R.id.storeClerkRequisitionDetailSubmitBtn);
+        mStoreClerkRequisitionDetailSubmitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // get requisition Id, list of item Id and disbursement Qty from mRequisition
+                // put data into object
+                // serialise the object into json
+
+
+                // post the object to API endpoint
+            }
+        });
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.requisitionDetailRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
