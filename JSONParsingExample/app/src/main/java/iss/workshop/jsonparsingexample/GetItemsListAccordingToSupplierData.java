@@ -60,46 +60,31 @@ public class GetItemsListAccordingToSupplierData extends AsyncTask<String, Void,
     public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
-           List<PO> mPOList = new ArrayList<>();
-
             try {
                 JSONObject jsonData = new JSONObject(data);
-                JSONArray itemsArray = jsonData.getJSONArray("poS");
+                JSONObject jsonRequisition = jsonData.getJSONObject("items");
 
-
-                    JSONObject jsonRequisition = itemsArray.getJSONObject(0);
-
-                    int requisitionId = jsonRequisition.getInt("Id");
-                    //RequisitionFulfillmentStatus requisitionFulfillmentStatus = RequisitionFulfillmentStatus.valueOf(jsonRequisition.getInt("RequisitionFulfillmentStatus"));
+                    //JSONObject jsonRequisition = itemsArray.getJSONObject(1);
 
                     PurchaseOrderStatus poStatus = PurchaseOrderStatus.valueOf(jsonRequisition.getInt("POStatus"));
-                    PO po = new PO();
-                    po.setId(jsonRequisition.getInt("Id"));
-                    po.setOrderDate(jsonRequisition.getString("OrderDate"));
-                    po.setSupplierName(jsonRequisition.getString("SupplierName"));
-                    po.setStatus(poStatus);
+
 
                     mPOitem.setOrderDate(jsonRequisition.getString("OrderDate"));
                     mPOitem.setPoStatus(poStatus);
-                    mPOitem.setSupplierID(1); // need to change
+                    mPOitem.setSupplierID(jsonRequisition.getInt("supplierID"));
+                    // need to change
 
                     List<PODetails> pdList = new ArrayList<>();
-                    JSONArray poDetailList =  jsonRequisition.getJSONArray("poDetails");
+                    JSONArray poDetailList =  jsonRequisition.getJSONArray("poDetailsList");
 
                     for(int j = 0; j < poDetailList.length(); j++){
                         JSONObject detailArray =poDetailList.getJSONObject(j);
 
                         PODetails pD = new PODetails();
-                        pD.setId(detailArray.getInt("Id"));
-                        pD.setId(detailArray.getInt("poID"));
-                        pD.setUnitPrice(detailArray.getInt("unitPrice"));
+                        pD.setStationaryId(detailArray.getInt("stationeryId"));
+                        pD.setStationaryDescription(detailArray.getString("stationeryDescription"));
                         pD.setPredictionQty(detailArray.getDouble("predictionQty"));
-                        pD.setQty(detailArray.getInt("Qty"));
-                        JSONObject stationaryObj = detailArray.getJSONObject("stationery");
-                        Stationary s = new Stationary();
-                        s.setId(stationaryObj.getInt("Id"));
-                        s.setDescription(stationaryObj.getString("Description"));
-                        pD.setStationaryList(s);
+                        pD.setUnitPrice(detailArray.getInt("unitPrice"));
                         pdList.add(pD);
 
                     }

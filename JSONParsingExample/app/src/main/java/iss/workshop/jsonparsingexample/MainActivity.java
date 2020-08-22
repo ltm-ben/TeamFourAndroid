@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
     void launchSupplierCreateWithItemActivity() {
-        Intent intent = new Intent(this, PurchaseOrderCreateWithItem.class);
+        Intent intent = new Intent(this, PurchaseOrderCreateWithItems.class);
         startActivity(intent);
     }
     void launchPoListActivity() {

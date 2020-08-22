@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DemoActivity"></activity>
+        <activity android:name=".PurchaseOrderCreateWithItems"></activity>
+        <activity android:name=".DemoActivity" />
         <activity android:name=".Models.DeptEmployeeMainActivity" />
         <activity android:name=".DeptHeadMainActivity" />
         <activity android:name=".StoreClerkMainActivity" />

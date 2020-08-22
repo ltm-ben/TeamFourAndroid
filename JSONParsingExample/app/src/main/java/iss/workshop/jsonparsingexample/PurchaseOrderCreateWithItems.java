@@ -6,29 +6,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import iss.workshop.jsonparsingexample.Models.Item;
-import iss.workshop.jsonparsingexample.Models.PO;
-import iss.workshop.jsonparsingexample.Models.PODetails;
 import iss.workshop.jsonparsingexample.Models.POItems;
-import iss.workshop.jsonparsingexample.Models.Stationary;
 
-public class PurchaseOrderCreateWithItem extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable{
-    RecyclerView rView;
+public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable{
 
-    public static final String TAG = "itemList";
+    public static final String TAG = "ItemList";
 
     public String mURL = "http://192.119.86.65:90/PO/POItemApi";
-
+    RecyclerView rView;
     PurchaseOrderCreateWithItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_supplier_create_with_item);
+        setContentView(R.layout.activity_purchase_order_create_with_items);
 
         rView = findViewById(R.id.supplierCreateWithItemListRecyclerView);
 
@@ -49,17 +42,18 @@ public class PurchaseOrderCreateWithItem extends AppCompatActivity implements Ge
     }
 
 
+
     @Override
     public void onDataAvailable(POItems data, DownloadStatus status) {
-        Log.d(TAG, "onDataAvailable: starts");
-        if(status == DownloadStatus.OK) {
-            adapter.loadNewData(data);
-            Log.d(TAG, "onDataAvailable: in"+data.toString());
-        } else {
-            // download or processing failed
-            Log.e(TAG, "onDataAvailable failed with status " + status);
-        }
+            Log.d(TAG, "onDataAvailable: starts");
+            if(status == DownloadStatus.OK) {
+                adapter.loadNewData(data);
+                Log.d(TAG, "onDataAvailable: in"+data.toString());
+            } else {
+                // download or processing failed
+                Log.e(TAG, "onDataAvailable failed with status " + status);
+            }
 
-        Log.d(TAG, "onDataAvailable: ends");
-    }
+            Log.d(TAG, "onDataAvailable: ends");
+        }
 }

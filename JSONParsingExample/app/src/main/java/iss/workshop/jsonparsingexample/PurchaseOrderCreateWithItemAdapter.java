@@ -48,13 +48,13 @@ public class PurchaseOrderCreateWithItemAdapter extends RecyclerView.Adapter<Pur
 
         PODetails pdDetail = mPoItem.getPoDetailsList().get(position);
 
-        Log.d(TAG, "onBindViewHolder: " + pdDetail.getStationaryList().getDescription() + " --> " + position);
+        Log.d(TAG, "onBindViewHolder: " + pdDetail.getStationaryDescription() + " --> " + position);
         Log.d(TAG, "onBindViewHolder: " + pdDetail.getUnitPrice() + " --> " + position);
         Log.d(TAG, "onBindViewHolder: " + pdDetail.getPredictionQty() + " --> " + position);
-        holder.itemName.setText(pdDetail.getStationaryList().getDescription());
+        holder.itemName.setText(pdDetail.getStationaryDescription());
         holder.unitPrice.setText(String.valueOf(pdDetail.getUnitPrice()));
         holder.prediction.setText(String.valueOf(pdDetail.getPredictionQty()));
-        holder.qty.setText(String.valueOf(pdDetail.getStationaryList()));
+        holder.qty.setText(String.valueOf(pdDetail.getQty()));
     }
 
     @Override
