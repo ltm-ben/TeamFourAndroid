@@ -17,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import iss.workshop.jsonparsingexample.Models.DTOs.DeptRequisitionDto;
+import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDTO;
+import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDetailDto;
 import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
 
@@ -55,10 +57,10 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 
                 try {
 
-                    DeptRequisitionDto dto = new DeptRequisitionDto();
-                    dto.setId(mRequisition.getId());
-                    dto.setRequisitionDetails(mRequisition.getRequisitionDetails());
+                    // transfer data from mRequisition into DeptRequisitionDto object
+                    DeptRequisitionDto dto = deptRequisitionToDto(mRequisition);
 
+                    // generate a json string from DeptRequisitionDto object
                     String json = mapper.writeValueAsString(dto);
 
                     // post the object to API endpoint
@@ -82,6 +84,15 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         super.onResume();
         GetRawData getRawData = new GetRawData(this);
         getRawData.execute(mGetRequisitionDetailURL);
+    }
+
+    DeptRequisitionDto deptRequisitionToDto(DeptRequisition input) {
+
+        DeptRequisitionDto output = new DeptRequisitionDto();
+        output.setId(input.getId());
+        output.setRequisitionDetails(input.getRequisitionDetails());
+
+        return output;
     }
 
     public void callPostApi(String json) {

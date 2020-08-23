@@ -1,4 +1,4 @@
-package iss.workshop.jsonparsingexample.Models;
+package iss.workshop.jsonparsingexample.Models.DTOs;
 
 public class TestDTO {
     private int id;

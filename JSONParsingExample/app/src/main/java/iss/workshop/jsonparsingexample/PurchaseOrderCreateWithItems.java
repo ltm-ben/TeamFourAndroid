@@ -4,23 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import iss.workshop.jsonparsingexample.Models.PO;
 import iss.workshop.jsonparsingexample.Models.POItems;
-import iss.workshop.jsonparsingexample.Models.PurchaseOrderStatus;
-import iss.workshop.jsonparsingexample.Models.TestDTO;
 
 public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable{
 

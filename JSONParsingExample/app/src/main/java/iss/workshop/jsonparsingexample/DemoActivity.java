@@ -11,10 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import iss.workshop.jsonparsingexample.Models.DTOs.AnotherTestDto;
 import iss.workshop.jsonparsingexample.Models.DTOs.DeptRequisitionDto;
-import iss.workshop.jsonparsingexample.Models.DeptRequisition;
-import iss.workshop.jsonparsingexample.Models.TestDTO;
 
 public class DemoActivity extends AppCompatActivity implements PostJsonData.OnDownloadComplete {
 
