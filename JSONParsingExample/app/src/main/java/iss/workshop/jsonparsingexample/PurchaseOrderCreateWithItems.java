@@ -17,41 +17,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import iss.workshop.jsonparsingexample.Models.PO;
+import iss.workshop.jsonparsingexample.Models.PODetails;
 import iss.workshop.jsonparsingexample.Models.POItems;
 import iss.workshop.jsonparsingexample.Models.PurchaseOrderStatus;
+import iss.workshop.jsonparsingexample.Models.Stationary;
 import iss.workshop.jsonparsingexample.Models.TestDTO;
 
-public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable{
+public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable,PostJsonData.OnDownloadComplete{
 
     public static final String TAG = "ItemList";
 
-    public String mURL = "http://192.119.86.65:90/PO/POItemApi";
+    public String mURL = "http://192.168.1.18//PO/POItemApi";
     RecyclerView rView;
     Button mbtnSave;
     PurchaseOrderCreateWithItemAdapter adapter;
 
     PostJsonData mPostJsonData;
-    private String mPostURL;
+    private String mPostURL = "http://192.168.1.18//PO/POSave";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*mbtnSave = findViewById(R.id.btnPOSave);
-        mbtnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPostJsonData = new PostJsonData(PurchaseOrderCreateWithItems.this);
-                mURL = "http://192.119.86.65:90/PO/POSave";
 
-                try {
-                    callAPI();
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
-            }
-        });*/
         setContentView(R.layout.activity_purchase_order_create_with_items);
 
         rView = (RecyclerView) findViewById(R.id.supplierCreateWithItemListRecyclerView);
@@ -60,6 +51,20 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
         adapter = new PurchaseOrderCreateWithItemAdapter(this,new POItems());
         rView.setAdapter(adapter);
 
+        mbtnSave = findViewById(R.id.btnPOSave);
+        mbtnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //mPostJsonData = new PostJsonData(PurchaseOrderCreateWithItems.this);
+
+                try {
+                    callPostApi();
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
@@ -86,32 +91,50 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
             Log.d(TAG, "onDataAvailable: ends");
         }
 
-/*
-    public void callAPI() throws JsonProcessingException {
 
-        TestDTO testDTO = new TestDTO();
-        testDTO.setId(30);
-        testDTO.setName("Joe");
+    public void callPostApi() throws JsonProcessingException {
+
+        PostJsonData postJsonData = new PostJsonData(this);
+        postJsonData.loadJsonData(formatDataAsJSON());
+        postJsonData.execute(mURL);
+    }
+
+    private String formatDataAsJSON() throws JsonProcessingException {
 
         POItems poItems = new POItems();
         poItems.setSupplierID(1);
+        poItems.orderDate= "";
+        poItems.poDetailsList = new ArrayList<>();
+
+        PODetails pod = new PODetails();
+        pod.setId(1);
+        pod.setPredictionQty(10);
+        pod.setStationaryDescription("Eraser");
+        pod.setSupplierDetailsid(1);
+        pod.setUnitPrice(100);
+
+        poItems.poDetailsList.add(pod);
+
         poItems.setPoStatus(PurchaseOrderStatus.Processing);
         ObjectMapper mapper = new ObjectMapper();
         String data = mapper.writeValueAsString(poItems);
 
-        JSONObject demoObject = new JSONObject();
+        Log.d(TAG, "sending Json : " + data);
+
+        final JSONObject root = new JSONObject();
+
         try {
+            root.put("input", data);
 
-            demoObject.put("data", data);
-
-            mPostJsonData.loadJsonData(data);
-            mPostJsonData.execute(mURL);
-
+            return root.toString();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
+
     @Override
     public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
         if(status == DownloadStatus.OK) {
@@ -131,5 +154,5 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
                 status = DownloadStatus.FAILED_OR_EMPTY;
             }
         }
-    }*/
+    }
 }

@@ -83,5 +83,8 @@ public class PurchaseOrderCreateWithItemAdapter extends RecyclerView.Adapter<Pur
         mPoItem = newStocks;
         notifyDataSetChanged();
     }
-
+    public interface OnEditTextChanged {
+        void onTextChanged(int position, String charSeq);
+    }
 }
+
