@@ -21,7 +21,7 @@ import org.json.JSONObject;
 import iss.workshop.jsonparsingexample.Models.PO;
 import iss.workshop.jsonparsingexample.Models.POItems;
 import iss.workshop.jsonparsingexample.Models.PurchaseOrderStatus;
-import iss.workshop.jsonparsingexample.Models.TestDTO;
+//import iss.workshop.jsonparsingexample.Models.TestDTO;
 
 public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable,PostJsonData.OnDownloadComplete{
 

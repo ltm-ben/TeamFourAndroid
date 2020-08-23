@@ -91,9 +91,11 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
                     }
                 },mYear, mMonth,mDay);
                 mDatePickerDialog.show();
+                orderDate = mDate.getText().toString();
             }
         });
-        orderDate = mDate.getText().toString();
+       // orderDate = mDate.getText().toString();
+
 
 
         //send orderDate, selectedItemText to Visual Studio
@@ -103,7 +105,12 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onResume ends" +orderDate);
+                //Log.d(TAG, "onResume ends" +orderDate);
+                mDate = findViewById(R.id.date);
+                orderDate = mDate.getText().toString();
+               Toast.makeText
+                        (getApplicationContext(), orderDate, Toast.LENGTH_SHORT)
+                        .show();
                 callPostApi(orderDate,selectedItemText);
             }
         });
