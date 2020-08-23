@@ -17,8 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import iss.workshop.jsonparsingexample.Models.DTOs.DeptRequisitionDto;
-import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDTO;
-import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDetailDto;
 import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
 
@@ -68,7 +66,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 
                     // launch store clerk requisition list activity
                     launchStoreClerkRequisitionListActivity();
-                    
+
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
@@ -136,6 +134,8 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
                     requisitionDetail.setStationeryId(jsonRequisitionDetail.getInt("StationeryId"));
                     requisitionDetail.setStationeryName(jsonRequisitionDetail.getString("StationeryName"));
                     requisitionDetail.setQty(jsonRequisitionDetail.getInt("Qty"));
+                    requisitionDetail.setStockQty(jsonRequisitionDetail.getInt("StockQty"));
+                    requisitionDetail.setCollectedQty(jsonRequisitionDetail.getInt("CollectedQty"));
                     mRequisition.getRequisitionDetails().add(requisitionDetail);
                 }
 

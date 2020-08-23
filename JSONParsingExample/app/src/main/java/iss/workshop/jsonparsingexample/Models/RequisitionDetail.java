@@ -5,8 +5,9 @@ public class RequisitionDetail {
     private int StationeryId;
     private String StationeryName;
     private int Qty;
-    private int collectedQty;
-    private int disbursedQty;
+    private int StockQty;
+    private int CollectedQty;
+    private int DisbursedQty;
 
     public RequisitionDetail() {
     }
@@ -44,19 +45,27 @@ public class RequisitionDetail {
     }
 
     public int getCollectedQty() {
-        return collectedQty;
+        return CollectedQty;
     }
 
     public void setCollectedQty(int collectedQty) {
-        this.collectedQty = collectedQty;
+        this.CollectedQty = collectedQty;
     }
 
     public int getDisbursedQty() {
-        return disbursedQty;
+        return DisbursedQty;
     }
 
     public void setDisbursedQty(int disbursedQty) {
-        this.disbursedQty = disbursedQty;
+        this.DisbursedQty = disbursedQty;
+    }
+
+    public int getStockQty() {
+        return StockQty;
+    }
+
+    public void setStockQty(int stockQty) {
+        StockQty = stockQty;
     }
 
     @Override

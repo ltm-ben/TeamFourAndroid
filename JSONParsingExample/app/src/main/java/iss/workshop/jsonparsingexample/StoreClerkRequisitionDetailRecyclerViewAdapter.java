@@ -43,7 +43,8 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
         holder.requisitionDetailItemId.setText(String.valueOf(requisitionDetailItem.getId()));
         holder.requisitionDetailItemName.setText(requisitionDetailItem.getStationeryName());
         holder.requisitionDetailRequestedQty.setText(String.valueOf(requisitionDetailItem.getQty()));
-        holder.requisitionDetailCollectedQty.setText(String.valueOf(requisitionDetailItem.getCollectedQty()));
+        holder.requisitionDetailStockQty.setText(String.valueOf(requisitionDetailItem.getStockQty()));
+        holder.requisitionDetailRemainingQty.setText(String.valueOf(requisitionDetailItem.getQty() - requisitionDetailItem.getCollectedQty()));
 
         holder.disburseQtyInput.setText(String.valueOf(requisitionDetailItem.getDisbursedQty()));
         holder.disburseQtyInput.addTextChangedListener(new TextWatcher() {
@@ -84,7 +85,8 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
         TextView requisitionDetailItemId = null;
         TextView requisitionDetailItemName = null;
         TextView requisitionDetailRequestedQty = null;
-        TextView requisitionDetailCollectedQty = null;
+        TextView requisitionDetailStockQty = null;
+        TextView requisitionDetailRemainingQty = null;
         EditText disburseQtyInput = null;
 
         public RequisitionDetailViewHolder(@NonNull View itemView) {
@@ -92,7 +94,8 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
             this.requisitionDetailItemId = (TextView) itemView.findViewById(R.id.requisitionDetailItemId);
             this.requisitionDetailItemName = (TextView) itemView.findViewById(R.id.requisitionDetailItemName);
             this.requisitionDetailRequestedQty = (TextView) itemView.findViewById(R.id.requisitionDetailRequestedQty);
-            this.requisitionDetailCollectedQty = (TextView) itemView.findViewById(R.id.requisitionDetailCollectedQty);
+            this.requisitionDetailStockQty = (TextView) itemView.findViewById(R.id.requisitionDetailStockQty);
+            this.requisitionDetailRemainingQty = (TextView) itemView.findViewById(R.id.requisitionDetailRemainingQty);
             this.disburseQtyInput = (EditText) itemView.findViewById(R.id.disburseQtyInput);
 
         }

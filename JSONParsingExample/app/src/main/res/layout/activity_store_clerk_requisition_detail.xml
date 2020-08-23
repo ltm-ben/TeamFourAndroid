@@ -7,25 +7,82 @@
     tools:context=".StoreClerkRequisitionDetailActivity">
 
     <TextView
-        android:id="@+id/deptHeadRequisitionDetailTitle"
+        android:id="@+id/storeClerkRequisitionDetailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="174dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="179dp"
         android:text="Store Clerk Requisition Detail"
-        app:layout_constraintBottom_toTopOf="@+id/requisitionDetailRecyclerView"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/storeClerkRequisitionDetailHeaders"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/storeClerkRequisitionDetailHeaders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        app:layout_constraintBottom_toTopOf="@+id/requisitionDetailRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/storeClerkRequisitionDetailItemNameHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Item"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/storeClerkRequisitionDetailRequestedQtyHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Requested"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/storeClerkRequisitionDetailStockQtyHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Stock"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/storeClerkRequisitionDetailRemainingQtyHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Remaining"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/storeClerkRequisitionDetailDisburseQtyHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Disburse"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/requisitionDetailRecyclerView"
-        android:layout_width="332dp"
-        android:layout_height="523dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
