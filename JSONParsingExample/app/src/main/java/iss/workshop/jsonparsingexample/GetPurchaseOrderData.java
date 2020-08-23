@@ -9,10 +9,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 import iss.workshop.jsonparsingexample.Models.PO;
 import iss.workshop.jsonparsingexample.Models.PurchaseOrderStatus;
-import iss.workshop.jsonparsingexample.Models.RequisitionFulfillmentStatus;
 
 public class GetPurchaseOrderData extends AsyncTask<String, Void, List<PO>> implements GetRawData.OnDownloadComplete {
 

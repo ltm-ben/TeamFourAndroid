@@ -32,7 +32,6 @@ public class POListAdpater extends RecyclerView.Adapter<POListAdpater.MyViewHold
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.po_list_row,parent,false);
 
-
         return new MyViewHolder(view);
     }
 

@@ -18,7 +18,6 @@ public class PODetails {
 
     private String stationaryDescription;
 
-    private Stationary stationaryList;
 
     private int supplierDetailsid;
 
@@ -36,10 +35,6 @@ public class PODetails {
 
     public void setQty(int qty) {
         Qty = qty;
-    }
-
-    public void setStationaryList(Stationary stationaryList) {
-        this.stationaryList = stationaryList;
     }
 
     public void setSupplierDetailsid(int supplierDetailsid) {
@@ -72,10 +67,6 @@ public class PODetails {
 
     public int getSupplierDetailsid() {
         return supplierDetailsid;
-    }
-
-    public Stationary getStationaryList() {
-        return stationaryList;
     }
 
     public void setStationaryDescription(String stationaryDescription) {
