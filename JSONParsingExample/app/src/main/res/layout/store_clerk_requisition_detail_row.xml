@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="4">
+    android:weightSum="5">
 
     <TextView
         android:id="@+id/requisitionDetailItemId"
@@ -18,22 +18,32 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="8dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/requisitionDetailRequestedQty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/requisitionDetailCollectedQty"
+        android:id="@+id/requisitionDetailStockQty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/requisitionDetailRemainingQty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView"
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/disburseQtyInput"
@@ -41,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textAlignment="center" />
 
 </LinearLayout>
