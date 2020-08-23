@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,7 +23,7 @@ import iss.workshop.jsonparsingexample.Models.POItems;
 import iss.workshop.jsonparsingexample.Models.PurchaseOrderStatus;
 import iss.workshop.jsonparsingexample.Models.TestDTO;
 
-public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable{
+public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable,PostJsonData.OnDownloadComplete{
 
     public static final String TAG = "ItemList";
 
@@ -38,6 +39,14 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_purchase_order_create_with_items);
+
+        rView = (RecyclerView) findViewById(R.id.supplierCreateWithItemListRecyclerView);
+        rView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new PurchaseOrderCreateWithItemAdapter(this,new POItems());
+        rView.setAdapter(adapter);
+
         /*mbtnSave = findViewById(R.id.btnPOSave);
         mbtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,15 +61,25 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
                 }
             }
         });*/
-        setContentView(R.layout.activity_purchase_order_create_with_items);
+        mbtnSave = findViewById(R.id.btnPOSave);
+        mbtnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                POItems items = adapter.getPoDetailsList();
+                TextView tv  = findViewById(R.id.supplierCreateItemHeader);
+                Log.d(TAG, "onClick: "+items.getPoDetailsList().get(1).getPredictionQty());
+                tv.setText("Qty  : "+items.getPoDetailsList().get(1).getQty());
 
-        rView = (RecyclerView) findViewById(R.id.supplierCreateWithItemListRecyclerView);
-        rView.setLayoutManager(new LinearLayoutManager(this));
+                mPostJsonData = new PostJsonData(PurchaseOrderCreateWithItems.this);
+                mURL = "http://192.119.86.65:90/PO/POSave";
 
-        adapter = new PurchaseOrderCreateWithItemAdapter(this,new POItems());
-        rView.setAdapter(adapter);
-
-
+                try {
+                    callAPI(items);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
@@ -86,27 +105,19 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
             Log.d(TAG, "onDataAvailable: ends");
         }
 
-/*
-    public void callAPI() throws JsonProcessingException {
 
-        TestDTO testDTO = new TestDTO();
-        testDTO.setId(30);
-        testDTO.setName("Joe");
+    public void callAPI(POItems items) throws JsonProcessingException {
 
-        POItems poItems = new POItems();
-        poItems.setSupplierID(1);
-        poItems.setPoStatus(PurchaseOrderStatus.Processing);
         ObjectMapper mapper = new ObjectMapper();
-        String data = mapper.writeValueAsString(poItems);
+        String data = mapper.writeValueAsString(items);
 
         JSONObject demoObject = new JSONObject();
         try {
 
-            demoObject.put("data", data);
+            demoObject.put("input", data);
 
             mPostJsonData.loadJsonData(data);
             mPostJsonData.execute(mURL);
-
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -131,5 +142,5 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
                 status = DownloadStatus.FAILED_OR_EMPTY;
             }
         }
-    }*/
+    }
 }

@@ -1,6 +1,8 @@
 package iss.workshop.jsonparsingexample;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,10 @@ public class PurchaseOrderCreateWithItemAdapter extends RecyclerView.Adapter<Pur
         mPoItem = il;
     }
 
+    protected POItems getPoDetailsList() {
+        return mPoItem;
+    }
+
 
     @NonNull
     @Override
@@ -46,7 +52,7 @@ public class PurchaseOrderCreateWithItemAdapter extends RecyclerView.Adapter<Pur
     @Override
     public void onBindViewHolder(@NonNull final SupplierCreateWithItemHolder holder, final int position) {
 
-        PODetails pdDetail = mPoItem.getPoDetailsList().get(position);
+        final PODetails pdDetail = mPoItem.getPoDetailsList().get(position);
 
         Log.d(TAG, "onBindViewHolder: " + pdDetail.getStationaryDescription() + " --> " + position);
         Log.d(TAG, "onBindViewHolder: " + pdDetail.getUnitPrice() + " --> " + position);
@@ -55,6 +61,30 @@ public class PurchaseOrderCreateWithItemAdapter extends RecyclerView.Adapter<Pur
         holder.unitPrice.setText(String.valueOf(pdDetail.getUnitPrice()));
         holder.prediction.setText(String.valueOf(pdDetail.getPredictionQty()));
         holder.qty.setText(String.valueOf(pdDetail.getQty()));
+        holder.qty.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()==0){
+
+                    mPoItem.getPoDetailsList().get(position).setQty(0);
+                }
+                try{
+                    mPoItem.getPoDetailsList().get(position).setQty(Integer.parseInt(s.toString()));
+                }catch(Exception e){
+                    Log.e(TAG, "edittext data : " +e.getMessage()+ " --> " + position);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override

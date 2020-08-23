@@ -23,4 +23,13 @@
         <item>20</item>
         <item>30</item>
     </string-array>
+    <string-array name="suppliers">
+        <item>FairPrice</item>
+        <item>ColdStorage</item>
+        <item>Metro</item>
+        <item>Giant</item>
+        <item>Citimart</item>
+    </string-array>
+
+
 </resources>
