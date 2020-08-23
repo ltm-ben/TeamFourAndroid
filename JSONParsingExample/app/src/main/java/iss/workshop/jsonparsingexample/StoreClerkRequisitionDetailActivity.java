@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import iss.workshop.jsonparsingexample.Models.DTOs.DeptRequisitionDto;
 import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
 
@@ -38,6 +40,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
             mGetRequisitionDetailURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
+            mSaveRequisitionDetailURL = "http://192.168.68.110/store/StoreClerkSaveRequisitionApi";
         }
 
         mStoreClerkRequisitionDetailSubmitBtn = findViewById(R.id.storeClerkRequisitionDetailSubmitBtn);
@@ -51,7 +54,12 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
                 ObjectMapper mapper = new ObjectMapper();
 
                 try {
-                    String json = mapper.writeValueAsString(mRequisition);
+
+                    DeptRequisitionDto dto = new DeptRequisitionDto();
+                    dto.setId(mRequisition.getId());
+                    dto.setRequisitionDetails(mRequisition.getRequisitionDetails());
+
+                    String json = mapper.writeValueAsString(dto);
 
                     // post the object to API endpoint
                     callPostApi(json);
@@ -82,7 +90,8 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         postJsonData.loadJsonData(json);
 
         // create api in visual studio to receive requisition json string
-        //postJsonData.execute(mSaveRequisitionDetailURL);
+        // add API URL to mSaveRequisitionDetailURL in onCreate
+        postJsonData.execute(mSaveRequisitionDetailURL);
     }
 
     @Override
@@ -112,6 +121,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
                 }
 
                 mStoreClerkRequisitionDetailRecyclerViewAdapter.loadNewData(mRequisition);
+
             } catch(JSONException jsone) {
                 jsone.printStackTrace();
                 status = DownloadStatus.FAILED_OR_EMPTY;
@@ -123,6 +133,8 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
     public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
+
+            // Get response from API to show that the data was saved successfully
 
 //            mRequisition = new DeptRequisition();
 //
@@ -150,6 +162,9 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 //                jsone.printStackTrace();
 //                status = DownloadStatus.FAILED_OR_EMPTY;
 //            }
+
+            Intent intent = new Intent(this, StoreClerkRequisitionListActivity.class);
+            startActivity(intent);
         }
     }
 }
