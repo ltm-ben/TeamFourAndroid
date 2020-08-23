@@ -66,6 +66,9 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
                     // post the object to API endpoint
                     callPostApi(json);
 
+                    // launch store clerk requisition list activity
+                    launchStoreClerkRequisitionListActivity();
+                    
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
@@ -103,6 +106,11 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         // create api in visual studio to receive requisition json string
         // add API URL to mSaveRequisitionDetailURL in onCreate
         postJsonData.execute(mSaveRequisitionDetailURL);
+    }
+
+    public void launchStoreClerkRequisitionListActivity() {
+        Intent intent = new Intent(this, StoreClerkRequisitionListActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -173,9 +181,6 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 //                jsone.printStackTrace();
 //                status = DownloadStatus.FAILED_OR_EMPTY;
 //            }
-
-            Intent intent = new Intent(this, StoreClerkRequisitionListActivity.class);
-            startActivity(intent);
         }
     }
 }
