@@ -145,6 +145,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, StoreClerkDisbursementListActivity.class);
         startActivity(intent);
     }
+    void launchStoreClerkDisbursementPackingActivity() {
+        Intent intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
+        startActivity(intent);
+    }
     void launchLogoutActivity() {
         SharedPreferences.Editor editor = pref.edit();
         editor.clear();
@@ -183,6 +187,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             case R.id.Store_Clerk_Disbursement_List_item:
                 launchStoreClerkDisbursementListActivity();
+                return true;
+            case R.id.Store_Clerk_Disbursement_Packing_item:
+                launchStoreClerkDisbursementPackingActivity();
                 return true;
             case R.id.Test_Post_Json_item:
                 launchTestPostJsonActivity();

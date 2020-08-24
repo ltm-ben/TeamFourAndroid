@@ -3,7 +3,8 @@ package iss.workshop.jsonparsingexample.Models.DTOs;
 public class DisbursementDetailDto {
 
     private int Id;
-    private StationeryDto Stationery;
+    private String ItemCode;
+    private String ItemName;
     private int Qty;
 
     public DisbursementDetailDto() {
@@ -17,12 +18,20 @@ public class DisbursementDetailDto {
         Id = id;
     }
 
-    public StationeryDto getStationery() {
-        return Stationery;
+    public String getItemCode() {
+        return ItemCode;
     }
 
-    public void setStationery(StationeryDto stationery) {
-        Stationery = stationery;
+    public void setItemCode(String itemCode) {
+        ItemCode = itemCode;
+    }
+
+    public String getItemName() {
+        return ItemName;
+    }
+
+    public void setItemName(String itemName) {
+        ItemName = itemName;
     }
 
     public int getQty() {
