@@ -1,6 +1,7 @@
 package iss.workshop.jsonparsingexample;
 
 import android.app.DatePickerDialog;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,8 +19,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import iss.workshop.jsonparsingexample.Models.Category;
@@ -160,22 +163,37 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
             String empName = employeeList.get(selectedEmpId).getName();
             String StartDate = startDate.getText().toString();
             String EndDate = endDate.getText().toString();
-
-            //sending data to C#
-            JSONObject demoObject = new JSONObject();
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date Start,End;
             try {
+                 Start = format.parse(StartDate);
+                 End = format.parse(EndDate);
+                if(Start.after(End)){
+                Toast.makeText(this,"Your Date Selection is WRONG",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    JSONObject demoObject = new JSONObject();
+                    try {
 
-                demoObject.put("EmpId",selectedEmpId+1);
-                demoObject.put("StartDate",StartDate);
-                demoObject.put("EndDate",EndDate);
+                        demoObject.put("EmpId",selectedEmpId+1);
+                        demoObject.put("StartDate",StartDate);
+                        demoObject.put("EndDate",EndDate);
 
-                mPostJsonData.loadJsonData(demoObject.toString());
-                mPostJsonData.execute(mURLsend);
+                        mPostJsonData.loadJsonData(demoObject.toString());
+                        mPostJsonData.execute(mURLsend);
 
 
-            } catch (JSONException e) {
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
+
+
+            //sending data to C#
 
         }
 
@@ -222,6 +240,8 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
             }
         }
     }
+
+
 
     @Override
     public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
