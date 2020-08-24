@@ -31,7 +31,7 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
         setContentView(R.layout.activity_bar_chart);
 
         barChart = (BarChart) findViewById(R.id.barchart);
-        mURL = "http://192.168.1.8:8080/store/storeclerkdisbursementdetailslistapi" ;
+        mURL = "http://192.168.68.110/store/storeclerkdisbursementdetailslistapi" ;
 
         entries = new ArrayList<>();
         /*entries.add(new BarEntry(8f, 0));
@@ -82,7 +82,7 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
                 for(int i=0; i<itemsArray.length(); i++) {
                     JSONObject jsonDisbursementDetail = itemsArray.getJSONObject(i);
                     String deptName = jsonDisbursementDetail.getString("DeptName");
-                    if(!labels.contains(deptName)){
+                   if(!labels.contains(deptName)){
                         labels.add(deptName);
                         entries.add(new BarEntry(0f,barEntryIndex));
                         barEntryIndex++;
@@ -92,6 +92,7 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
                 //base on dept name group quantity disbursed
                 for(int i=0; i<labels.size(); i++) {
                     String selectedDepartment=labels.get(i);
+                    //String date = labels.get(i)
                     for(int j=0; j<itemsArray.length(); j++) {
                         JSONObject jsonDisbursementDetail = itemsArray.getJSONObject(j);
                         String deptName = jsonDisbursementDetail.getString("DeptName");

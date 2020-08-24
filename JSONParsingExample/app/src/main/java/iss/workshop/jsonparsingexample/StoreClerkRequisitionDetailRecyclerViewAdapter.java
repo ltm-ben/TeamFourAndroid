@@ -34,7 +34,7 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StoreClerkRequisitionDetailRecyclerViewAdapter.RequisitionDetailViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull StoreClerkRequisitionDetailRecyclerViewAdapter.RequisitionDetailViewHolder holder, final int position) {
         // Called by the layout manager when it wants new data in an existing row
 
         final RequisitionDetail requisitionDetailItem = mRequisition.getRequisitionDetails().get(position);
@@ -55,12 +55,19 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                requisitionDetailItem.setDisbursedQty(Integer.parseInt(s.toString()));
+                if (s.length() == 0 || Integer.parseInt(s.toString()) <= 0) {
+                    mRequisition.getRequisitionDetails().get(position).setDisbursedQty(0);
+                }
+                try {
+                    mRequisition.getRequisitionDetails().get(position).setDisbursedQty(Integer.parseInt(s.toString()));
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+
 
             }
         });

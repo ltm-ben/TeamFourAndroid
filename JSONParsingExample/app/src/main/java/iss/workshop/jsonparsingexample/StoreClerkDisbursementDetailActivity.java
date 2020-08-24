@@ -3,29 +3,20 @@ package iss.workshop.jsonparsingexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import iss.workshop.jsonparsingexample.DownloadStatus;
-import iss.workshop.jsonparsingexample.GetRawData;
-import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 import iss.workshop.jsonparsingexample.Models.DisbursementDetail;
-import iss.workshop.jsonparsingexample.Models.RequisitionApprovalStatus;
-import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
-import iss.workshop.jsonparsingexample.R;
-import iss.workshop.jsonparsingexample.StoreClerkRequisitionDetailRecyclerViewAdapter;
+
 
 public class StoreClerkDisbursementDetailActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
 
@@ -38,7 +29,7 @@ public class StoreClerkDisbursementDetailActivity extends AppCompatActivity impl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_disbursement_detail);
 
-        mURL = "http://192.168.1.8:8080/store/storeclerkdisbursementdetailslistapi" ;
+        mURL = "http://192.168.68.110/store/storeclerkdisbursementdetailslistapi" ;
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.disbursementDetailRecyclerView);
@@ -83,12 +74,32 @@ public class StoreClerkDisbursementDetailActivity extends AppCompatActivity impl
                     mDisbursementDetail.add(disbursementDetail);
                 }
 
+
                 this.disRecyclerViewAdapter.loadNewData(mDisbursementDetail);
             } catch(JSONException jsone) {
                 jsone.printStackTrace();
                 status = DownloadStatus.FAILED_OR_EMPTY;
             }
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem item= menu.findItem(R.id.action_search);
+        SearchView searchView= (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+               disRecyclerViewAdapter.getFilter().filter(newText);
+               return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 }
 
