@@ -24,24 +24,22 @@ import iss.workshop.jsonparsingexample.Models.PODetails;
 import iss.workshop.jsonparsingexample.Models.POItems;
 import iss.workshop.jsonparsingexample.Models.PurchaseOrderStatus;
 import iss.workshop.jsonparsingexample.Models.Stationary;
-import iss.workshop.jsonparsingexample.Models.TestDTO;
 
 public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable,PostJsonData.OnDownloadComplete{
 
     public static final String TAG = "ItemList";
 
-    public String mURL = "http://192.168.1.18//PO/POItemApi";
+    public String mURL = "http://172.20.10.4:80/PO/POItemApi";
     RecyclerView rView;
     Button mbtnSave;
     PurchaseOrderCreateWithItemAdapter adapter;
 
     PostJsonData mPostJsonData;
-    private String mPostURL = "http://192.168.1.18//PO/POSave";
+    private String mPostURL = "http://172.20.10.4:80//PO/POSave";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_purchase_order_create_with_items);
 
@@ -80,7 +78,7 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
     @Override
     public void onDataAvailable(POItems data, DownloadStatus status) {
             Log.d(TAG, "onDataAvailable: starts");
-            if(status == DownloadStatus.OK) {
+            if(status == DownloadStatus.OK && data != null) {
                 adapter.loadNewData(data);
                 Log.d(TAG, "onDataAvailable: in"+data.toString());
             } else {
