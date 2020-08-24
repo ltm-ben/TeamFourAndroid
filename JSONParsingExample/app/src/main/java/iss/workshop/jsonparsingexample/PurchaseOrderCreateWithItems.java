@@ -27,7 +27,7 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
 
     public static final String TAG = "ItemList";
 
-    public String mURL = "http://192.119.86.65:90/PO/POItemApi";
+    public String mURL = "http://192.168.68.110/PO/POItemApi";
     RecyclerView rView;
     Button mbtnSave;
     PurchaseOrderCreateWithItemAdapter adapter;
@@ -71,7 +71,7 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
                 tv.setText("Qty  : "+items.getPoDetailsList().get(1).getQty());
 
                 mPostJsonData = new PostJsonData(PurchaseOrderCreateWithItems.this);
-                mURL = "http://192.119.86.65:90/PO/POSave";
+                mURL = "http://192.168.68.110/PO/POSave";
 
                 try {
                     callAPI(items);

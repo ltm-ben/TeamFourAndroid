@@ -29,7 +29,7 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
         String selectedItemText;
         EditText mDate;
         DatePickerDialog mDatePickerDialog;
-        String mURL =  "http://192.119.86.65:90/PO/POCreate";
+        String mURL =  "http://192.168.68.110/PO/POCreate";
         String orderDate;
         public static final String TAG = "Purchase Order";
 
