@@ -3,6 +3,7 @@ package iss.workshop.jsonparsingexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -103,8 +104,16 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onResume ends" +orderDate);
+                //Log.d(TAG, "onResume ends" +orderDate);
+                mDate = findViewById(R.id.date);
+                orderDate = mDate.getText().toString();
+                Toast.makeText
+                        (getApplicationContext(), orderDate, Toast.LENGTH_SHORT)
+                        .show();
                 callPostApi(orderDate,selectedItemText);
+                Intent intent = new Intent(PurchaseOrder.this,PurchaseOrderCreateWithItems.class);
+                startActivity(intent);
+
             }
         });
 
@@ -143,7 +152,7 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
 
                 JSONObject jsonData = new JSONObject(data);
                 JSONObject result = jsonData.getJSONObject("result");
-//Summer : now Message is an object not String, how to extract the message???
+
 
                 String text = result.getString("Message");
                 Toast.makeText(getApplicationContext(), text,

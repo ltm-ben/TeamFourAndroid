@@ -21,7 +21,7 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
 
     public static final String TAG = "POList";
 
-    public String mURL = "http://192.168.1.18:80/PO/POListAPI";
+    public String mURL = "http://192.119.86.65:90/PO/POListAPI";
     RecyclerView rView;
     Button mbtnCreate;
     POListAdpater poAdapter;
