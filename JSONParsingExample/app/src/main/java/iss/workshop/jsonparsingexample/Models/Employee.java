@@ -10,6 +10,7 @@ public class Employee {
     private DeptRole jobTitle;
     private DeptRole role;
     private Department dept;
+    private int deptId;
     private List<DelegatedEmployee> delegatedEmployees;
 
     public Employee() {
@@ -69,6 +70,14 @@ public class Employee {
 
     public void setDept(Department dept) {
         this.dept = dept;
+    }
+
+    public int getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(int deptId) {
+        this.deptId = deptId;
     }
 
     public List<DelegatedEmployee> getDelegatedEmployees() {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/delegate_employee_item"
+        android:title="Delegate Employee" />
+    <item android:id="@+id/approve_reject_requisitions_item"
+        android:title="Approve/Reject Requisitions" />
+
+</menu>

@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StoreClerkDisbursementPackingActivity"></activity>
+        <activity android:name=".ApproveRejectRequisitionsMainActivity"></activity>
+        <activity android:name=".DelegateEmployeeMainActivity" />
+        <activity android:name=".CreateNewDelegateEmployee" />
+        <activity android:name=".StoreClerkDisbursementPackingActivity" />
         <activity android:name=".StoreClerkDisbursementListActivity" />
         <activity android:name=".PurchaseOrderCreateWithItems" />
         <activity android:name=".DemoActivity" />
