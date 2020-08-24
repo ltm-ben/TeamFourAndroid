@@ -3,15 +3,11 @@ package iss.workshop.jsonparsingexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.json.JSONArray;
@@ -19,17 +15,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import iss.workshop.jsonparsingexample.DownloadStatus;
-import iss.workshop.jsonparsingexample.GetRawData;
-import iss.workshop.jsonparsingexample.Models.DeptRequisition;
 import iss.workshop.jsonparsingexample.Models.DisbursementDetail;
-import iss.workshop.jsonparsingexample.Models.RequisitionApprovalStatus;
-import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
-import iss.workshop.jsonparsingexample.R;
-import iss.workshop.jsonparsingexample.StoreClerkRequisitionDetailRecyclerViewAdapter;
+
 
 public class StoreClerkDisbursementDetailActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
 
