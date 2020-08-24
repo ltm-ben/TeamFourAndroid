@@ -7,20 +7,42 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".StoreClerkDisbursementPackingActivity">
 
-<TextView
-    android:id="@+id/storeClerkDisbursementDetailTitle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Store Clerk Disbursement Detail"
-    android:textAlignment="center"
-    android:textSize="24sp"
-    android:textStyle="bold" />
+    <TextView
+        android:id="@+id/storeClerkDisbursementDetailTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Store Clerk Disbursement Detail"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-<Button
-    android:id="@+id/storeClerkDisbursementDetailSubmitBtn"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Submit" />
+    <Button
+        android:id="@+id/storeClerkDisbursementDetailSubmitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Submit" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:gravity="left"
+        android:fontFamily="casual"
+        android:textStyle="bold"
+        android:paddingBottom="20dp"
+        android:text="Collection Date"/>
+
+    <EditText
+        android:id="@+id/StoreClerkDisbursementCollectionDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DCDCDC"
+        android:ems="10"
+        android:inputType="textPhonetic"
+        android:paddingBottom="20dp"/>
+
+    <requestFocus />
 
 <LinearLayout
     android:id="@+id/storeClerkDisbursementDetailHeaders"
@@ -58,10 +80,10 @@ tools:context=".StoreClerkDisbursementPackingActivity">
 
 </LinearLayout>
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/disbursementDetailRecyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="vertical" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/disbursementDetailRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

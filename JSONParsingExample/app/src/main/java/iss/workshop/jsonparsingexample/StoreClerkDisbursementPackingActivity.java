@@ -4,30 +4,41 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import iss.workshop.jsonparsingexample.Models.DTOs.DeptRequisitionDto;
 import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDTO;
 import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDetailDto;
-import iss.workshop.jsonparsingexample.Models.DeptRequisition;
-import iss.workshop.jsonparsingexample.Models.DisbursementDetail;
-import iss.workshop.jsonparsingexample.Models.RequisitionDetail;
 
-public class StoreClerkDisbursementPackingActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
+public class StoreClerkDisbursementPackingActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete, PostJsonData.OnDownloadComplete {
 
     private String mGetDisbursementDetailURL;
-    //private String mSaveRequisitionDetailURL;
+    private String mSaveDisbursementDetailURL;
     private DisbursementDTO mDisbursement;
     private DisbursementPackingRecyclerViewAdapter mDisbursementPackingRecyclerViewAdapter;
     private Button mStoreClerkDisbursementDetailSubmitBtn;
+    private EditText mStoreClerkDisbursementCollectionDate;
+    private DatePickerDialog mDatePickerDialog;
+    private int mYear;
+    private int mMonth;
+    private int mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +52,7 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
 
             disbursementId = String.valueOf(extras.getInt("disbursementId"));
             mGetDisbursementDetailURL = "http://192.168.68.110/store/StoreClerkDisbursementDetailApi?id=" + disbursementId;
-            //mSaveRequisitionDetailURL = "http://192.168.68.110/store/StoreClerkSaveRequisitionApi";
+            mSaveDisbursementDetailURL = "http://192.168.68.110/store/StoreClerkSaveDisbursementDetailApi";
         }
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.disbursementDetailRecyclerView);
@@ -50,12 +61,50 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
         mDisbursementPackingRecyclerViewAdapter = new DisbursementPackingRecyclerViewAdapter(this, new ArrayList<DisbursementDetailDto>());
         recyclerView.setAdapter(mDisbursementPackingRecyclerViewAdapter);
 
+        //initiate the date picker and a  button
+        mStoreClerkDisbursementCollectionDate = findViewById(R.id.StoreClerkDisbursementCollectionDate);
+        mStoreClerkDisbursementCollectionDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                //current year, month,day fr Calendar
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                //datepicker dialog
+                mDatePickerDialog = new DatePickerDialog(StoreClerkDisbursementPackingActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        if (month<9  && day <9) {
+                            mStoreClerkDisbursementCollectionDate.setText(year + "-" + "0" + (month + 1) + "-" +  "0"+day);
+                        }
+                        else if (month<9 && day>9)
+                        {
+                            mStoreClerkDisbursementCollectionDate.setText(year + "-"  + "0"+ (month + 1) + "-" +day);
+                        }
+                        else
+                        {
+                            mStoreClerkDisbursementCollectionDate.setText(year + "-"  + (month + 1) + "-" +day);
+                        }
+                    }
+                },mYear, mMonth,mDay);
+                mDatePickerDialog.show();
+            }
+        });
+
         mStoreClerkDisbursementDetailSubmitBtn = findViewById(R.id.storeClerkDisbursementDetailSubmitBtn);
         mStoreClerkDisbursementDetailSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // send POST to API to submit collection date
-                // status is automatically changed to pending disbursement in api method
+
+                DisbursementDTO data = new DisbursementDTO();
+                data.setId(mDisbursement.getId());
+                data.setDisbursementDate(mStoreClerkDisbursementCollectionDate.getText().toString());
+
+                callPostApi(formatDataAsJSON(data));
+
+                launchStoreClerkDisbursementListActivity();
             }
         });
     }
@@ -65,6 +114,38 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
         super.onResume();
         GetRawData getRawData = new GetRawData(this);
         getRawData.execute(mGetDisbursementDetailURL);
+    }
+
+    private String formatDataAsJSON(DisbursementDTO input){
+
+        final JSONObject root = new JSONObject();
+
+        try {
+            root.put("Id", input.getId());
+            root.put("DisbursementDate", input.getDisbursementDate());
+
+            return root.toString();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void callPostApi(String json) {
+
+        PostJsonData postJsonData = new PostJsonData(this);
+        postJsonData.loadJsonData(json);
+
+        // create api in visual studio to receive requisition json string
+        // add API URL to mSaveRequisitionDetailURL in onCreate
+        postJsonData.execute(mSaveDisbursementDetailURL);
+    }
+
+    void launchStoreClerkDisbursementListActivity() {
+        Intent intent = new Intent(this, StoreClerkDisbursementListActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -98,5 +179,10 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
                 status = DownloadStatus.FAILED_OR_EMPTY;
             }
         }
+    }
+
+    @Override
+    public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
+
     }
 }
