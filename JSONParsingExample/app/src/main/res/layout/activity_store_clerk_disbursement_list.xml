@@ -5,47 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StoreClerkRequisitionListActivity">
+    tools:context=".StoreClerkDisbursementListActivity">
 
     <TextView
-        android:id="@+id/requisitionListHeader"
+        android:id="@+id/StoreClerkDisbursementListHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Store Clerk Requisition List"
+        android:text="Store Clerk Disbursement List"
+        android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:textAlignment="center" />
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/storeClerkRequisitionDetailHeaders"
+        android:id="@+id/StoreClerkDisbursementListHeaders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
 
         <TextView
-            android:id="@+id/storeClerkRequisitionDetailItemNameHeader"
+            android:id="@+id/StoreClerkDisbursementIdHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Requisition Id"
+            android:text="Disbursement Id"
             android:textAlignment="center"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/storeClerkRequisitionDetailRequestedQtyHeader"
+            android:id="@+id/StoreClerkDisbursementStatusHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Fulfillment Status"
+            android:text="Disbursement Status"
             android:textAlignment="center"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/requisitionListRecyclerView"
+        android:id="@+id/StoreClerkDisbursementListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />

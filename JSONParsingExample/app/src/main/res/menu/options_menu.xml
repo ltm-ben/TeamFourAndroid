@@ -12,6 +12,8 @@
         android:title="Store Dept" />
     <item android:id="@+id/StockList_item"
         android:title="StockList" />
+    <item android:id="@+id/Store_Clerk_Disbursement_List_item"
+        android:title="Disbursement List" />
     <item android:id="@+id/Test_Post_Json_item"
         android:title="Test Post Json" />
     <item android:id="@+id/Logout_item"
