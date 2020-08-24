@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="2">
+    android:weightSum="3">
 
     <TextView
-        android:id="@+id/requisitionId"
+        android:id="@+id/disbursementDetailItemCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -14,7 +14,15 @@
         android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/requisitionFulfillmentStatus"
+        android:id="@+id/disbursementDetailItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/disbursementDetailQty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

@@ -24,7 +24,7 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
 
     private String mGetRequisitionDetailURL;
     private String mSaveRequisitionDetailURL;
-    private DeptRequisition mRequisition = null;
+    private DeptRequisition mRequisition;
     private StoreClerkRequisitionDetailRecyclerViewAdapter mStoreClerkRequisitionDetailRecyclerViewAdapter;
     private Button mStoreClerkRequisitionDetailSubmitBtn;
 
