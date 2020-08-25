@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,6 @@ import org.json.JSONObject;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDTO;
 import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDetailDto;
 
@@ -77,9 +77,11 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
     private boolean logIn(String username, String password) {
 
         // encode password using SHA256
+
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] encodedPassword = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            byte[] bytesPassword = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            //String stringPassword = Base64.encodeToString(bytesPassword);
         } catch(NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
