@@ -2,10 +2,14 @@ package iss.workshop.jsonparsingexample;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,11 +23,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import iss.workshop.jsonparsingexample.Models.DisbursementDetail;
 
-public class BarChartActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete  {
+public class BarChartActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete,View.OnClickListener {
 
     ArrayList<BarEntry> entries = null;
     ArrayList<String> labels = null;
@@ -32,15 +39,24 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
     BarChart barChart;
     Spinner spinnerStationary;
     JSONArray itemsArray;
-
+    Button submit;
+    int selectedItemId;
+    String selectedItemName;
+    EditText editTextDateFrom;
+    DatePickerDialog mDatePickerDialogFrom;
+    String dateFrom;
+    EditText editTextDateTo;
+    DatePickerDialog mDatePickerDialogTo;
+    String dateTo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_chart);
 
         barChart = (BarChart) findViewById(R.id.barchart);
-        mURL = "http://169.254.105.22:8080/store/storeclerkdisbursementdetailslistapi" ;
-
+        mURL = "https://logicu.nusteamfour.online/store/storeclerkdisbursementdetailslistapi" ;
+        submit = (Button) findViewById(R.id.submit_btn);
+        submit.setOnClickListener(this);
         entries = new ArrayList<>();
         /*entries.add(new BarEntry(8f, 0));
         entries.add(new BarEntry(2f, 1));
@@ -66,14 +82,13 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
 
         stationeries = new ArrayList<>();
         itemsArray = new JSONArray();
-        spinnerStationary = findViewById(R.id.spinner1);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, stationeries);
-        spinnerStationary.setAdapter(spinnerAdapter);
-//        spinnerStationary.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int o, long l) {
-//
+        spinnerStationary = (Spinner)findViewById(R.id.spinner1);
+
+        spinnerStationary.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int o, long l) {
+
+                selectedItemId = o;
 //                String item = spinnerStationary.getSelectedItem().toString();
 //                Toast.makeText(view.getContext(),"Test",Toast.LENGTH_LONG).show();
 //                try {
@@ -100,13 +115,78 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
 //                barChart.animateY(1250);
 //                barChart.notifyDataSetChanged();
 //                barChart.invalidate();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        editTextDateFrom = findViewById(R.id.editTextDateFrom);
+        editTextDateFrom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                //current year, month,day fr Calendar
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                //datepicker dialog
+                mDatePickerDialogFrom = new DatePickerDialog(BarChartActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        if (month<9  && day <9) {
+                            editTextDateFrom.setText(year + "-" + "0" + (month + 1) + "-" +  "0"+day);
+                        }
+                        else if (month<9 && day>9)
+                        {
+                            editTextDateFrom.setText(year + "-"  + "0"+ (month + 1) + "-" +day);
+                        }
+                        else
+                        {
+                            editTextDateFrom.setText(year + "-"  + (month + 1) + "-" +day);
+                        }
+                    }
+                },mYear, mMonth,mDay);
+                mDatePickerDialogFrom.show();
+                dateFrom = editTextDateFrom.getText().toString();
+            }
+        });
+
+        editTextDateTo = findViewById(R.id.editTextDateTo);
+        editTextDateTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                //current year, month,day fr Calendar
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                //datepicker dialog
+                mDatePickerDialogTo = new DatePickerDialog(BarChartActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        if (month<9  && day <9) {
+                            editTextDateTo.setText(year + "-" + "0" + (month + 1) + "-" +  "0"+day);
+                        }
+                        else if (month<9 && day>9)
+                        {
+                            editTextDateTo.setText(year + "-"  + "0"+ (month + 1) + "-" +day);
+                        }
+                        else
+                        {
+                            editTextDateTo.setText(year + "-"  + (month + 1) + "-" +day);
+                        }
+                    }
+                },mYear, mMonth,mDay);
+                mDatePickerDialogTo.show();
+                dateTo = editTextDateTo.getText().toString();
+            }
+        });
+
     }
 
     @Override
@@ -123,6 +203,7 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
 
             try {
                 JSONObject jsonData = new JSONObject(data);
+
 
 
                 itemsArray = jsonData.getJSONArray("requisitions");
@@ -143,7 +224,9 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
                        stationeries.add(stationeryName);
                     }
                 }
-
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_item, stationeries);
+                spinnerStationary.setAdapter(spinnerAdapter);
                 //base on dept name group quantity disbursed
                 for(int i=0; i<labels.size(); i++) {
                     String selectedDepartment=labels.get(i);
@@ -162,11 +245,80 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
                 BarData bardata = new BarData(labels, bardataset);
                 barChart.setData(bardata);
                 barChart.animateY(1250);
+                barChart.notifyDataSetChanged();
+
+                barChart.invalidate();
 
             } catch(JSONException jsone) {
                 jsone.printStackTrace();
                 status = DownloadStatus.FAILED_OR_EMPTY;
             }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == submit){
+            selectedItemName = stationeries.get(selectedItemId);
+            dateFrom = editTextDateFrom.getText().toString();
+            dateTo = editTextDateTo.getText().toString();
+            //Toast.makeText(v.getContext(),"From " + dateFrom + " To " + dateTo,Toast.LENGTH_LONG).show();
+            //Toast.makeText(v.getContext(),"stationery selected",Toast.LENGTH_LONG).show();
+                try {
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate fromDate = LocalDate.parse(dateFrom, formatter);
+                    LocalDate toDate = LocalDate.parse(dateTo, formatter);
+
+                    resetEntry();
+
+                    //base on dept name group quantity disbursed
+                    for (int i = 0; i < labels.size(); i++) {
+                        String selectedDepartment = labels.get(i);
+                        for (int j = 0; j < itemsArray.length(); j++) {
+                            JSONObject jsonDisbursementDetail = itemsArray.getJSONObject(j);
+                            String deptName = jsonDisbursementDetail.getString("DeptName");
+                            String stationary = jsonDisbursementDetail.getString("StationeryName");
+                            String disbursementDateStr = jsonDisbursementDetail.getString("A_Date").split("T")[0];
+
+
+                            //convert String to LocalDate
+                            LocalDate disbursementDate = LocalDate.parse(disbursementDateStr, formatter);
+
+
+                            if (selectedDepartment.equals(deptName) && stationary.equals(selectedItemName)
+                                    && (disbursementDate.isAfter(fromDate) && disbursementDate.isBefore(toDate))) {
+                                BarEntry entry = entries.get(i);
+                                entry.setVal(jsonDisbursementDetail.getInt("Qty") + entry.getVal());
+                            }
+                        }
+                    }
+                } catch(Exception e){
+                    e.printStackTrace();
+                    resetEntry();
+                    Toast.makeText(v.getContext(),"No data found!",Toast.LENGTH_LONG).show();
+                }
+
+                BarDataSet bardataset2 = new BarDataSet(entries, "Cells");
+                BarData bardata2 = new BarData(labels, bardataset2);
+                barChart.clear();
+                barChart.setData(bardata2);
+                barChart.animateY(1250);
+
+            barChart.notifyDataSetChanged();
+            barChart.invalidate();
+
+ }
+
+
+
+
+    }
+
+    public void resetEntry(){
+        for (int i = 0; i < labels.size(); i++) {
+            BarEntry entry = entries.get(i);
+            entry.setVal(0);
         }
     }
 }

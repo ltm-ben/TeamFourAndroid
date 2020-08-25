@@ -66,7 +66,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
 
         //try to send data
         mPostJsonData = new PostJsonData(this);
-        mURLsend = "http://192.168.1.30/Delegate/PostSelectedEmp";
+        mURLsend = "https://logicu.nusteamfour.online/Delegate/PostSelectedEmp";
 
         startDate.setOnClickListener(this);
         endDate.setOnClickListener(this);

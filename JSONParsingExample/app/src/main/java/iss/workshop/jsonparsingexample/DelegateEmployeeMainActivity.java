@@ -33,7 +33,7 @@ public class DelegateEmployeeMainActivity extends AppCompatActivity implements G
     //  private DelegateEmployeeRecyclerViewAdapter.RecyclerViewClickListener mListener;
     private List<DelegatedEmployee> mDelegateEmployees;
 
-    public String mURL = "http://192.168.1.30/Delegate/DelegatedEmployeeListApi";
+    public String mURL = "https://logicu.nusteamfour.online/Delegate/DelegatedEmployeeListApi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,6 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
+
 enum DownloadStatus { IDLE, PROCESSING, NOT_INITIALISED, FAILED_OR_EMPTY, OK }
 
 public class GetRawData extends AsyncTask<String, Void, String> {
@@ -49,7 +51,7 @@ public class GetRawData extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        HttpURLConnection connection = null;
+        HttpsURLConnection connection = null;
         BufferedReader reader = null;
 
         if(strings == null) {
@@ -61,7 +63,7 @@ public class GetRawData extends AsyncTask<String, Void, String> {
             mDownloadStatus = DownloadStatus.PROCESSING;
             URL url = new URL(strings[0]);
 
-            connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
             int response = connection.getResponseCode();
