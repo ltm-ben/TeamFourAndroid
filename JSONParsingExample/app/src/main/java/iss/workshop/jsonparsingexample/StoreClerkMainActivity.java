@@ -14,6 +14,7 @@ public class StoreClerkMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_main);
     }
+
     //  Option Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -23,48 +24,36 @@ public class StoreClerkMainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent intent;
+
         switch (item.getItemId()) {
-            case R.id.Stock_List_item:
-                launchStockListActivity();
+            case R.id.Bar_Chart_List_item:
+                intent = new Intent(this, BarChartActivity.class);
+                startActivity(intent);
                 return true;
-            case R.id.PO_List_item:
-                launchPoListActivity();
+            case R.id.Requisition_List_item:
+                intent = new Intent(this, StoreClerkRequisitionListActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.Disbursement_List_item:
-                launchStoreClerkDisbursementListActivity();
+                intent = new Intent(this, StoreClerkDisbursementListActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.Disbursement_Packing_item:
-                launchStoreClerkDisbursementPackingActivity();
+                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
+                startActivity(intent);
                 return true;
-            case R.id.Bar_Chart_List_item:
-                launchBarChartActivity();
+            case R.id.Stock_List_item:
+                intent = new Intent(this, StockListActivity.class);
+                startActivity(intent);
                 return true;
-
+            case R.id.PO_List_item:
+                intent = new Intent(this,POList.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    void launchStockListActivity() {
-        Intent intent = new Intent(this, StockListActivity.class);
-        startActivity(intent);
-    }
-    void launchPoListActivity() {
-        Intent intent = new Intent(this,POList.class);
-        startActivity(intent);
-    }
-    void launchStoreClerkDisbursementListActivity() {
-        Intent intent = new Intent(this, StoreClerkDisbursementListActivity.class);
-        startActivity(intent);
-    }
-    void launchStoreClerkDisbursementPackingActivity() {
-        Intent intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-        startActivity(intent);
-    }
-    void launchBarChartActivity() {
-        Intent intent = new Intent(this, BarChartActivity.class);
-        startActivity(intent);
-    }
-
 }
 

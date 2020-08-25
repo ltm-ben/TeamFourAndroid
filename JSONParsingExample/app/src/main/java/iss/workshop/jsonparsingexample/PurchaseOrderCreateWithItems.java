@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,13 +35,13 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
 
     public static final String TAG = "ItemList";
 
-    public String mURL = "http://192.119.86.65:90/PO/POItemApi";
+    public String mURL = "http://192.168.68.110/PO/POItemApi";
     RecyclerView rView;
     Button mbtnSave;
     PurchaseOrderCreateWithItemAdapter adapter;
 
     PostJsonData mPostJsonData;
-    private String mPostURL = "http://192.119.86.65:90/PO/POSave";;
+    private String mPostURL = "http://192.168.68.110/PO/POSave";;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,5 +185,46 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
             jArr.put(jo);
         }
         return jArr;
+    }
+
+    //  Option Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.storeclerk_options_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+
+        switch (item.getItemId()) {
+            case R.id.Bar_Chart_List_item:
+                intent = new Intent(this, BarChartActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Requisition_List_item:
+                intent = new Intent(this, StoreClerkRequisitionListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Disbursement_List_item:
+                intent = new Intent(this, StoreClerkDisbursementListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Disbursement_Packing_item:
+                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Stock_List_item:
+                intent = new Intent(this, StockListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.PO_List_item:
+                intent = new Intent(this,POList.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
