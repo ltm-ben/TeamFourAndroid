@@ -82,6 +82,8 @@ public class GetItemsListAccordingToSupplierData extends AsyncTask<String, Void,
                         JSONObject detailArray =poDetailList.getJSONObject(j);
 
                         PODetails pD = new PODetails();
+                        pD.setPoId(detailArray.getInt("poID"));
+                        pD.setSupplierDetailsid(detailArray.getInt("supplierDetailId"));
                         pD.setStationaryId(detailArray.getInt("stationeryId"));
                         pD.setStationaryDescription(detailArray.getString("stationeryDescription"));
                         pD.setPredictionQty(detailArray.getDouble("predictionQty"));

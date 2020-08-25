@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ public class StockListActivity extends AppCompatActivity implements GetJsonData.
     public static final String TAG = "MainActivity";
     private StockRecyclerViewAdapter mStockRecyclerViewAdapter;
 
-    public String mURL = "http://192.168.1.8:8080/store/storeclerkstocklistapi";
+    public String mURL = "http://192.168.68.110/store/storeclerkstocklistapi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +58,46 @@ public class StockListActivity extends AppCompatActivity implements GetJsonData.
         }
 
         Log.d(TAG, "onDataAvailable: ends");
+    }
+
+    //  Option Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.storeclerk_options_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+
+        switch (item.getItemId()) {
+            case R.id.Bar_Chart_List_item:
+                intent = new Intent(this, BarChartActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Requisition_List_item:
+                intent = new Intent(this, StoreClerkRequisitionListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Disbursement_List_item:
+                intent = new Intent(this, StoreClerkDisbursementListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Disbursement_Packing_item:
+                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Stock_List_item:
+                intent = new Intent(this, StockListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.PO_List_item:
+                intent = new Intent(this,POList.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

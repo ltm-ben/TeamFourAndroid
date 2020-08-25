@@ -3,8 +3,11 @@ package iss.workshop.jsonparsingexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -91,11 +94,9 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
                     }
                 },mYear, mMonth,mDay);
                 mDatePickerDialog.show();
-                orderDate = mDate.getText().toString();
             }
         });
-       // orderDate = mDate.getText().toString();
-
+        orderDate = mDate.getText().toString();
 
 
         //send orderDate, selectedItemText to Visual Studio
@@ -108,10 +109,13 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
                 //Log.d(TAG, "onResume ends" +orderDate);
                 mDate = findViewById(R.id.date);
                 orderDate = mDate.getText().toString();
-               Toast.makeText
+                Toast.makeText
                         (getApplicationContext(), orderDate, Toast.LENGTH_SHORT)
                         .show();
                 callPostApi(orderDate,selectedItemText);
+                Intent intent = new Intent(PurchaseOrder.this,PurchaseOrderCreateWithItems.class);
+                startActivity(intent);
+
             }
         });
 
@@ -150,7 +154,7 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
 
                 JSONObject jsonData = new JSONObject(data);
                 JSONObject result = jsonData.getJSONObject("result");
-//Summer : now Message is an object not String, how to extract the message???
+
 
                 String text = result.getString("Message");
                 Toast.makeText(getApplicationContext(), text,
@@ -163,5 +167,44 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
         }
     }
 
+    //  Option Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.storeclerk_options_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent intent;
+
+        switch (item.getItemId()) {
+            case R.id.Bar_Chart_List_item:
+                intent = new Intent(this, BarChartActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Requisition_List_item:
+                intent = new Intent(this, StoreClerkRequisitionListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Disbursement_List_item:
+                intent = new Intent(this, StoreClerkDisbursementListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Disbursement_Packing_item:
+                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.Stock_List_item:
+                intent = new Intent(this, StockListActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.PO_List_item:
+                intent = new Intent(this,POList.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

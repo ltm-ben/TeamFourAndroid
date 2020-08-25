@@ -41,7 +41,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
     Spinner empName;
     private int mYear, mMonth, mDay;
     private List<DelegatedEmployee> mDelegatedEmployeeList = null;
-    public String mURL = "http://192.168.1.30/Delegate/EmployeeListApi";
+    public String mURL = "http://192.168.68.110/Delegate/EmployeeListApi";
     PostJsonData mPostJsonData;
     String mURLsend;
     //public String mURL = "http://192.168.1.30/Delegate/DelegatedEmployeeListApi";
@@ -69,7 +69,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
 
         //try to send data
         mPostJsonData = new PostJsonData(this);
-        mURLsend = "http://192.168.1.30/Delegate/PostSelectedEmp";
+        mURLsend = "http://192.168.68.110/Delegate/PostSelectedEmp";
 
         startDate.setOnClickListener(this);
         endDate.setOnClickListener(this);

@@ -8,18 +8,22 @@ public class PODetails {
 
     private int poId;
 
+    private int supplierDetailsid;
+
+    private String stationaryDescription;
+
+    private int stationaryId;
+
     private double unitPrice;
 
     private double predictionQty;
 
     private int Qty;
 
-    private int stationaryId;
-
-    private String stationaryDescription;
 
 
-    private int supplierDetailsid;
+
+
 
     public void setId(int id) {
         this.id = id;
