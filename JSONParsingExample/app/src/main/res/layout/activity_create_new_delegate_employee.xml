@@ -55,9 +55,9 @@
         android:hint="Select Date..."
         android:inputType="textPhonetic"
         android:paddingBottom="20dp">
-
-        <requestFocus />
     </EditText>
+        <requestFocus />
+
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -75,8 +75,7 @@
         android:background="#DCDCDC"
         android:ems="10"
         android:hint="Select Date..."
-        android:paddingBottom="20dp"
-        >
+        android:paddingBottom="20dp">
     </EditText>
 
     <requestFocus />

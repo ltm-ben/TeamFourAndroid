@@ -104,9 +104,10 @@ public class PostJsonData extends AsyncTask<String, Void, String> {
             }
 
             String data = result.toString();
-            data = data.trim();
-            data = data.substring(1, data.length() - 1);
-            data = data.replace("\\", "");
+            //Cmt out coz delegate Employee got problem
+//           data = data.trim();
+//           data = data.substring(1, data.length() - 1);
+//           data = data.replace("\\", "");
 
             mDownloadStatus = DownloadStatus.OK;
             return data;

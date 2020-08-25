@@ -1,6 +1,7 @@
 package iss.workshop.jsonparsingexample;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
@@ -41,7 +42,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
     Spinner empName;
     private int mYear, mMonth, mDay;
     private List<DelegatedEmployee> mDelegatedEmployeeList = null;
-    public String mURL = "http://192.168.68.110/Delegate/EmployeeListApi";
+    public String mURL = "http://192.168.1.30/Delegate/EmployeeListApi";
     PostJsonData mPostJsonData;
     String mURLsend;
     //public String mURL = "http://192.168.1.30/Delegate/DelegatedEmployeeListApi";
@@ -69,7 +70,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
 
         //try to send data
         mPostJsonData = new PostJsonData(this);
-        mURLsend = "http://192.168.68.110/Delegate/PostSelectedEmp";
+        mURLsend = "http://192.168.1.30/Delegate/PostSelectedEmp";
 
         startDate.setOnClickListener(this);
         endDate.setOnClickListener(this);
@@ -163,38 +164,39 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
             String empName = employeeList.get(selectedEmpId).getName();
             String StartDate = startDate.getText().toString();
             String EndDate = endDate.getText().toString();
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            Date Start,End;
-            try {
-                 Start = format.parse(StartDate);
-                 End = format.parse(EndDate);
-                if(Start.after(End)){
-                Toast.makeText(this,"Your Date Selection is WRONG",Toast.LENGTH_LONG).show();
-                }
-                else {
-                    JSONObject demoObject = new JSONObject();
-                    try {
+            if(empName!= null && StartDate!= null && EndDate!=null) {
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                Date Start, End;
+                try {
+                    Start = format.parse(StartDate);
+                    End = format.parse(EndDate);
+                    if (Start.after(End)) {
+                        Toast.makeText(this, "Your Date Selection is WRONG", Toast.LENGTH_LONG).show();
+                    } else {
+                        JSONObject demoObject = new JSONObject();
+                        try {
 
-                        demoObject.put("EmpId",selectedEmpId+1);
-                        demoObject.put("StartDate",StartDate);
-                        demoObject.put("EndDate",EndDate);
+                            demoObject.put("EmpId", selectedEmpId + 1);
+                            demoObject.put("StartDate", StartDate);
+                            demoObject.put("EndDate", EndDate);
 
-                        mPostJsonData.loadJsonData(demoObject.toString());
-                        mPostJsonData.execute(mURLsend);
+                            mPostJsonData.loadJsonData(demoObject.toString());
+                            mPostJsonData.execute(mURLsend);
 
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
-
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-            } catch (ParseException e) {
-                e.printStackTrace();
+
+                Intent intent = new Intent(this, DelegateEmployeeMainActivity.class);
+                startActivity(intent);
+                //sending data to C#
             }
-
-
-            //sending data to C#
-
         }
 
     }

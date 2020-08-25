@@ -29,11 +29,11 @@ public class DelegateEmployeeMainActivity extends AppCompatActivity implements G
     Button DelegateEmployeeCreate;
     DelegateEmployeeMainActivityListAdapter deEmpAdapter;
     Button cancel;
-    String mURLsend = "http://192.168.68.110/Delegate/CancelByAndroid";
+    String mURLsend = "http://192.168.1.30/Delegate/CancelByAndroid";
     PostJsonData mPostJsonData ;
     private List<DelegatedEmployee> mDelegateEmployees;
 
-    public String mURL = "http://192.168.68.110/Delegate/DelegatedEmployeeListApi";
+    public String mURL = "http://192.168.1.30/Delegate/DelegatedEmployeeListApi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,9 +124,8 @@ public class DelegateEmployeeMainActivity extends AppCompatActivity implements G
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-//            Intent intent = new Intent(this, DeptHeadMainActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(this, DelegateEmployeeMainActivity.class);
+            startActivity(intent);
         }
     }
 

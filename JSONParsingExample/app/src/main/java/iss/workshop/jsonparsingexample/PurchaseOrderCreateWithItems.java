@@ -35,13 +35,13 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
 
     public static final String TAG = "ItemList";
 
-    public String mURL = "http://192.168.68.110/PO/POItemApi";
+    public String mURL = "http://192.168.1.30/PO/POItemApi";
     RecyclerView rView;
     Button mbtnSave;
     PurchaseOrderCreateWithItemAdapter adapter;
 
     PostJsonData mPostJsonData;
-    private String mPostURL = "http://192.168.68.110/PO/POSave";;
+    private String mPostURL = "http://192.168.1.30/PO/POSave";;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
