@@ -51,7 +51,7 @@ public class GetRawData extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        HttpsURLConnection connection = null;
+        HttpURLConnection connection = null;
         BufferedReader reader = null;
 
         if(strings == null) {
@@ -63,7 +63,7 @@ public class GetRawData extends AsyncTask<String, Void, String> {
             mDownloadStatus = DownloadStatus.PROCESSING;
             URL url = new URL(strings[0]);
 
-            connection = (HttpsURLConnection) url.openConnection();
+            connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
             int response = connection.getResponseCode();
