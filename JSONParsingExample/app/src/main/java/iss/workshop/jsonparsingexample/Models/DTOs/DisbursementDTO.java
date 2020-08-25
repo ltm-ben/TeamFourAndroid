@@ -12,6 +12,10 @@ public class DisbursementDTO {
     private DeptRequisitionDto DeptRequisition;
     private String AcknowledgementCode;
     private DisbursementStatus DisbursementStatus;
+    private String DisbursementDate;
+    private int Year;
+    private int Month;
+    private int Day;
     private List<DisbursementDetailDto> DisbursementDetails = new ArrayList<>();
 
     public DisbursementDTO() {
@@ -55,5 +59,37 @@ public class DisbursementDTO {
 
     public void setDisbursementStatus(iss.workshop.jsonparsingexample.Models.DisbursementStatus disbursementStatus) {
         DisbursementStatus = disbursementStatus;
+    }
+
+    public String getDisbursementDate() {
+        return DisbursementDate;
+    }
+
+    public void setDisbursementDate(String disbursementDate) {
+        DisbursementDate = disbursementDate;
+    }
+
+    public int getYear() {
+        return Year;
+    }
+
+    public void setYear(int year) {
+        Year = year;
+    }
+
+    public int getMonth() {
+        return Month;
+    }
+
+    public void setMonth(int month) {
+        Month = month;
+    }
+
+    public int getDay() {
+        return Day;
+    }
+
+    public void setDay(int day) {
+        Day = day;
     }
 }

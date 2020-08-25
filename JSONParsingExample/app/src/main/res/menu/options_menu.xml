@@ -6,8 +6,8 @@
         android:title="Employee" />
     <item android:id="@+id/store_clerk_item"
         android:title="Store Clerk" />
-    <item android:id="@+id/PO_item"
-        android:title="Purchase Order" />
+    <item android:id="@+id/PoList_item"
+        android:title="Purchase Order List" />
     <item android:id="@+id/StoreDept_item"
         android:title="Store Dept" />
     <item android:id="@+id/StockList_item"

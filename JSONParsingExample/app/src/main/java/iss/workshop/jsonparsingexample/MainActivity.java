@@ -176,8 +176,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.store_clerk_item:
                 launchStoreClerkMainActivity();
                 return true;
-            case R.id.PO_item:
-                launchPurchaseOrderActivity();
+            case R.id.PoList_item:
+                launchPoListActivity();
                 return true;
             case R.id.StoreDept_item:
                 launchStoreDeptActivity();
