@@ -29,7 +29,7 @@ public class StoreClerkDisbursementDetailActivity extends AppCompatActivity impl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_disbursement_detail);
 
-        mURL = "http://192.168.68.110/store/storeclerkdisbursementdetailslistapi" ;
+        mURL = "https://logicu.nusteamfour.online/store/storeclerkdisbursementdetailslistapi" ;
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.disbursementDetailRecyclerView);
@@ -102,4 +102,3 @@ public class StoreClerkDisbursementDetailActivity extends AppCompatActivity impl
         return super.onCreateOptionsMenu(menu);
     }
 }
-

@@ -35,7 +35,7 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
 
     public static final String TAG = "ItemList";
 
-    public String mURL = "http://192.168.1.30/PO/POItemApi";
+    public String mURL = "https://logicu.nusteamfour.online/PO/POItemApi";
     RecyclerView rView;
     Button mbtnSave;
     PurchaseOrderCreateWithItemAdapter adapter;

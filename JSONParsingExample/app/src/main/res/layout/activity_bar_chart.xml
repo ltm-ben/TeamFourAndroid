@@ -6,24 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".BarChartActivity">
 
+
     <Spinner
         android:id="@+id/spinner1"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toTopOf="@+id/barchart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.853" />
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/barchart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/spinner1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/editTextDateFrom"
+        android:layout_width="187dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="15dp"
+        android:ems="10"
+        android:inputType="textPhonetic"
+        app:layout_constraintBottom_toTopOf="@+id/spinner1"
+        app:layout_constraintEnd_toStartOf="@+id/editTextDateTo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/spinner1"
-        app:layout_constraintTop_toTopOf="parent"></com.github.mikephil.charting.charts.BarChart>
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </com.github.mikephil.charting.charts.BarChart>
+
+    <EditText
+        android:id="@+id/editTextDateTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="2dp"
+        android:ems="10"
+        android:inputType="textPhonetic"
+        app:layout_constraintBottom_toTopOf="@+id/spinner1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextDateFrom"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
