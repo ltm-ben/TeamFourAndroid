@@ -18,28 +18,16 @@
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnDelegateEmployeeCreate"
+        app:layout_constraintBottom_toTopOf="@+id/delegateEmployeeListRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/btnDelegateEmployeeCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="#0f0"
-        android:paddingVertical="20dp"
-        android:text="Create"
-        app:layout_constraintTop_toBottomOf="@id/delegate_employee_main_header"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-2dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/delegateEmployeeListRecyclerView"
-        android:layout_width="332dp"
-        android:layout_height="523dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -47,11 +35,36 @@
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.958" />
+        app:layout_constraintVertical_bias="0.656" />
 
+    <Button
+        android:id="@+id/btnDelegateEmployeeCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#0f0"
+        android:paddingVertical="20dp"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delegateEmployeeListRecyclerView"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <Button
+        android:id="@+id/btnDelegateEmployeeCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="232dp"
+        android:background="#f00"
+        android:paddingVertical="20dp"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btnDelegateEmployeeCreate"
+        app:layout_constraintTop_toBottomOf="@+id/delegateEmployeeListRecyclerView"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

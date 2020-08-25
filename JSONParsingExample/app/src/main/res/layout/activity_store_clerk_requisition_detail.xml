@@ -11,7 +11,7 @@
         android:id="@+id/storeClerkRequisitionDetailTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Store Clerk Requisition Detail"
+        android:text="Requisition Details"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />

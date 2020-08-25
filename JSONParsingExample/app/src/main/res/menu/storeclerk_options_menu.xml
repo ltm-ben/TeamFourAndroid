@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/Bar_Chart_List_item"
+        android:title="Trend Analysis"/>
+    <item android:id="@+id/Requisition_List_item"
+        android:title="Requisition"/>
+    <item android:id ="@+id/Disbursement_List_item"
+        android:title="Disbursement"/>
+    <item android:id="@+id/Disbursement_Packing_item"
+        android:title="Disbursement Packing"/>
+    <item android:id="@+id/Stock_List_item"
+        android:title="Stocks" />
+    <item android:id="@+id/PO_List_item"
+        android:title="P.O." />
+</menu>
+
+

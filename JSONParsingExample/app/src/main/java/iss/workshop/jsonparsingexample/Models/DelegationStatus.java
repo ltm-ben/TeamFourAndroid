@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum DelegationStatus {
-    CANCELLED(0), EXTENDED(1), SELECTED(2);
+    MOCK(0),CANCELLED(1), EXTENDED(2), SELECTED(3);
 
     private int value;
     private static Map map = new HashMap<>();

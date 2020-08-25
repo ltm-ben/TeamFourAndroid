@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import iss.workshop.jsonparsingexample.Models.DelegatedEmployee;
 import iss.workshop.jsonparsingexample.Models.DeptRole;
 import iss.workshop.jsonparsingexample.Models.Employee;
 import iss.workshop.jsonparsingexample.Models.Item;
@@ -20,10 +21,10 @@ import iss.workshop.jsonparsingexample.Models.PO;
 
 public class DelegateEmployeeMainActivityListAdapter extends RecyclerView.Adapter<DelegateEmployeeMainActivityListAdapter.MyViewHolder> {
 
-    List<Employee> empList = new ArrayList<>();
+    List<DelegatedEmployee> empList;
     Context context;
 
-    public DelegateEmployeeMainActivityListAdapter(Context ct, List<Employee> eList){
+    public DelegateEmployeeMainActivityListAdapter(Context ct, List<DelegatedEmployee> eList){
         context = ct;
         empList = eList;
     }
@@ -38,12 +39,13 @@ public class DelegateEmployeeMainActivityListAdapter extends RecyclerView.Adapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Employee employee = empList.get(position);
+        DelegatedEmployee delegatedEmployeeemployee = empList.get(position);
 
-        holder.id.setText(String.valueOf(employee.getId()) );
-        holder.name.setText(employee.getName());
-        holder.startDate.setText(employee.getDeptId());
-        holder.endDate.setText(employee.getRole().toString());
+        //holder.id.setText(String.valueOf(employee.getId()) );
+        holder.name.setText(delegatedEmployeeemployee.getName());
+        holder.startDate.setText(delegatedEmployeeemployee.getStartDate());
+        holder.endDate.setText(delegatedEmployeeemployee.getEndDate());
+        holder.status.setText(delegatedEmployeeemployee.getDelegationStatus().toString());
     }
 
     @Override
@@ -53,20 +55,21 @@ public class DelegateEmployeeMainActivityListAdapter extends RecyclerView.Adapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView id,name= null;TextView startDate = null ; TextView endDate = null;
+        TextView name= null;TextView startDate = null ; TextView endDate = null; TextView status = null;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.id = itemView.findViewById(R.id.poId);
+            //this.id = itemView.findViewById(R.id.poId);
             this.name = itemView.findViewById(R.id.delegateEmployeeName);
             this.startDate = itemView.findViewById(R.id.startdate);
             this.endDate = itemView.findViewById(R.id.enddate);
+            this.status = itemView.findViewById(R.id.Status);
 
 
         }
     }
 
-    void loadNewData(List<Employee> newEmp) {
+    void loadNewData(List<DelegatedEmployee> newEmp) {
         empList = newEmp;
         notifyDataSetChanged();
     }

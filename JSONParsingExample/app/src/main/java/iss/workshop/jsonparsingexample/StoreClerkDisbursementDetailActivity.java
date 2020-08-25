@@ -102,4 +102,3 @@ public class StoreClerkDisbursementDetailActivity extends AppCompatActivity impl
         return super.onCreateOptionsMenu(menu);
     }
 }
-
