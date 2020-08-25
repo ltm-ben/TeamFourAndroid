@@ -10,7 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDTO;
+import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDetailDto;
+
+public class LoginActivity extends AppCompatActivity implements PostJsonData.OnDownloadComplete {
 
     EditText mUsernameTxt;
     EditText mPasswordTxt;
@@ -64,6 +75,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean logIn(String username, String password) {
+
+        // encode password using SHA256
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] encodedPassword = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        } catch(NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+
         if (username.equals("DipSA") && password.equals("DipSA")) {
             return true;
         }
@@ -73,5 +94,38 @@ public class LoginActivity extends AppCompatActivity {
     private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
+
+        if(status == DownloadStatus.OK) {
+
+//            mDisbursement = new DisbursementDTO();
+//
+//            try {
+//                JSONObject jsonData = new JSONObject(data);
+//                JSONObject jsonDisbursement = jsonData.getJSONObject("disbursement");
+//
+//                mDisbursement.setId(jsonDisbursement.getInt("Id"));
+//                JSONArray itemsArray = jsonDisbursement.getJSONArray("DisbursementDetails");
+//
+//                for(int i=0; i<itemsArray.length(); i++) {
+//                    JSONObject jsonDisbursementDetail = itemsArray.getJSONObject(i);
+//
+//                    DisbursementDetailDto disbursementDetail = new DisbursementDetailDto();
+//                    disbursementDetail.setItemCode(jsonDisbursementDetail.getString("StationeryCode"));
+//                    disbursementDetail.setItemName(jsonDisbursementDetail.getString("StationeryName"));
+//                    disbursementDetail.setQty(jsonDisbursementDetail.getInt("Qty"));
+//                    mDisbursement.getDisbursementDetails().add(disbursementDetail);
+//                }
+//
+//                mDisbursementPackingRecyclerViewAdapter.loadNewData(mDisbursement.getDisbursementDetails());
+//
+//            } catch(JSONException jsone) {
+//                jsone.printStackTrace();
+//                status = DownloadStatus.FAILED_OR_EMPTY;
+//            }
+        }
     }
 }
