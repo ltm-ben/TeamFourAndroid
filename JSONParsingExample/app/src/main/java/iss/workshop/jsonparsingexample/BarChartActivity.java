@@ -92,32 +92,6 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
             public void onItemSelected(AdapterView<?> adapterView, View view, int o, long l) {
 
                 selectedItemId = o;
-//                String item = spinnerStationary.getSelectedItem().toString();
-//                Toast.makeText(view.getContext(),"Test",Toast.LENGTH_LONG).show();
-//                try {
-//                    //base on dept name group quantity disbursed
-//                    for (int i = 0; i < labels.size(); i++) {
-//                        String selectedDepartment = labels.get(i);
-//                        for (int j = 0; j < itemsArray.length(); j++) {
-//                            JSONObject jsonDisbursementDetail = itemsArray.getJSONObject(j);
-//                            String deptName = jsonDisbursementDetail.getString("DeptName");
-//                            String stationary = jsonDisbursementDetail.getString("StationeryName");
-//                            if (selectedDepartment.equals(deptName) && item.equals(stationary)) {
-//                                BarEntry entry = entries.get(i);
-//                                entry.setVal(entry.getVal() + jsonDisbursementDetail.getInt("Qty"));
-//                            }
-//                        }
-//                    }
-//                } catch(Exception e){
-//                    e.printStackTrace();
-//                }
-//
-//                BarDataSet bardataset = new BarDataSet(entries, "Cells");
-//                BarData bardata = new BarData(labels, bardataset);
-//                barChart.setData(bardata);
-//                barChart.animateY(1250);
-//                barChart.notifyDataSetChanged();
-//                barChart.invalidate();
             }
 
             @Override
@@ -312,54 +286,51 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
             barChart.invalidate();
 
  }
-
-
-
-
     }
 
     public void resetEntry(){
         for (int i = 0; i < labels.size(); i++) {
             BarEntry entry = entries.get(i);
             entry.setVal(0);
-    //  Option Menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.storeclerk_options_menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        Intent intent;
-
-        switch (item.getItemId()) {
-            case R.id.Bar_Chart_List_item:
-                intent = new Intent(this, BarChartActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.Requisition_List_item:
-                intent = new Intent(this, StoreClerkRequisitionListActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.Disbursement_List_item:
-                intent = new Intent(this, StoreClerkDisbursementListActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.Disbursement_Packing_item:
-                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.Stock_List_item:
-                intent = new Intent(this, StockListActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.PO_List_item:
-                intent = new Intent(this,POList.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+            //  Option Menu
+//            @Override
+//            public boolean onCreateOptionsMenu (Menu menu){
+//                getMenuInflater().inflate(R.menu.storeclerk_options_menu, menu);
+//                return true;
+//            }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        Intent intent;
+//
+//        switch (item.getItemId()) {
+//            case R.id.Bar_Chart_List_item:
+//                intent = new Intent(this, BarChartActivity.class);
+//                startActivity(intent);
+//                return true;
+//            case R.id.Requisition_List_item:
+//                intent = new Intent(this, StoreClerkRequisitionListActivity.class);
+//                startActivity(intent);
+//                return true;
+//            case R.id.Disbursement_List_item:
+//                intent = new Intent(this, StoreClerkDisbursementListActivity.class);
+//                startActivity(intent);
+//                return true;
+//            case R.id.Disbursement_Packing_item:
+//                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
+//                startActivity(intent);
+//                return true;
+//            case R.id.Stock_List_item:
+//                intent = new Intent(this, StockListActivity.class);
+//                startActivity(intent);
+//                return true;
+//            case R.id.PO_List_item:
+//                intent = new Intent(this,POList.class);
+//                startActivity(intent);
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
         }
     }
 }
