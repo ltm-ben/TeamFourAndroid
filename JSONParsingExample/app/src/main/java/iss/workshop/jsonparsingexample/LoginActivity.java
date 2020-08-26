@@ -26,23 +26,24 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
     EditText mUsernameTxt;
     EditText mPasswordTxt;
     Button mLoginBtn;
+    public String mURL = "http://192.168.68.110/login/loginapi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
-
-        if(pref.contains("username") && pref.contains("password")) {
-
-            boolean loginOk = logIn(pref.getString("username", ""),
-                    pref.getString("password", ""));
-
-            if(loginOk) {
-                startMainActivity();
-            }
-        }
+//        final SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+//
+//        if(pref.contains("username") && pref.contains("password")) {
+//
+//            boolean loginOk = logIn(pref.getString("username", ""),
+//                    pref.getString("password", ""));
+//
+//            if(loginOk) {
+//                startMainActivity();
+//            }
+//        }
 
         mUsernameTxt = (EditText) findViewById(R.id.txtUsername);
         mPasswordTxt = (EditText) findViewById(R.id.txtPassword);
@@ -57,19 +58,19 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
 
                 boolean loginOk = logIn(username, password);
 
-                if(loginOk) {
-
-                    SharedPreferences.Editor editor = pref.edit();
-
-                    editor.putString("username", username);
-                    editor.putString("password", password);
-                    editor.commit();
-
-                    Toast.makeText(getApplicationContext(), "Login successful!",
-                            Toast.LENGTH_SHORT).show();
-
-                    startMainActivity();
-                }
+//                if(loginOk) {
+//
+//                    SharedPreferences.Editor editor = pref.edit();
+//
+//                    editor.putString("username", username);
+//                    editor.putString("password", password);
+//                    editor.commit();
+//
+//                    Toast.makeText(getApplicationContext(), "Login successful!",
+//                            Toast.LENGTH_SHORT).show();
+//
+//                    startMainActivity();
+//                }
             }
         });
     }
@@ -81,16 +82,35 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] bytesPassword = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-            //String stringPassword = Base64.encodeToString(bytesPassword);
+            String stringPassword = Base64.encodeToString(bytesPassword, Base64.DEFAULT);
+
+            // Create JSON
+            JSONObject root = new JSONObject();
+            root.put("Username", username);
+            root.put("Password", stringPassword);
+
+            // call API
+            PostJsonData postJsonData = new PostJsonData(this);
+            postJsonData.loadJsonData(root.toString());
+            postJsonData.execute(mURL);
+
         } catch(NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch(JSONException e) {
             e.printStackTrace();
         }
 
+        return true;
 
-        if (username.equals("DipSA") && password.equals("DipSA")) {
-            return true;
-        }
-        return false;
+
+
+
+
+
+//        if (username.equals("DipSA") && password.equals("DipSA")) {
+//            return true;
+//        }
+//        return false;
     }
 
     private void startMainActivity() {
@@ -102,6 +122,28 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
     public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
 
         if(status == DownloadStatus.OK) {
+
+            try {
+
+                // post process json string
+                data = data.trim();
+                data = data.substring(1, data.length() - 1);
+                data = data.replace("\\", "");
+
+                JSONObject jsonData = new JSONObject(data);
+
+                String message = jsonData.getString("Message");
+
+                if (message.equals("Login Successful")) {
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
 
 //            mDisbursement = new DisbursementDTO();
 //
