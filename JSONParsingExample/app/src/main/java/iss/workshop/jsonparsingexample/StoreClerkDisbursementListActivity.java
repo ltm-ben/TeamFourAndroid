@@ -29,12 +29,16 @@ public class StoreClerkDisbursementListActivity extends AppCompatActivity implem
     private DisbursementListRecyclerViewAdapter.RecyclerViewClickListener mListener;
     private List<DisbursementDTO> mData;
 
-    public String mURL = "http://192.168.68.110/store/StoreClerkDisbursementListApi";
+    private String mLogoutURL;
+    public String mURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_disbursement_list);
+
+        mURL = "http://192.168.68.110/store/StoreClerkDisbursementListApi";
+        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.StoreClerkDisbursementListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -105,30 +109,33 @@ public class StoreClerkDisbursementListActivity extends AppCompatActivity implem
         switch (item.getItemId()) {
             case R.id.Bar_Chart_List_item:
                 intent = new Intent(this, BarChartActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Requisition_List_item:
                 intent = new Intent(this, StoreClerkRequisitionListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Disbursement_List_item:
                 intent = new Intent(this, StoreClerkDisbursementListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Disbursement_Packing_item:
                 intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Stock_List_item:
                 intent = new Intent(this, StockListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.PO_List_item:
                 intent = new Intent(this,POList.class);
-                startActivity(intent);
-                return true;
+                break;
+            case R.id.Store_Clerk_Logout_item:
+                GetRawData getRawData = new GetRawData(this);
+                getRawData.execute(mLogoutURL);
+                intent = new Intent(this, LoginActivity.class);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        startActivity(intent);
+
+        return true;
     }
 }

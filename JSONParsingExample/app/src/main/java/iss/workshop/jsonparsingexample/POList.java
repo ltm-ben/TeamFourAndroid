@@ -19,14 +19,17 @@ import java.util.List;
 import iss.workshop.jsonparsingexample.Models.Item;
 import iss.workshop.jsonparsingexample.Models.PO;
 
-public class POList extends AppCompatActivity implements GetPurchaseOrderData.OnDataAvailable{
+public class POList extends AppCompatActivity implements GetPurchaseOrderData.OnDataAvailable, GetRawData.OnDownloadComplete {
 
     public static final String TAG = "POList";
 
-    public String mURL = "http://192.168.68.110/PO/POListAPI";
+
     RecyclerView rView;
     Button mbtnCreate;
     POListAdpater poAdapter;
+
+    private String mLogoutURL;
+    private String mURL;
 
 
     @Override
@@ -34,7 +37,10 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p_o_list);
 
-            rView = findViewById(R.id.poListRecyclerView);
+        mURL = "http://192.168.68.110/PO/POListAPI";
+        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+
+        rView = findViewById(R.id.poListRecyclerView);
         Date d = new Date();
 
         /*PO po1 = new PO();
@@ -88,6 +94,11 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
         Log.d(TAG, "onDataAvailable: ends");
     }
 
+    @Override
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
+
+    }
+
     //  Option Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,30 +113,33 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
         switch (item.getItemId()) {
             case R.id.Bar_Chart_List_item:
                 intent = new Intent(this, BarChartActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Requisition_List_item:
                 intent = new Intent(this, StoreClerkRequisitionListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Disbursement_List_item:
                 intent = new Intent(this, StoreClerkDisbursementListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Disbursement_Packing_item:
                 intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Stock_List_item:
                 intent = new Intent(this, StockListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.PO_List_item:
                 intent = new Intent(this,POList.class);
-                startActivity(intent);
-                return true;
+                break;
+            case R.id.Store_Clerk_Logout_item:
+                GetRawData getRawData = new GetRawData(this);
+                getRawData.execute(mLogoutURL);
+                intent = new Intent(this, LoginActivity.class);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        startActivity(intent);
+
+        return true;
     }
 }

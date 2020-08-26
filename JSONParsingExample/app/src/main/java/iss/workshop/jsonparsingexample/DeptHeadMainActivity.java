@@ -7,14 +7,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import iss.workshop.jsonparsingexample.Models.DelegatedEmployee;
+public class DeptHeadMainActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
 
-public class DeptHeadMainActivity extends AppCompatActivity {
+    private String mLogoutURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dept_head_main);
+
+        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+    }
+
+    @Override
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
+
     }
 
     //  Option Menu
@@ -26,27 +33,26 @@ public class DeptHeadMainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent intent;
+
         switch (item.getItemId()) {
             case R.id.delegate_employee_item:
-                launchDelegateEmployeeMainActivity();
-                return true;
+                intent = new Intent(this, DelegateEmployeeMainActivity.class);
+                break;
             case R.id.approve_reject_requisitions_item:
-                launchApproveRejectRequisitionsMainActivity();
-                return true;
-
+                intent = new Intent(this, DeptHeadReqList.class);
+                break;
+            case R.id.Dept_Head_Logout_item:
+                GetRawData getRawData = new GetRawData(this);
+                getRawData.execute(mLogoutURL);
+                intent = new Intent(this, LoginActivity.class);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-    private void launchDelegateEmployeeMainActivity() {
-        Intent intent = new Intent(this, DelegateEmployeeMainActivity.class);
+
         startActivity(intent);
+
+        return true;
     }
-
-    private void launchApproveRejectRequisitionsMainActivity() {
-        Intent intent = new Intent(this, DeptHeadReqList.class);
-        startActivity(intent);
-    }
-
-
 }

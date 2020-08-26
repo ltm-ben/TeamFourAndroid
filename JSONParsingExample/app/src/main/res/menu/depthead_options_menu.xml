@@ -4,5 +4,7 @@
         android:title="Delegate Employee" />
     <item android:id="@+id/approve_reject_requisitions_item"
         android:title="Approve/Reject Requisitions" />
+    <item android:id="@+id/Dept_Head_Logout_item"
+        android:title="Logout" />
 
 </menu>

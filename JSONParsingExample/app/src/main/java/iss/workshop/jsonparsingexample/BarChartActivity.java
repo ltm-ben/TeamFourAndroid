@@ -51,13 +51,17 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
     EditText editTextDateTo;
     DatePickerDialog mDatePickerDialogTo;
     String dateTo;
+
+    private String mLogoutURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_chart);
 
         barChart = (BarChart) findViewById(R.id.barchart);
-        mURL = "http://192.168.1.8:8080/store/storeclerkdisbursementdetailslistapi" ;
+        mURL = "http://192.168.68.110/store/storeclerkdisbursementdetailslistapi" ;
+        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
         submit = (Button) findViewById(R.id.submit_btn);
         submit.setOnClickListener(this);
         entries = new ArrayList<>();
@@ -332,5 +336,49 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
 //                return super.onOptionsItemSelected(item);
 //        }
         }
+    }
+
+    //  Option Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.storeclerk_options_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+
+        switch (item.getItemId()) {
+            case R.id.Bar_Chart_List_item:
+                intent = new Intent(this, BarChartActivity.class);
+                break;
+            case R.id.Requisition_List_item:
+                intent = new Intent(this, StoreClerkRequisitionListActivity.class);
+                break;
+            case R.id.Disbursement_List_item:
+                intent = new Intent(this, StoreClerkDisbursementListActivity.class);
+                break;
+            case R.id.Disbursement_Packing_item:
+                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
+                break;
+            case R.id.Stock_List_item:
+                intent = new Intent(this, StockListActivity.class);
+                break;
+            case R.id.PO_List_item:
+                intent = new Intent(this,POList.class);
+                break;
+            case R.id.Store_Clerk_Logout_item:
+                GetRawData getRawData = new GetRawData(this);
+                getRawData.execute(mLogoutURL);
+                intent = new Intent(this, LoginActivity.class);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        startActivity(intent);
+
+        return true;
     }
 }
