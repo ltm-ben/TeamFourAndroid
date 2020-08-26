@@ -31,5 +31,13 @@
         <item>Citimart</item>
     </string-array>
 
+    <string-array name="statuslist">
+        <item>Pending</item>
+        <item>Approved</item>
+        <item>Rejected</item>
+    </string-array>
+
+    <string name="spinprompt">Requisition Approval Status</string>
+
 
 </resources>

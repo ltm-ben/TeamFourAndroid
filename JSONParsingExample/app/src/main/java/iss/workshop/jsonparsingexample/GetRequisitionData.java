@@ -69,10 +69,11 @@ public class GetRequisitionData extends AsyncTask<String, Void, List<DeptRequisi
 
                     int requisitionId = jsonRequisition.getInt("Id");
                     RequisitionFulfillmentStatus requisitionFulfillmentStatus = RequisitionFulfillmentStatus.valueOf(jsonRequisition.getInt("RequisitionFulfillmentStatus"));
-
+                    RequisitionApprovalStatus requisitionApprovalStatus = RequisitionApprovalStatus.valueOf(jsonRequisition.getInt("RequisitionApprovalStatus"));
                     DeptRequisition deptRequisition = new DeptRequisition();
                     deptRequisition.setId(requisitionId);
                     deptRequisition.setRequisitionFulfillmentStatus(requisitionFulfillmentStatus);
+                    deptRequisition.setRequisitionApprovalStatus(requisitionApprovalStatus);
 
                     mRequisitionList.add(deptRequisition);
                 }
