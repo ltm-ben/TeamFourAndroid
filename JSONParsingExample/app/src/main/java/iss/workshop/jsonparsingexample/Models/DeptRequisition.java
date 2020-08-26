@@ -8,6 +8,7 @@ public class DeptRequisition {
     private Employee employee;
     private RequisitionApprovalStatus requisitionApprovalStatus;
     private RequisitionFulfillmentStatus requisitionFulfillmentStatus;
+    private String reason;
     private List<RequisitionDetail> requisitionDetails = new ArrayList<>();
 
     public DeptRequisition() {
@@ -20,6 +21,10 @@ public class DeptRequisition {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getReason(){return reason;}
+
+    public void setReason(String reason){this.reason = reason;}
 
     public Employee getEmployee() {
         return employee;

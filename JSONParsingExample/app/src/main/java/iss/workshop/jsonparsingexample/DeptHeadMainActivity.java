@@ -44,7 +44,7 @@ public class DeptHeadMainActivity extends AppCompatActivity {
     }
 
     private void launchApproveRejectRequisitionsMainActivity() {
-        Intent intent = new Intent(this, ApproveRejectRequisitionsMainActivity.class);
+        Intent intent = new Intent(this, DeptHeadReqList.class);
         startActivity(intent);
     }
 
