@@ -41,8 +41,8 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
         if (extras != null) {
 
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
-            mGetRequisitionDetailURL = "http://192.168.68.110/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
-            mSaveRequisitionDetailURL = "http://192.168.68.110/store/StoreClerkSaveRequisitionApi";
+            mGetRequisitionDetailURL = "https://logicuniversity.nusteamfour.online/store/storeclerkrequisitionfulfillmentapi?id=" + requisitionId;
+            mSaveRequisitionDetailURL = "https://logicuniversity.nusteamfour.online/store/StoreClerkSaveRequisitionApi";
         }
 
         mStoreClerkRequisitionDetailSubmitBtn = findViewById(R.id.storeClerkRequisitionDetailSubmitBtn);

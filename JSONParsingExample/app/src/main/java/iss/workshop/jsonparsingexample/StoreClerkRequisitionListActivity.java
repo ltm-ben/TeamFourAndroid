@@ -31,8 +31,8 @@ public class StoreClerkRequisitionListActivity extends AppCompatActivity impleme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_requisition_list);
 
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
-        mURL = "http://192.168.68.110/store/storeclerkrequisitionlistapi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
+        mURL = "https://logicuniversity.nusteamfour.online/store/storeclerkrequisitionlistapi";
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.requisitionListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -1,9 +1,11 @@
 package iss.workshop.jsonparsingexample;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -23,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
     EditText mUsernameTxt;
     EditText mPasswordTxt;
     Button mLoginBtn;
-    public String mURL = "http://192.168.68.110/login/loginapi";
+    public String mURL = "https://logicuniversity.nusteamfour.online/login/loginapi";
 
 
     @Override
@@ -53,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void logIn(String username, String password) {
 
         // encode password using SHA256

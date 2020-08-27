@@ -32,8 +32,8 @@ public class DeptHeadReqList extends AppCompatActivity implements GetRequisition
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dept_head_req_list);
 
-        mURL = "http://192.168.68.110/Dept/DeptHeadRequisitionListApi";
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mURL = "https://logicuniversity.nusteamfour.online/Dept/DeptHeadRequisitionListApi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
 
         //allocating the id of the recyclerview for deptheadreqlist.
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.deptHeadReqListRecyclerView);

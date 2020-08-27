@@ -58,10 +58,10 @@ public class DeptHeadReqListDetails extends AppCompatActivity implements GetRawD
         /*getting requisition id from intent pass from previous activity*/
         if (extras != null) {
             requisitionId = String.valueOf(extras.getInt("requisitionId"));
-            mGetRequisitionDetailURL = "http://192.168.68.110/Dept/DeptHeadRequisitionDetailsApi?id=" + requisitionId;
+            mGetRequisitionDetailURL = "https://logicuniversity.nusteamfour.online/Dept/DeptHeadRequisitionDetailsApi?id=" + requisitionId;
         }
 
-        mSaveRequisitionURL = "http://192.168.68.110/Dept/PostReqApprovalStatus";
+        mSaveRequisitionURL = "https://logicuniversity.nusteamfour.online/Dept/PostReqApprovalStatus";
 
         RecyclerView recyclerView = findViewById(R.id.deptHeadReqDetailsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

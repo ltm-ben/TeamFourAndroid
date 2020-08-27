@@ -1,10 +1,12 @@
 package iss.workshop.jsonparsingexample;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,8 +63,8 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
         setContentView(R.layout.activity_bar_chart);
 
         barChart = (BarChart) findViewById(R.id.barchart);
-        mURL = "http://192.168.68.110/store/storeclerkdisbursementdetailslistapi" ;
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mURL = "https://logicuniversity.nusteamfour.online/store/storeclerkdisbursementdetailslistapi" ;
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
         submit = (Button) findViewById(R.id.submit_btn);
         submit.setOnClickListener(this);
         entries = new ArrayList<>();
@@ -238,6 +240,7 @@ public class BarChartActivity extends AppCompatActivity implements GetRawData.On
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
         if(v == submit){

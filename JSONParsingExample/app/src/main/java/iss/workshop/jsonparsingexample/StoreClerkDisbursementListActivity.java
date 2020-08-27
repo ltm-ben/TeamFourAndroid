@@ -38,8 +38,8 @@ public class StoreClerkDisbursementListActivity extends AppCompatActivity implem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_disbursement_list);
 
-        mURL = "http://192.168.68.110/store/StoreClerkDisbursementListApi";
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mURL = "https://logicuniversity.nusteamfour.online/store/StoreClerkDisbursementListApi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.StoreClerkDisbursementListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

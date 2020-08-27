@@ -37,9 +37,9 @@ public class EmployeeRequisitionFormActivity extends AppCompatActivity implement
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_requisition_form);
 
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
-        mGetRequisitionURL = "http://192.168.68.110/dept/EmployeeRequisitionFormApi";
-        mSaveRequisitionURL = "http://192.168.68.110/dept/SaveRequisitionApi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
+        mGetRequisitionURL = "https://logicuniversity.nusteamfour.online/dept/EmployeeRequisitionFormApi";
+        mSaveRequisitionURL = "https://logicuniversity.nusteamfour.online/dept/SaveRequisitionApi";
 
         mEmployeeRequisitionFormSubmitBtn = findViewById(R.id.EmployeeRequisitionFormSubmitBtn);
         mEmployeeRequisitionFormSubmitBtn.setOnClickListener(new View.OnClickListener() {

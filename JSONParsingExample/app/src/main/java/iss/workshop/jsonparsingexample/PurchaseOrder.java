@@ -33,7 +33,7 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
         String selectedItemText;
         EditText mDate;
         DatePickerDialog mDatePickerDialog;
-        String mURL =  "http://192.168.68.110/PO/POCreate";
+        String mURL =  "https://logicuniversity.nusteamfour.online/PO/POCreate";
         String orderDate;
         private String mLogoutURL;
         public static final String TAG = "Purchase Order";
@@ -43,7 +43,7 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_order);
 
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
 
         // Get the widget reference from XML layout
         Spinner mSpinner =(Spinner) findViewById(R.id.spnSupplier);

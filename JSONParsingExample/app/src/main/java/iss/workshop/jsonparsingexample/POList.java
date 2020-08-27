@@ -38,8 +38,8 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p_o_list);
 
-        mURL = "http://192.168.68.110/PO/POListAPI";
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mURL = "https://logicuniversity.nusteamfour.online/PO/POListAPI";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
 
         rView = findViewById(R.id.poListRecyclerView);
         Date d = new Date();

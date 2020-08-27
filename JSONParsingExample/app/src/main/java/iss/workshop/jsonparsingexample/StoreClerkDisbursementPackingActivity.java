@@ -55,9 +55,9 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
         if (extras != null) {
 
             disbursementId = String.valueOf(extras.getInt("disbursementId"));
-            mGetDisbursementDetailURL = "http://192.168.68.110/store/StoreClerkDisbursementDetailApi?id=" + disbursementId;
-            mSaveDisbursementDetailURL = "http://192.168.68.110/store/StoreClerkSaveDisbursementDetailApi";
-            mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+            mGetDisbursementDetailURL = "https://logicuniversity.nusteamfour.online/store/StoreClerkDisbursementDetailApi?id=" + disbursementId;
+            mSaveDisbursementDetailURL = "https://logicuniversity.nusteamfour.online/store/StoreClerkSaveDisbursementDetailApi";
+            mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
         }
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.disbursementDetailRecyclerView);

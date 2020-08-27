@@ -3,6 +3,7 @@ package iss.workshop.jsonparsingexample;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
@@ -42,7 +44,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
     Spinner empName;
     private int mYear, mMonth, mDay;
     private List<DelegatedEmployee> mDelegatedEmployeeList = null;
-    public String mURL = "http://192.168.68.110/Delegate/EmployeeListApi";
+    public String mURL = "https://logicuniversity.nusteamfour.online/Delegate/EmployeeListApi";
     PostJsonData mPostJsonData;
     String mURLsend;
     //public String mURL = "http://192.168.1.30/Delegate/DelegatedEmployeeListApi";
@@ -70,7 +72,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
 
         //try to send data
         mPostJsonData = new PostJsonData(this);
-        mURLsend = "http://192.168.68.110/Delegate/PostSelectedEmp";
+        mURLsend = "https://logicuniversity.nusteamfour.online/Delegate/PostSelectedEmp";
 
         startDate.setOnClickListener(this);
         //startDate.requestFocus();
@@ -114,6 +116,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
 //        });
 //    }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
 

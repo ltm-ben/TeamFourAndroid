@@ -43,15 +43,15 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
     PurchaseOrderCreateWithItemAdapter adapter;
 
     PostJsonData mPostJsonData;
-    private String mPostURL = "http://192.168.68.110/PO/POSave";;
+    private String mPostURL = "https://logicuniversity.nusteamfour.online/PO/POSave";;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_order_create_with_items);
 
-        mURL = "http://192.168.68.110/PO/POItemApi";
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mURL = "https://logicuniversity.nusteamfour.online/PO/POItemApi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
 
         rView = (RecyclerView) findViewById(R.id.supplierCreateWithItemListRecyclerView);
         rView.setLayoutManager(new LinearLayoutManager(this));

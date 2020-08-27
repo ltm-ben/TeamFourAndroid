@@ -19,7 +19,7 @@ public class DeptEmployeeMainActivity extends AppCompatActivity implements GetRa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dept_employee_main);
 
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
     }
 
     @Override

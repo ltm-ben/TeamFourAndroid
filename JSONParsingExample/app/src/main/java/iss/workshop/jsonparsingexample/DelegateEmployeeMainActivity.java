@@ -32,7 +32,7 @@ public class DelegateEmployeeMainActivity extends AppCompatActivity implements G
     Button DelegateEmployeeCreate;
     DelegateEmployeeMainActivityListAdapter deEmpAdapter;
     Button cancel;
-    String mURLsend = "http://192.168.68.110/Delegate/CancelByAndroid";
+    String mURLsend = "https://logicuniversity.nusteamfour.online/Delegate/CancelByAndroid";
     PostJsonData mPostJsonData ;
     private List<DelegatedEmployee> mDelegateEmployees;
 
@@ -44,8 +44,8 @@ public class DelegateEmployeeMainActivity extends AppCompatActivity implements G
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delegate_employee_main);
 
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
-        mURL = "http://192.168.68.110/Delegate/DelegatedEmployeeListApi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
+        mURL = "https://logicuniversity.nusteamfour.online/Delegate/DelegatedEmployeeListApi";
 
         mPostJsonData =  new PostJsonData(this);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.delegateEmployeeListRecyclerView);

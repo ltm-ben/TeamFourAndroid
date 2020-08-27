@@ -31,8 +31,8 @@ public class StockListActivity extends AppCompatActivity implements GetJsonData.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_list);
 
-        mURL = "http://192.168.68.110/store/storeclerkstocklistapi";
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mURL = "https://logicuniversity.nusteamfour.online/store/storeclerkstocklistapi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

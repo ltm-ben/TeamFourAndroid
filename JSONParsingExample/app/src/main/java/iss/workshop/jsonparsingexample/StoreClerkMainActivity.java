@@ -17,7 +17,7 @@ public class StoreClerkMainActivity extends AppCompatActivity implements GetRawD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_clerk_main);
 
-        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
     }
 
     @Override
