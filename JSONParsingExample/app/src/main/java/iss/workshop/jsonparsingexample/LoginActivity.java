@@ -3,25 +3,18 @@ package iss.workshop.jsonparsingexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDTO;
-import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDetailDto;
-import iss.workshop.jsonparsingexample.Models.DelegatedEmployee;
-import iss.workshop.jsonparsingexample.Models.DeptEmployeeMainActivity;
 
 public class LoginActivity extends AppCompatActivity implements PostJsonData.OnDownloadComplete {
 

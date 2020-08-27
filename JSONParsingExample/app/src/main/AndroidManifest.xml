@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="iss.workshop.jsonparsingexample">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DeptHeadReqListDetailsRecyclerViewAdapter"></activity>
+        <activity android:name=".EmployeeRequisitionFormActivity"></activity>
+        <activity android:name=".DeptHeadReqListDetailsRecyclerViewAdapter" />
         <activity android:name=".DeptHeadReqListDetails" />
         <activity android:name=".DeptHeadReqListRecyclerViewAdapter" />
         <activity android:name=".DeptHeadReqList" />
@@ -21,7 +24,7 @@
         <activity android:name=".StoreClerkDisbursementListActivity" />
         <activity android:name=".PurchaseOrderCreateWithItems" />
         <activity android:name=".DemoActivity" />
-        <activity android:name=".Models.DeptEmployeeMainActivity" />
+        <activity android:name=".DeptEmployeeMainActivity" />
         <activity android:name=".DeptHeadMainActivity" />
         <activity android:name=".StoreClerkMainActivity" />
         <activity android:name=".LoginActivity">
@@ -53,7 +56,5 @@
         <activity android:name=".StockListActivity" />
         <activity android:name=".TestPostJsonActivity" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
