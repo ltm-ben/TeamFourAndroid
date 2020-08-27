@@ -21,6 +21,7 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
     private Context mContext;
 
     public StoreClerkRequisitionDetailRecyclerViewAdapter(Context context, DeptRequisition requisition) {
+        setHasStableIds(true);
         mContext = context;
         mRequisition = requisition;
     }
@@ -68,9 +69,20 @@ public class StoreClerkRequisitionDetailRecyclerViewAdapter extends RecyclerView
             @Override
             public void afterTextChanged(Editable s) {
 
-
             }
         });
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+        //return super.getItemId(position);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+        //return super.getItemViewType(position);
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.util.List;
 public class DeptRequisition {
     private int id;
     private Employee employee;
+    private String formStatus;
     private RequisitionApprovalStatus requisitionApprovalStatus;
     private RequisitionFulfillmentStatus requisitionFulfillmentStatus;
     private String reason;
@@ -56,6 +57,14 @@ public class DeptRequisition {
 
     public void setRequisitionDetails(List<RequisitionDetail> requisitionDetails) {
         this.requisitionDetails = requisitionDetails;
+    }
+
+    public String getFormStatus() {
+        return formStatus;
+    }
+
+    public void setFormStatus(String formStatus) {
+        this.formStatus = formStatus;
     }
 
     @Override

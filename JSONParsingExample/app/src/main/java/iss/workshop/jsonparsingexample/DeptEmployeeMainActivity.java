@@ -8,14 +8,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class StoreClerkMainActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
+import iss.workshop.jsonparsingexample.R;
+
+public class DeptEmployeeMainActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
 
     private String mLogoutURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_clerk_main);
+        setContentView(R.layout.activity_dept_employee_main);
 
         mLogoutURL = "http://192.168.68.110/logout/logoutapi";
     }
@@ -28,31 +30,20 @@ public class StoreClerkMainActivity extends AppCompatActivity implements GetRawD
     //  Option Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.storeclerk_options_menu, menu);
+        getMenuInflater().inflate(R.menu.employee_options_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         Intent intent;
 
         switch (item.getItemId()) {
-            case R.id.Bar_Chart_List_item:
-                intent = new Intent(this, BarChartActivity.class);
+            case R.id.Employee_Requisition_Form_item:
+                intent = new Intent(this, EmployeeRequisitionFormActivity.class);
                 break;
-            case R.id.Requisition_List_item:
-                intent = new Intent(this, StoreClerkRequisitionListActivity.class);
-                break;
-            case R.id.Disbursement_List_item:
-                intent = new Intent(this, StoreClerkDisbursementListActivity.class);
-                break;
-            case R.id.Stock_List_item:
-                intent = new Intent(this, StockListActivity.class);
-                break;
-            case R.id.PO_List_item:
-                intent = new Intent(this,POList.class);
-                break;
-            case R.id.Store_Clerk_Logout_item:
+            case R.id.Employee_Logout_item:
                 GetRawData getRawData = new GetRawData(this);
                 getRawData.execute(mLogoutURL);
 
@@ -74,4 +65,3 @@ public class StoreClerkMainActivity extends AppCompatActivity implements GetRawD
         return true;
     }
 }
-

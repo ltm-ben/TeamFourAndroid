@@ -21,7 +21,8 @@
         android:background="#DCDCDC"
         android:ems="10"
         android:inputType="textPhonetic"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="20dp"
+        android:focusable="false"/>
 
     <TextView
         android:layout_width="200dp"
@@ -41,8 +42,6 @@
         android:paddingBottom="20dp"
         >
     </Spinner>
-
-    <requestFocus />
 
     <Button
         android:id="@+id/btnNext"

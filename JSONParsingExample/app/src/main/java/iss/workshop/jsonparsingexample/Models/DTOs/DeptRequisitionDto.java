@@ -10,6 +10,7 @@ import iss.workshop.jsonparsingexample.Models.RequisitionFulfillmentStatus;
 public class DeptRequisitionDto {
 
     private int Id;
+    private String formStatus;
     private List<RequisitionDetail> requisitionDetails = new ArrayList<>();
 
     public DeptRequisitionDto() {
@@ -21,6 +22,14 @@ public class DeptRequisitionDto {
 
     public void setId(int id) {
         Id = id;
+    }
+
+    public String getFormStatus() {
+        return formStatus;
+    }
+
+    public void setFormStatus(String formStatus) {
+        this.formStatus = formStatus;
     }
 
     public List<RequisitionDetail> getRequisitionDetails() {

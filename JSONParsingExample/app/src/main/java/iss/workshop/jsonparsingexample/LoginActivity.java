@@ -11,15 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDTO;
-import iss.workshop.jsonparsingexample.Models.DTOs.DisbursementDetailDto;
 
 public class LoginActivity extends AppCompatActivity implements PostJsonData.OnDownloadComplete {
 
@@ -28,22 +25,17 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
     Button mLoginBtn;
     public String mURL = "http://192.168.68.110/login/loginapi";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        final SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
-//
-//        if(pref.contains("username") && pref.contains("password")) {
-//
-//            boolean loginOk = logIn(pref.getString("username", ""),
-//                    pref.getString("password", ""));
-//
-//            if(loginOk) {
-//                startMainActivity();
-//            }
-//        }
+        SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+
+        if(pref.contains("deptRole")) {
+         redirectToActivity(pref.getString("deptRole", ""));
+        }
 
         mUsernameTxt = (EditText) findViewById(R.id.txtUsername);
         mPasswordTxt = (EditText) findViewById(R.id.txtPassword);
@@ -56,26 +48,12 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
                 String username = mUsernameTxt.getText().toString();
                 String password = mPasswordTxt.getText().toString();
 
-                boolean loginOk = logIn(username, password);
-
-//                if(loginOk) {
-//
-//                    SharedPreferences.Editor editor = pref.edit();
-//
-//                    editor.putString("username", username);
-//                    editor.putString("password", password);
-//                    editor.commit();
-//
-//                    Toast.makeText(getApplicationContext(), "Login successful!",
-//                            Toast.LENGTH_SHORT).show();
-//
-//                    startMainActivity();
-//                }
+                logIn(username, password);
             }
         });
     }
 
-    private boolean logIn(String username, String password) {
+    private void logIn(String username, String password) {
 
         // encode password using SHA256
 
@@ -99,22 +77,37 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
         } catch(JSONException e) {
             e.printStackTrace();
         }
-
-        return true;
-
-
-
-
-
-
-//        if (username.equals("DipSA") && password.equals("DipSA")) {
-//            return true;
-//        }
-//        return false;
     }
 
-    private void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void redirectToActivity(String deptRole) {
+
+        Intent intent;
+
+//        SharedPreferences.Editor editor = pref.edit();
+//        editor.putString("username", mUsernameTxt.getText().toString());
+//        editor.putString("deptRole", deptRole);
+//        editor.putInt("userId", userId);
+//        editor.commit();
+
+
+        switch (deptRole) {
+            case "DeptHead":
+                intent = new Intent(this, DeptHeadMainActivity.class);
+                break;
+            case "Employee":
+                intent = new Intent(this, DeptEmployeeMainActivity.class);
+                break;
+            case "DelegatedEmployee":
+                intent = new Intent(this, DelegateEmployeeMainActivity.class);
+                break;
+            case "StoreClerk":
+                intent = new Intent(this, StoreClerkMainActivity.class);
+                break;
+            default:
+                intent = new Intent(this, LoginActivity.class);
+                break;
+        }
+
         startActivity(intent);
     }
 
@@ -131,19 +124,28 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
                 data = data.replace("\\", "");
 
                 JSONObject jsonData = new JSONObject(data);
+                String response = jsonData.getString("response");
 
-                String message = jsonData.getString("Message");
+                if (response.equals("Successful")) {
+                    String deptRole = jsonData.getString("deptRole");
 
-                if (message.equals("Login Successful")) {
-                    Intent intent = new Intent(this, MainActivity.class);
+                    // set shared preferences
+                    SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    editor.putString("deptRole", deptRole);
+                    editor.commit();
+
+                    redirectToActivity(deptRole);
+                }
+                else {
+                    Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
 
 //            mDisbursement = new DisbursementDTO();
 //

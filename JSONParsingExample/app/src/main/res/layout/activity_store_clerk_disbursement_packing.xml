@@ -40,7 +40,8 @@ tools:context=".StoreClerkDisbursementPackingActivity">
         android:background="#DCDCDC"
         android:ems="10"
         android:inputType="textPhonetic"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="20dp"
+        android:focusable="false" />
 
     <requestFocus />
 

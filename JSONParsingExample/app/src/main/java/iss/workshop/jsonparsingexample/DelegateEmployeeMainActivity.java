@@ -1,7 +1,10 @@
 package iss.workshop.jsonparsingexample;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -29,16 +32,21 @@ public class DelegateEmployeeMainActivity extends AppCompatActivity implements G
     Button DelegateEmployeeCreate;
     DelegateEmployeeMainActivityListAdapter deEmpAdapter;
     Button cancel;
-    String mURLsend = "http://192.168.1.30/Delegate/CancelByAndroid";
+    String mURLsend = "http://192.168.68.110/Delegate/CancelByAndroid";
     PostJsonData mPostJsonData ;
     private List<DelegatedEmployee> mDelegateEmployees;
 
-    public String mURL = "http://192.168.1.30/Delegate/DelegatedEmployeeListApi";
+    private String mLogoutURL;
+    public String mURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delegate_employee_main);
+
+        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
+        mURL = "http://192.168.68.110/Delegate/DelegatedEmployeeListApi";
+
         mPostJsonData =  new PostJsonData(this);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.delegateEmployeeListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -132,5 +140,45 @@ public class DelegateEmployeeMainActivity extends AppCompatActivity implements G
     @Override
     public void postJsonDataOnDownloadComplete(String data, DownloadStatus status) {
         //no data to get back
+    }
+
+    //  Option Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.depthead_options_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+
+        switch (item.getItemId()) {
+            case R.id.delegate_employee_item:
+                intent = new Intent(this, DelegateEmployeeMainActivity.class);
+                break;
+            case R.id.approve_reject_requisitions_item:
+                intent = new Intent(this, DeptHeadReqList.class);
+                break;
+            case R.id.Dept_Head_Logout_item:
+                GetRawData getRawData = new GetRawData(this);
+                getRawData.execute(mLogoutURL);
+
+                // clear shared preferences
+                SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+                finish();
+
+                intent = new Intent(this, LoginActivity.class);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        startActivity(intent);
+
+        return true;
     }
 }

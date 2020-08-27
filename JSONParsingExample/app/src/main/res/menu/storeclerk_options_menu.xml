@@ -6,12 +6,12 @@
         android:title="Requisition"/>
     <item android:id ="@+id/Disbursement_List_item"
         android:title="Disbursement"/>
-    <item android:id="@+id/Disbursement_Packing_item"
-        android:title="Disbursement Packing"/>
     <item android:id="@+id/Stock_List_item"
         android:title="Stocks" />
     <item android:id="@+id/PO_List_item"
         android:title="P.O." />
+    <item android:id="@+id/Store_Clerk_Logout_item"
+        android:title="Logout" />
 </menu>
 
 

@@ -42,7 +42,7 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
     Spinner empName;
     private int mYear, mMonth, mDay;
     private List<DelegatedEmployee> mDelegatedEmployeeList = null;
-    public String mURL = "http://192.168.1.30/Delegate/EmployeeListApi";
+    public String mURL = "http://192.168.68.110/Delegate/EmployeeListApi";
     PostJsonData mPostJsonData;
     String mURLsend;
     //public String mURL = "http://192.168.1.30/Delegate/DelegatedEmployeeListApi";
@@ -70,10 +70,12 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
 
         //try to send data
         mPostJsonData = new PostJsonData(this);
-        mURLsend = "http://192.168.1.30/Delegate/PostSelectedEmp";
+        mURLsend = "http://192.168.68.110/Delegate/PostSelectedEmp";
 
         startDate.setOnClickListener(this);
+        //startDate.requestFocus();
         endDate.setOnClickListener(this);
+        //endDate.requestFocus();
         create.setOnClickListener(this);
         empName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -131,7 +133,21 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
 
-                            startDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            if (monthOfYear<9  && dayOfMonth <9) {
+                                startDate.setText("0" + dayOfMonth + "-" + "0" + (monthOfYear + 1) + "-" + year);
+                            }
+                            else if (monthOfYear<9 && dayOfMonth>9)
+                            {
+                                startDate.setText(dayOfMonth + "-" + "0" + (monthOfYear + 1) + "-" + year);
+                            }
+                            else if (monthOfYear>9 && dayOfMonth<9)
+                            {
+                                startDate.setText("0" + dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            }
+                            else
+                            {
+                                startDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            }
 
                         }
                     }, mYear, mMonth, mDay);
@@ -154,7 +170,21 @@ public class CreateNewDelegateEmployee extends AppCompatActivity implements View
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
 
-                            endDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            if (monthOfYear<9  && dayOfMonth <9) {
+                                endDate.setText("0" + dayOfMonth + "-" + "0" + (monthOfYear + 1) + "-" + year);
+                            }
+                            else if (monthOfYear<9 && dayOfMonth>9)
+                            {
+                                endDate.setText(dayOfMonth + "-" + "0" + (monthOfYear + 1) + "-" + year);
+                            }
+                            else if (monthOfYear>9 && dayOfMonth<9)
+                            {
+                                endDate.setText("0" + dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            }
+                            else
+                            {
+                                endDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            }
 
                         }
                     }, mYear, mMonth, mDay);

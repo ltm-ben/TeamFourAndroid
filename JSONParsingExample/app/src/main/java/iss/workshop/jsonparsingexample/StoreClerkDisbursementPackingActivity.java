@@ -42,6 +42,8 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
     private int mMonth;
     private int mDay;
 
+    private String mLogoutURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
             disbursementId = String.valueOf(extras.getInt("disbursementId"));
             mGetDisbursementDetailURL = "http://192.168.68.110/store/StoreClerkDisbursementDetailApi?id=" + disbursementId;
             mSaveDisbursementDetailURL = "http://192.168.68.110/store/StoreClerkSaveDisbursementDetailApi";
+            mLogoutURL = "http://192.168.68.110/logout/logoutapi";
         }
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.disbursementDetailRecyclerView);
@@ -84,6 +87,10 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
                         else if (month<9 && day>9)
                         {
                             mStoreClerkDisbursementCollectionDate.setText(year + "-"  + "0"+ (month + 1) + "-" +day);
+                        }
+                        else if (month>9 && day<9)
+                        {
+                            mStoreClerkDisbursementCollectionDate.setText(year + "-"  + (month + 1) + "-" +"0" + day);
                         }
                         else
                         {
@@ -202,30 +209,30 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
         switch (item.getItemId()) {
             case R.id.Bar_Chart_List_item:
                 intent = new Intent(this, BarChartActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Requisition_List_item:
                 intent = new Intent(this, StoreClerkRequisitionListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Disbursement_List_item:
                 intent = new Intent(this, StoreClerkDisbursementListActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.Disbursement_Packing_item:
-                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Stock_List_item:
                 intent = new Intent(this, StockListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.PO_List_item:
                 intent = new Intent(this,POList.class);
-                startActivity(intent);
-                return true;
+                break;
+            case R.id.Store_Clerk_Logout_item:
+                GetRawData getRawData = new GetRawData(this);
+                getRawData.execute(mLogoutURL);
+                intent = new Intent(this, LoginActivity.class);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        startActivity(intent);
+
+        return true;
     }
 }
