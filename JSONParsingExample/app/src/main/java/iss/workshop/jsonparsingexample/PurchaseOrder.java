@@ -32,7 +32,7 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
         String selectedItemText;
         EditText mDate;
         DatePickerDialog mDatePickerDialog;
-        String mURL =  "https://logicu.nusteamfour.online/PO/POCreate";
+        String mURL =  "http://192.168.68.110/PO/POCreate";
         String orderDate;
         public static final String TAG = "Purchase Order";
 
@@ -86,6 +86,10 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
                         else if (month<9 && day>9)
                         {
                             mDate.setText(year + "-"  + "0"+ (month + 1) + "-" +day);
+                        }
+                        else if (month>9 && day<9)
+                        {
+                            mDate.setText(year + "-" + (month + 1) + "-" +"0" + day);
                         }
                         else
                         {

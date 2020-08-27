@@ -88,6 +88,10 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
                         {
                             mStoreClerkDisbursementCollectionDate.setText(year + "-"  + "0"+ (month + 1) + "-" +day);
                         }
+                        else if (month>9 && day<9)
+                        {
+                            mStoreClerkDisbursementCollectionDate.setText(year + "-"  + (month + 1) + "-" +"0" + day);
+                        }
                         else
                         {
                             mStoreClerkDisbursementCollectionDate.setText(year + "-"  + (month + 1) + "-" +day);

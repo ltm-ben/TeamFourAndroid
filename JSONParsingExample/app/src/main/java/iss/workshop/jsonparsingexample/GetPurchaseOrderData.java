@@ -72,7 +72,7 @@ public class GetPurchaseOrderData extends AsyncTask<String, Void, List<PO>> impl
                     PurchaseOrderStatus poStatus = PurchaseOrderStatus.valueOf(jsonRequisition.getInt("POStatus"));
                     PO po = new PO();
                     po.setId(jsonRequisition.getInt("Id"));
-                    po.setOrderDate(jsonRequisition.getString("OrderDate"));
+                    po.setOrderDate(jsonRequisition.getString("OrderDate").substring(0, 10));
                     po.setSupplierName(jsonRequisition.getString("SupplierName"));
                     po.setStatus(poStatus);
 
