@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -31,11 +32,12 @@ import iss.workshop.jsonparsingexample.Models.POItems;
 import iss.workshop.jsonparsingexample.Models.PurchaseOrderStatus;
 //import iss.workshop.jsonparsingexample.Models.TestDTO;
 
-public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable,PostJsonData.OnDownloadComplete{
+public class PurchaseOrderCreateWithItems extends AppCompatActivity implements GetItemsListAccordingToSupplierData.OnDataAvailable,PostJsonData.OnDownloadComplete, GetRawData.OnDownloadComplete {
 
     public static final String TAG = "ItemList";
+    private String mLogoutURL;
 
-    public String mURL = "http://192.168.68.110/PO/POItemApi";
+    public String mURL;
     RecyclerView rView;
     Button mbtnSave;
     PurchaseOrderCreateWithItemAdapter adapter;
@@ -46,8 +48,10 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_purchase_order_create_with_items);
+
+        mURL = "http://192.168.68.110/PO/POItemApi";
+        mLogoutURL = "http://192.168.68.110/logout/logoutapi";
 
         rView = (RecyclerView) findViewById(R.id.supplierCreateWithItemListRecyclerView);
         rView.setLayoutManager(new LinearLayoutManager(this));
@@ -187,6 +191,11 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
         return jArr;
     }
 
+    @Override
+    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
+
+    }
+
     //  Option Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -201,30 +210,38 @@ public class PurchaseOrderCreateWithItems extends AppCompatActivity implements G
         switch (item.getItemId()) {
             case R.id.Bar_Chart_List_item:
                 intent = new Intent(this, BarChartActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Requisition_List_item:
                 intent = new Intent(this, StoreClerkRequisitionListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Disbursement_List_item:
                 intent = new Intent(this, StoreClerkDisbursementListActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.Disbursement_Packing_item:
-                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.Stock_List_item:
                 intent = new Intent(this, StockListActivity.class);
-                startActivity(intent);
-                return true;
+                break;
             case R.id.PO_List_item:
                 intent = new Intent(this,POList.class);
-                startActivity(intent);
-                return true;
+                break;
+            case R.id.Store_Clerk_Logout_item:
+                GetRawData getRawData = new GetRawData(this);
+                getRawData.execute(mLogoutURL);
+
+                // clear shared preferences
+                SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+                finish();
+
+                intent = new Intent(this, LoginActivity.class);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        startActivity(intent);
+
+        return true;
     }
 }

@@ -3,6 +3,7 @@ package iss.workshop.jsonparsingexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +46,14 @@ public class DeptEmployeeMainActivity extends AppCompatActivity implements GetRa
             case R.id.Employee_Logout_item:
                 GetRawData getRawData = new GetRawData(this);
                 getRawData.execute(mLogoutURL);
+
+                // clear shared preferences
+                SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+                finish();
+
                 intent = new Intent(this, LoginActivity.class);
                 break;
             default:

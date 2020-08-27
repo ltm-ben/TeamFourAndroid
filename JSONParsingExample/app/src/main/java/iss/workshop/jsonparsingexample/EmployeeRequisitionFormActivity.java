@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -105,13 +106,6 @@ public class EmployeeRequisitionFormActivity extends AppCompatActivity implement
         postJsonData.execute(mSaveRequisitionURL);
     }
 
-    //  Option Menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.employee_options_menu, menu);
-        return true;
-    }
-
     @Override
     public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
 
@@ -152,6 +146,13 @@ public class EmployeeRequisitionFormActivity extends AppCompatActivity implement
 
     }
 
+    //  Option Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.employee_options_menu, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -164,6 +165,14 @@ public class EmployeeRequisitionFormActivity extends AppCompatActivity implement
             case R.id.Employee_Logout_item:
                 GetRawData getRawData = new GetRawData(this);
                 getRawData.execute(mLogoutURL);
+
+                // clear shared preferences
+                SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+                finish();
+
                 intent = new Intent(this, LoginActivity.class);
                 break;
             default:

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -120,9 +121,6 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
             case R.id.Disbursement_List_item:
                 intent = new Intent(this, StoreClerkDisbursementListActivity.class);
                 break;
-            case R.id.Disbursement_Packing_item:
-                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-                break;
             case R.id.Stock_List_item:
                 intent = new Intent(this, StockListActivity.class);
                 break;
@@ -132,6 +130,14 @@ public class POList extends AppCompatActivity implements GetPurchaseOrderData.On
             case R.id.Store_Clerk_Logout_item:
                 GetRawData getRawData = new GetRawData(this);
                 getRawData.execute(mLogoutURL);
+
+                // clear shared preferences
+                SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+                finish();
+
                 intent = new Intent(this, LoginActivity.class);
                 break;
             default:

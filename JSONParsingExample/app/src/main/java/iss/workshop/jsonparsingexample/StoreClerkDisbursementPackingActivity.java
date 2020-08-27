@@ -216,9 +216,6 @@ public class StoreClerkDisbursementPackingActivity extends AppCompatActivity imp
             case R.id.Disbursement_List_item:
                 intent = new Intent(this, StoreClerkDisbursementListActivity.class);
                 break;
-            case R.id.Disbursement_Packing_item:
-                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-                break;
             case R.id.Stock_List_item:
                 intent = new Intent(this, StockListActivity.class);
                 break;

@@ -210,10 +210,6 @@ public class StoreClerkRequisitionDetailActivity extends AppCompatActivity imple
                 intent = new Intent(this, StoreClerkDisbursementListActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.Disbursement_Packing_item:
-                intent = new Intent(this, StoreClerkDisbursementPackingActivity.class);
-                startActivity(intent);
-                return true;
             case R.id.Stock_List_item:
                 intent = new Intent(this, StockListActivity.class);
                 startActivity(intent);

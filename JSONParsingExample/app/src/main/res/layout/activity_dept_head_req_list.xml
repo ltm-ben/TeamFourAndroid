@@ -13,7 +13,7 @@
         android:layout_marginStart="174dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="179dp"
-        android:text="Depart Head Requisition List"
+        android:text="Requisitions"
         app:layout_constraintBottom_toTopOf="@id/deptHeadReqListRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

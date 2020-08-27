@@ -12,10 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EmployeeRequisitionFormActivity"></activity>
-        <activity android:name=".DeptHeadReqListDetailsRecyclerViewAdapter" />
+        <activity android:name=".EmployeeRequisitionFormActivity" />
         <activity android:name=".DeptHeadReqListDetails" />
-        <activity android:name=".DeptHeadReqListRecyclerViewAdapter" />
         <activity android:name=".DeptHeadReqList" />
         <activity android:name=".ApproveRejectRequisitionsMainActivity" />
         <activity android:name=".DelegateEmployeeMainActivity" />
@@ -23,7 +21,6 @@
         <activity android:name=".StoreClerkDisbursementPackingActivity" />
         <activity android:name=".StoreClerkDisbursementListActivity" />
         <activity android:name=".PurchaseOrderCreateWithItems" />
-        <activity android:name=".DemoActivity" />
         <activity android:name=".DeptEmployeeMainActivity" />
         <activity android:name=".DeptHeadMainActivity" />
         <activity android:name=".StoreClerkMainActivity" />
@@ -50,11 +47,8 @@
         </activity>
         <activity android:name=".StoreClerkRequisitionDetailActivity" />
         <activity android:name=".CreatStoreDeptActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".StoreClerkRequisitionListActivity" />
-        <activity android:name=".StockDetailActivity" />
         <activity android:name=".StockListActivity" />
-        <activity android:name=".TestPostJsonActivity" />
     </application>
 
 </manifest>

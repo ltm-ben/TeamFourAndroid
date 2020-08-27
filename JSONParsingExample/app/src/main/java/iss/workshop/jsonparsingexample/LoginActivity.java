@@ -3,11 +3,13 @@ package iss.workshop.jsonparsingexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,16 +24,18 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
     EditText mPasswordTxt;
     Button mLoginBtn;
     public String mURL = "http://192.168.68.110/login/loginapi";
-    //SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        if(pref.contains("deptRole")) {
-//         redirectToActivity(mUserId, pref.getString("deptRole", ""));
-//        }
+        SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+
+        if(pref.contains("deptRole")) {
+         redirectToActivity(pref.getString("deptRole", ""));
+        }
 
         mUsernameTxt = (EditText) findViewById(R.id.txtUsername);
         mPasswordTxt = (EditText) findViewById(R.id.txtPassword);
@@ -45,20 +49,6 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
                 String password = mPasswordTxt.getText().toString();
 
                 logIn(username, password);
-
-//                if(loginOk) {
-//
-//                    SharedPreferences.Editor editor = pref.edit();
-//
-//                    editor.putString("username", username);
-//                    editor.putString("password", password);
-//                    editor.commit();
-//
-//                    Toast.makeText(getApplicationContext(), "Login successful!",
-//                            Toast.LENGTH_SHORT).show();
-//
-//                    startMainActivity();
-//                }
             }
         });
     }
@@ -87,11 +77,6 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
         } catch(JSONException e) {
             e.printStackTrace();
         }
-
-//        if (username.equals("DipSA") && password.equals("DipSA")) {
-//            return true;
-//        }
-//        return false;
     }
 
     public void redirectToActivity(String deptRole) {
@@ -143,6 +128,14 @@ public class LoginActivity extends AppCompatActivity implements PostJsonData.OnD
 
                 if (response.equals("Successful")) {
                     String deptRole = jsonData.getString("deptRole");
+
+                    // set shared preferences
+                    SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    editor.putString("deptRole", deptRole);
+                    editor.commit();
+
                     redirectToActivity(deptRole);
                 }
                 else {
