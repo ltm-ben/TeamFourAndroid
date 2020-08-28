@@ -29,13 +29,12 @@ import java.util.Date;
 import iss.workshop.jsonparsingexample.Models.CollectionPoint;
 import iss.workshop.jsonparsingexample.Models.SupplierList;
 
-public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnDownloadComplete, GetRawData.OnDownloadComplete {
+public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnDownloadComplete {
         String selectedItemText;
         EditText mDate;
         DatePickerDialog mDatePickerDialog;
         String mURL =  "https://logicuniversity.nusteamfour.online/PO/POCreate";
         String orderDate;
-        private String mLogoutURL;
         public static final String TAG = "Purchase Order";
 
     @Override
@@ -43,8 +42,11 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_order);
 
+<<<<<<< HEAD
         mLogoutURL = "https://logicuniversity.nusteamfour.online/logout/logoutapi";
 
+=======
+>>>>>>> parent of ce5b7f6... Update PurchaseOrder.java
         // Get the widget reference from XML layout
         Spinner mSpinner =(Spinner) findViewById(R.id.spnSupplier);
 
@@ -173,11 +175,6 @@ public class PurchaseOrder extends AppCompatActivity implements PostJsonData.OnD
                 status = DownloadStatus.FAILED_OR_EMPTY;
             }
         }
-    }
-
-    @Override
-    public void getRawDataOnDownloadComplete(String data, DownloadStatus status) {
-        
     }
 
     //  Option Menu
